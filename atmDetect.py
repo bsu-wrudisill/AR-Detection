@@ -8,29 +8,22 @@ O: TBD
 ===============
 """
 
-
 from netCDF4 import Dataset
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.basemap import Basemap
-
 from skimage.measure import regionprops
-from scipy import ndimage
 import glob
 import json
-
 #from scipy.ndimage.interpolation import rotate
 from skimage.morphology import skeletonize
-#from scipy.ndimage import filters, morphology, measurements
+from scipy.ndimage import filters, morphology, measurements
 #from skimage.graph import route_through_array
-
-
+from scipy import ndimage
 
 
 # fname = "/Users/will/Desktop/pgbf2010053100.01.2010053100.nc"
-path = "/home/wrudisill/scratch/Find_ARs/sample/*"
-
-
+path = "/home/wrudisill/scratch/Find_ARs/sample/20101226-20101231_IVT.nc"
 
 ###globals
 ivt_min = 250 
@@ -40,26 +33,35 @@ cell_to_km = 50 #km
 #out 
 Results_dictionary = {}
 
-
 for fname in glob.glob(path):
 
 	Results_dictionary[fname[41:]] = {}
-
-	#subset of IVT
-	#out = subset(calcIVT(fname), h, w) 
+        
+        # open netcdf dataset
         ds = Dataset(fname)
-        out =ds.variables['ivt']
-        out = out[0, 0, :, :]
-        out[180:360, :] = 0
 
+	# subset of IVT
+        ivt =ds.variables['ivt']
+        ivt = ivt[0, 0, :, :]
+        ivt[180:360, :] = 0
+        
+        # subset of wind_direction; 
+        wnd = ds.variables['w_dir']
+        print wnd.shape
+        wnd = wnd[0, 0, :, :]
+        wnd[180:360, :] = 0
+        
+        
 	#subtract mean. TODO: subtract seasonal variation
 	#m_out = out - np.mean(out)
 
 	#convert to binary. 1 is above min value
-	threshold_array = np.where(out > ivt_min, 1, 0)
+	threshold_array = np.where(ivt > ivt_min, 1, 0)
         
 	#labeled components. given values of 1:n
 	label_array, num_labels = ndimage.measurements.label(threshold_array)
+        
+        #each 'blob' identified is assigned a label 
         label_array = label_array
 
 	#list of the label values 
@@ -68,12 +70,12 @@ for fname in glob.glob(path):
 	#list size, in pixels, of components 
 	sizes = ndimage.sum(label_array, label_array, range(num_labels + 1))
        
-	#labels to keep 
+	#labels to keep (corresponding w/ objects gt. than size threshold)
 	keep_label = labels[sizes > size_mask]
 
-
         #if there is nothing to keep, write to dic and continue
-	if not keep_label.any():
+	
+        if not keep_label.any():
 		info = 'No ATM Rivers'
 		Results_dictionary[fname[41:]] = info 
 		#does no execute the rest of the loop, starts back at top
@@ -81,11 +83,18 @@ for fname in glob.glob(path):
 
 	#total_blob_size = sum(sizes[sizes>size_mask]) ## why do i need to know this?
 
-
         #labeled components to keep 
         blob_num = int(0)
-        ar_array = label_array
         foo = label_array
+        
+        #-------------------------------------------------------------------------#
+        # 1.0 Loop through each blob in the list of canditate blobs
+        #   a. Get shape statistics (length, width, orientation)
+        #   b. Find mean IVT w/in the blob region
+        #   c. Find mean wind direction w/in blob region
+        #   d. Find blob skeleton shape (maybe this isn't important...)
+        #   e. More to come.... 
+        #-------------------------------------------------------------------------#
 
         for label in keep_label:                
                 ar_array = np.where(label_array == label, 1, 0)                
@@ -95,19 +104,18 @@ for fname in glob.glob(path):
                 blob_num = blob_num + 1
                 blob_skeleton = skeletonize(ar_array)
                 foo[np.where(blob_skeleton == 1)] = 100
-                mean_ivt = np.mean(out[np.where(ar_array == 1)])
+                mean_ivt = np.mean(ivt[np.where(ar_array == 1)])
+                mean_wind_dir = np.mean(wnd[np.where(ar_array ==1)])
 
                 for blob in blob_props:
                         blob_lab = 'theblob'+str(blob_num)
-                        info = {'orientation': blob.orientation , 'length': blob.major_axis_length*cell_to_km, 'width':blob.minor_axis_length*cell_to_km, 'mean_ivt' : mean_ivt}
+                        info = {'orientation': blob.orientation , 'length': blob.major_axis_length*cell_to_km, 'width':blob.minor_axis_length*cell_to_km, 'mean_ivt' : mean_ivt, 'mean_wind_dir' : mean_wind_dir}
                         Results_dictionary[fname[41:]][blob_lab] = info
 
 
-        plt.imshow(label_array)
-        plt.colorbar()
-        plt.show()
-
-
+#        plt.imshow(label_array)
+#        plt.colorbar()
+#        plt.show()
 
         
 print Results_dictionary
