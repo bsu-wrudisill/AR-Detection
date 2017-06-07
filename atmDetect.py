@@ -22,14 +22,20 @@ from scipy.ndimage import filters, morphology, measurements
 from scipy import ndimage
 
 
-### Global Values 
+#-------------------------------------------------------------------------#
+# Global Values, Filepaths, etc.
+#-------------------------------------------------------------------------#
 
 path = "/home/wrudisill/scratch/Find_ARs/sample/20101226-20101231_IVT.nc"
 ivt_min = 250                     # Minimum IVT value in kg/ms to be retained
 size_mask = 1000                  # Min Grid cell size of object
 cell_to_km = 50                   # km
+Results_dictionary = {}           # output dictionary
 
-### Helper Functions
+
+#-------------------------------------------------------------------------#
+# Helper Functions 
+#-------------------------------------------------------------------------#
 
 def subtract_angle(a,b):
         # Returns the smallest angle between two angles between [-180, 180]
@@ -37,27 +43,28 @@ def subtract_angle(a,b):
         return abs(min(tup))
 
 
-# Outile 
-Results_dictionary = {}
+
+#-------------------------------------------------------------------------#
+# BEGIN File-Loop:Loop through nc files within path
+#-------------------------------------------------------------------------#
 
 for fname in glob.glob(path):
 
-	Results_dictionary[fname[41:]] = {}
-        
-        # open netcdf dataset
-        ds = Dataset(fname)
+        # Name of stuff
+        Results_dictionary[fname[40:]] = {}
+        AR_EXISTS = False
+
+        # Open netcdf dataset
+        ds = Dataset(fname, format='NETCDF4_CLASSIC')
 
 	# subset of IVT
         ivt =ds.variables['ivt']
-        ivt = ivt[0, 0, :, :]
-        ivt[180:360, :] = 0
+        ivt = ivt[0, 0, :, :] # Right now we're only looking at one time!!!
         
         # subset of wind_direction; 
         wnd = ds.variables['w_dir']
         wnd = wnd[0, 0, :, :]
-        wnd[180:360, :] = 0
-        
-        
+                
 	#subtract mean. TODO: subtract seasonal variation
 	#m_out = out - np.mean(out)
 
@@ -90,23 +97,24 @@ for fname in glob.glob(path):
 
         #labeled components to keep 
         blob_num = int(0)
+        
+        # Array of Zeros; fill up w/ AR that get ID'd
         new_arr = np.zeros_like(label_array)        
 
         #-------------------------------------------------------------------------#
-        # 1.0 Loop through each blob in the list of canditate blobs
+        # BEGIN Blob-Loop: Loop through each blob in the list of canditate blobs
         #-------------------------------------------------------------------------#
-
         for label in keep_label:               
  
                 #-------------------------------------------------------------------------#
                 #  Test Flags; set to true if passing 
                 #-------------------------------------------------------------------------#
                 TC_a = False      # Mean IVT 
-                TC_b = False      # Coherency in IVT Direction
+                TC_b = False      # Coherency in IVT Direction (i.e. variance)
                 TC_c = False      # Object Mean Meridonal IVT 
                 TC_d = False      # Object/IVT direction Consistency
                 TC_e = False      # Length/Width Ratio
-                TC_f = True      # Lanfalling 
+                TC_f = True       # Lanfalling 
                 #-------------------------------------------------------------------------#
                 
 
@@ -139,8 +147,8 @@ for fname in glob.glob(path):
                 #-------------------------------------------------------------------------#
                 # Wind Direction calculations
                 # TC_b:  No more than 1/2 of gridcells in blob should deviate more than 45* from objects mean IVT direction
-                # TC_d:  Mean wind dir must have 'significant' poleward (meridonal) component;    
                 # TC_c:  Mean wind dir and Object Orientation (blob_dir) Should not deviate by more than 45*
+                # TC_d:  Mean wind dir must have 'significant' poleward (meridonal) component;    
                 #-------------------------------------------------------------------------#
                 
                 # Blob Orientation
@@ -153,13 +161,13 @@ for fname in glob.glob(path):
                 angle_gt_mean = map(lambda x: x>45, angle_diff).count(True) # Counts angles gt 45 deg from mean dir
         
 
-                #-------------------------------------------------------------------------#
+                #----------------------------------------------------------------------------------#
                 # Object Testing 
-                #-------------------------------------------------------------------------#
+                #----------------------------------------------------------------------------------#
                 if mean_ivt > 250.0:
                         TC_a = True
 
-                if angles_gt_mean < len(angle_diff)/2:
+                if angle_gt_mean < len(angle_diff)/2:
                         TC_b = True
                 
                 if subtract_angle(mean_wind_dir, blob_dir) < 45.0: 
@@ -172,33 +180,98 @@ for fname in glob.glob(path):
                         TC_e = True
            
                 
-                #-------------------------------------------------------------------------#
-                # Write output to dictionary 
-                # 
-                # 
-                #-------------------------------------------------------------------------#
+                # Add landfalling later
                 
-                blob_lab = 'AR_Blob'+str(blob_num)
-                info = {'orientation': blob.orientation/np.pi*180 , 'length': blob.major_axis_length*cell_to_km, 'width':blob.minor_axis_length*cell_to_km, 'mean_ivt' : mean_ivt, 'mean_wind_dir' : mean_wind_dir}
-                Results_dictionary[fname[41:]][blob_lab] = info
-                
-                #new_arr[label_indices] = blob.orientation
-                blob_num = blob_num + 1 
-        
-                
-#       plt.imshow(new_arr)
-#       plt.colorbar()
-#       plt.show()
+                #---------------------------------------------------------------------------------#
+                # Write output to dictionary or do Nothing
+                #---------------------------------------------------------------------------------#
+                                
+                if TC_a + TC_b + TC_c + TC_d + TC_e == 5:  # In Python, True == 1 
+                        
+                        AR_EXISTS = True
+                        
+                        #-------------------------------------------------------------------------#
+                        # Write output to dictionary 
+                        # optional: save output plot
+                        # 
+                        #-------------------------------------------------------------------------#
+                                
+                        # Name of AR 
+                        AR_Name = 'AR_' + str(blob_num)
+                        blob_num = blob_num + 1 
 
-        
-print Results_dictionary
+                        # Dictionary Entry 
+                        info = {'object_orientation_direction': blob_dir, 
+                                'object_length': blob_length, 
+                                'object_width':blob_width, 
+                                'mean_IVT': mean_ivt, 
+                                'mean_IVT_dir': mean_wind_dir}
+
+                        Results_dictionary[fname[40:]][AR_Name] = info
+                        
+                        # Add AR to output Array
+                        new_arr[label_indices] = blob_num * 100
+                        
+                else:
+                        continue
+
+        #----------------------------------------------------------------------------------------#
+        # END Blob-Loop
+        #---------------------------------------------------------------------------------#
+                
+        #---------------------------------------------------------------------------------#
+        #  If there are AR:
+        #    a. Print out summary statistics
+        #    b. Plot the ARs w/ basemps
+        #    c. In progress --- write AR array out to a NCfile
+        #---------------------------------------------------------------------------------#
+
+        if AR_EXISTS == True:
+                print Results_dictionary
+                
+                #-------------------------------------------------------------------------#
+                # Get lat/lon for plotting pu
+                lons = ds.variables['longitude'][:]
+                lats = ds.variables['latitude'][:]
+                ds.close() # close Netcdf File 
+                #-------------------------------------------------------------------------#
+
+
+                #-------------------------------------------------------------------------#
+                # Feature: Write out to a netcdf file.
+                #ds = Dataset(fname, 'r+') # not working; HDF5 error
+                #AR_nc = ds.createVariable('Atmospheric_River', np.float32, ('time', 'level', 'lat', 'lon'))
+                #AR_nc.grid_type = 'latitude/longitude'
+                #AR_nc.units = 'none'
+                #AR_nc.long_name = 'Atmospheric River Structure'
+                #AR_nc[0,:,:,:] = new_arr
+                #-------------------------------------------------------------------------#
+
+                #-------------------------------------------------------------------------#
+                # Plot with Basemap
+                #-------------------------------------------------------------------------#
+                m = Basemap(projection='cyl', resolution='c')
+                lon, lat = np.meshgrid(lons, lats)
+                xi, yi = m(lon, lat)
+                m.drawparallels(np.arange(-80., 81., 20.), labels=[1,0,0,0], fontsize=5)
+                m.drawmeridians(np.arange(-180., 181., 20.), labels=[0,0,0,1], fontsize=5)
+                m.drawcoastlines()
+                m.drawstates()
+                m.drawcountries()
+                cs = m.pcolor(xi,yi,new_arr,latlon=True)
+                plt.savefig('testmap',format='png', dpi = 1000)
+                plt.close()
+                
+#-----------------------------------------------------------------------------------------#
+# END File-Loop: Done looping through files in path
+#-----------------------------------------------------------------------------------------#
+
+print "Finished"
 
 
 
 #with open('results.json', 'w') as outfile:
 #        json.dump(Results_dictionary, outfile)
-
 #            blob_skeleton = skeletonize(sub_array) # Perhaps use this to calc the lengths...
-
 
 
