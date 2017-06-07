@@ -47,7 +47,6 @@ for fname in glob.glob(path):
         
         # subset of wind_direction; 
         wnd = ds.variables['w_dir']
-        print wnd.shape
         wnd = wnd[0, 0, :, :]
         wnd[180:360, :] = 0
         
@@ -62,7 +61,6 @@ for fname in glob.glob(path):
 	label_array, num_labels = ndimage.measurements.label(threshold_array)
         
         #each 'blob' identified is assigned a label 
-        label_array = label_array
 
 	#list of the label values 
 	labels = np.array(range(num_labels + 1))
@@ -85,7 +83,6 @@ for fname in glob.glob(path):
 
         #labeled components to keep 
         blob_num = int(0)
-        foo = label_array
         
         #-------------------------------------------------------------------------#
         # 1.0 Loop through each blob in the list of canditate blobs
@@ -96,26 +93,35 @@ for fname in glob.glob(path):
         #   e. More to come.... 
         #-------------------------------------------------------------------------#
 
+        new_arr = np.zeros_like(label_array)
+
         for label in keep_label:                
-                ar_array = np.where(label_array == label, 1, 0)                
-
+                label_indices = np.where(label_array == label)
+                sub_array = np.where(label_array == label, 1, 0)
+                
                 #properties of AR components
-                blob_props = regionprops(ar_array)                
+                blob_props = regionprops(sub_array)
                 blob_num = blob_num + 1
-                blob_skeleton = skeletonize(ar_array)
-                foo[np.where(blob_skeleton == 1)] = 100
-                mean_ivt = np.mean(ivt[np.where(ar_array == 1)])
-                mean_wind_dir = np.mean(wnd[np.where(ar_array ==1)])
+                blob_skeleton = skeletonize(sub_array)
+                
+                # 
+                mean_ivt = np.mean(ivt[label_indices])
+                mean_wind_dir = np.mean(wnd[label_indices])
+                
+                # distance matrix                                
+                blob = blob_props[0]
+                blob_dir = blob.orientation
+                blob_lab = 'AR_Blob'+str(blob_num)
+                info = {'orientation': blob.orientation , 'length': blob.major_axis_length*cell_to_km, 'width':blob.minor_axis_length*cell_to_km, 'mean_ivt' : mean_ivt, 'mean_wind_dir' : mean_wind_dir}
+                Results_dictionary[fname[41:]][blob_lab] = info
+                
+                new_arr[label_indices] = blob.orientation
+                
 
-                for blob in blob_props:
-                        blob_lab = 'theblob'+str(blob_num)
-                        info = {'orientation': blob.orientation , 'length': blob.major_axis_length*cell_to_km, 'width':blob.minor_axis_length*cell_to_km, 'mean_ivt' : mean_ivt, 'mean_wind_dir' : mean_wind_dir}
-                        Results_dictionary[fname[41:]][blob_lab] = info
-
-
-#        plt.imshow(label_array)
-#        plt.colorbar()
-#        plt.show()
+                
+        plt.imshow(new_arr)
+        plt.colorbar()
+        plt.show()
 
         
 print Results_dictionary
