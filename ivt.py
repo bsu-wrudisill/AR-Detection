@@ -80,11 +80,11 @@ def IVT(infile, outfile):
 		u = subset['UGRD_P0_L100_GLL0'][i,:]
                 v = subset['VGRD_P0_L100_GLL0'][i,:]
                 tV = (u**2)*(v**2)**.5
-                phi =np.arctan(v/u)                
+                phi =np.arctan2(u,v)/np.pi*180 #first arg is the y dir, second x dir (meridonal, zonal)                
 		g = 9.81 
 		dp = 25.00 #pa
 		ivtval = np.ndarray.sum(Q*tV, axis=0)*1/g*dp
-                wndval = np.ndarray.mean(phi, axis=0)*2/np.pi * 180
+                wndval = np.ndarray.mean(phi, axis=0)
                 ivt[i,:,:,:] = ivtval
                 wnd[i,:,:,:] = wndval
 
