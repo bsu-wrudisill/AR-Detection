@@ -45,11 +45,16 @@ def subtract_angle(a,b):
 
 
 #-------------------------------------------------------------------------#
-# BEGIN File-Loop:Loop through nc files within path
+# Main 
 #-------------------------------------------------------------------------#
 
-for fname in glob.glob(path):
+#-------------------------------------------------------------------------#
+# BEGIN Main_Function
+#-------------------------------------------------------------------------#
 
+def FindAR(fname, time):
+        #  Fname -- netcdf file of IVT (string)
+        #  Time  -- arraay index correspongding to timestamp (integer)
         # Name of stuff
         Results_dictionary[fname[40:]] = {}
         AR_EXISTS = False
@@ -57,41 +62,41 @@ for fname in glob.glob(path):
         # Open netcdf dataset
         ds = Dataset(fname, format='NETCDF4_CLASSIC')
 
-	# subset of IVT
+	# Subset of IVT
         ivt =ds.variables['ivt']
-        ivt = ivt[0, 0, :, :] # Right now we're only looking at one time!!!
+        ivt = ivt[time, 0, :, :] # Right now we're only looking at one time!!!
         
-        # subset of wind_direction; 
+        # Subset of wind_direction; 
         wnd = ds.variables['w_dir']
         wnd = wnd[0, 0, :, :]
                 
 	#subtract mean. TODO: subtract seasonal variation
 	#m_out = out - np.mean(out)
 
-	#convert to binary. 1 is above min value
+	# Convert to binary. 1 is above min value
 	threshold_array = np.where(ivt > ivt_min, 1, 0)
         
-	#labeled components. given values of 1:n
+	# Labeled components. given values of 1:n
 	label_array, num_labels = ndimage.measurements.label(threshold_array)
         
         #each 'blob' identified is assigned a label 
 
-	#list of the label values 
+	# List of the label values 
 	labels = np.array(range(num_labels + 1))
 
-	#list size, in pixels, of components 
+	# List size, in pixels, of components 
 	sizes = ndimage.sum(label_array, label_array, range(num_labels + 1))
        
-	#labels to keep (corresponding w/ objects gt. than size threshold)
+	# Labels to keep (corresponding w/ objects gt. than size threshold)
 	keep_label = labels[sizes > size_mask]
 
-        #if there is nothing to keep, write to dic and continue
+        # If there is nothing to keep, write to dic and continue
 	
         if not keep_label.any():
 		info = 'No ATM Rivers'
 		Results_dictionary[fname[41:]] = info 
 		#does no execute the rest of the loop, starts back at top
-                continue
+                return
 
 	#total_blob_size = sum(sizes[sizes>size_mask]) ## why do i need to know this?
 
@@ -152,14 +157,17 @@ for fname in glob.glob(path):
                 #-------------------------------------------------------------------------#
                 
                 # Blob Orientation
-                blob_dir = blob.orientation/np.pi*180               
+                blob_dir = blob.orientation/np.pi*180
+                
                 mean_wind_dir = np.mean(wnd[label_indices])         
+#                print blob_dir, mean_wind_dir
 
                 # Angular difference between object and mean wind dir
-
                 angle_diff = map(lambda X: subtract_angle(X, mean_wind_dir), wnd[label_indices])
                 angle_gt_mean = map(lambda x: x>45, angle_diff).count(True) # Counts angles gt 45 deg from mean dir
-        
+                
+                # Poleward IVT
+                poleward_IVT = mean_ivt*np.sin(mean_wind_dir)
 
                 #----------------------------------------------------------------------------------#
                 # Object Testing 
@@ -173,7 +181,7 @@ for fname in glob.glob(path):
                 if subtract_angle(mean_wind_dir, blob_dir) < 45.0: 
                         TC_c = True
                 
-                if (mean_wind_dir > 0) & (mean_wind_dir < 90.0):
+                if poleward_IVT > 50.0:
                         TC_d = True
                 
                 if blob_length > 2000.0:           # Later add a width component...maybe this does not matter
@@ -205,16 +213,17 @@ for fname in glob.glob(path):
                                 'object_length': blob_length, 
                                 'object_width':blob_width, 
                                 'mean_IVT': mean_ivt, 
-                                'mean_IVT_dir': mean_wind_dir}
+                                'mean_wind_dir': mean_wind_dir,
+                                'poleward_IVT': poleward_IVT,
+                        }
 
                         Results_dictionary[fname[40:]][AR_Name] = info
                         
                         # Add AR to output Array
-                        new_arr[label_indices] = blob_num * 100
+#                        new_arr[label_indices] = blob_num * 100
+                        new_arr[label_indices] = mean_wind_dir
                         
-                else:
-                        continue
-
+#                else:
         #----------------------------------------------------------------------------------------#
         # END Blob-Loop
         #---------------------------------------------------------------------------------#
@@ -259,14 +268,22 @@ for fname in glob.glob(path):
                 m.drawstates()
                 m.drawcountries()
                 cs = m.pcolor(xi,yi,new_arr,latlon=True)
-                plt.savefig('testmap',format='png', dpi = 1000)
+                plt.colorbar()
+                plt.savefig('testmap' + str(time),format='png', dpi = 700)
                 plt.close()
-                
+
+        print "Finished"
 #-----------------------------------------------------------------------------------------#
-# END File-Loop: Done looping through files in path
+# END Main_Function
 #-----------------------------------------------------------------------------------------#
 
-print "Finished"
+
+for i in range(1,2):
+        FindAR(path, i)
+        print 'done with %s' %i
+
+
+
 
 
 
