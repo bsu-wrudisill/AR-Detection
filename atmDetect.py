@@ -22,15 +22,22 @@ from scipy.ndimage import filters, morphology, measurements
 from scipy import ndimage
 
 
-# fname = "/Users/will/Desktop/pgbf2010053100.01.2010053100.nc"
+### Global Values 
+
 path = "/home/wrudisill/scratch/Find_ARs/sample/20101226-20101231_IVT.nc"
+ivt_min = 250                     # Minimum IVT value in kg/ms to be retained
+size_mask = 1000                  # Min Grid cell size of object
+cell_to_km = 50                   # km
 
-###globals
-ivt_min = 250 
-size_mask = 1000
-cell_to_km = 50 #km
+### Helper Functions
 
-#out 
+def subtract_angle(a,b):
+        # Returns the smallest angle between two angles between [-180, 180]
+        tup = (360 - (a - b), a-b)
+        return abs(min(tup))
+
+
+# Outile 
 Results_dictionary = {}
 
 for fname in glob.glob(path):
@@ -83,159 +90,115 @@ for fname in glob.glob(path):
 
         #labeled components to keep 
         blob_num = int(0)
-        
+        new_arr = np.zeros_like(label_array)        
+
         #-------------------------------------------------------------------------#
         # 1.0 Loop through each blob in the list of canditate blobs
-        #   a. Get shape statistics (length, width, orientation)
-        #   b. Find mean IVT w/in the blob region
-        #   c. Find mean wind direction w/in blob region
-        #   d. Find blob skeleton shape (maybe this isn't important...)
-        #   e. More to come.... 
         #-------------------------------------------------------------------------#
 
-        new_arr = np.zeros_like(label_array)
+        for label in keep_label:               
+ 
+                #-------------------------------------------------------------------------#
+                #  Test Flags; set to true if passing 
+                #-------------------------------------------------------------------------#
+                TC_a = False      # Mean IVT 
+                TC_b = False      # Coherency in IVT Direction
+                TC_c = False      # Object Mean Meridonal IVT 
+                TC_d = False      # Object/IVT direction Consistency
+                TC_e = False      # Length/Width Ratio
+                TC_f = True      # Lanfalling 
+                #-------------------------------------------------------------------------#
+                
 
-        for label in keep_label:                
+                # Indicies of blob of interest
                 label_indices = np.where(label_array == label)
+
+                # Remove all elements except blob of interest
                 sub_array = np.where(label_array == label, 1, 0)
+
+                #-------------------------------------------------------------------------#
+                # Region Properties of blob of interest
+                # From scipy.morphology.regionprops
+                #-------------------------------------------------------------------------#
                 
-                #properties of AR components
-                blob_props = regionprops(sub_array)
-                blob_num = blob_num + 1
-                blob_skeleton = skeletonize(sub_array)
+                blob = regionprops(sub_array)[0]                    # set to 0, since there is only one region
+
+                #-------------------------------------------------------------------------#
+                # Lenght/Width Criteria
+                # TC_e: Length must be gt. 2000km, width gt. 
+                #-------------------------------------------------------------------------#                
+                blob_length = blob.major_axis_length*cell_to_km
+                blob_width = blob.minor_axis_length*cell_to_km
+
+                #-------------------------------------------------------------------------#
+                # Mean IVT Calculation
+                # TC_a: Mean IVT must be greater than 250 kg/m/s
+                #-------------------------------------------------------------------------#
+                mean_ivt = np.mean(ivt[label_indices])              # Mean IVT of blob
                 
+                #-------------------------------------------------------------------------#
+                # Wind Direction calculations
+                # TC_b:  No more than 1/2 of gridcells in blob should deviate more than 45* from objects mean IVT direction
+                # TC_d:  Mean wind dir must have 'significant' poleward (meridonal) component;    
+                # TC_c:  Mean wind dir and Object Orientation (blob_dir) Should not deviate by more than 45*
+                #-------------------------------------------------------------------------#
+                
+                # Blob Orientation
+                blob_dir = blob.orientation/np.pi*180               
+                mean_wind_dir = np.mean(wnd[label_indices])         
+
+                # Angular difference between object and mean wind dir
+
+                angle_diff = map(lambda X: subtract_angle(X, mean_wind_dir), wnd[label_indices])
+                angle_gt_mean = map(lambda x: x>45, angle_diff).count(True) # Counts angles gt 45 deg from mean dir
+        
+
+                #-------------------------------------------------------------------------#
+                # Object Testing 
+                #-------------------------------------------------------------------------#
+                if mean_ivt > 250.0:
+                        TC_a = True
+
+                if angles_gt_mean < len(angle_diff)/2:
+                        TC_b = True
+                
+                if subtract_angle(mean_wind_dir, blob_dir) < 45.0: 
+                        TC_c = True
+                
+                if (mean_wind_dir > 0) & (mean_wind_dir < 90.0):
+                        TC_d = True
+                
+                if blob_length > 2000.0:           # Later add a width component...maybe this does not matter
+                        TC_e = True
+           
+                
+                #-------------------------------------------------------------------------#
+                # Write output to dictionary 
                 # 
-                mean_ivt = np.mean(ivt[label_indices])
-                mean_wind_dir = np.mean(wnd[label_indices])
+                # 
+                #-------------------------------------------------------------------------#
                 
-                # distance matrix                                
-                blob = blob_props[0]
-                blob_dir = blob.orientation
                 blob_lab = 'AR_Blob'+str(blob_num)
-                info = {'orientation': blob.orientation , 'length': blob.major_axis_length*cell_to_km, 'width':blob.minor_axis_length*cell_to_km, 'mean_ivt' : mean_ivt, 'mean_wind_dir' : mean_wind_dir}
+                info = {'orientation': blob.orientation/np.pi*180 , 'length': blob.major_axis_length*cell_to_km, 'width':blob.minor_axis_length*cell_to_km, 'mean_ivt' : mean_ivt, 'mean_wind_dir' : mean_wind_dir}
                 Results_dictionary[fname[41:]][blob_lab] = info
                 
-                new_arr[label_indices] = blob.orientation
+                #new_arr[label_indices] = blob.orientation
+                blob_num = blob_num + 1 
+        
                 
-
-                
-        plt.imshow(new_arr)
-        plt.colorbar()
-        plt.show()
+#       plt.imshow(new_arr)
+#       plt.colorbar()
+#       plt.show()
 
         
 print Results_dictionary
 
+
+
 #with open('results.json', 'w') as outfile:
 #        json.dump(Results_dictionary, outfile)
 
+#            blob_skeleton = skeletonize(sub_array) # Perhaps use this to calc the lengths...
 
 
 
-
-
-# write_out = orientation + ',' + length + ',' + width
-
-# f = open('results.csv','w')
-# f.write('\n') #Give your csv text here.
-# ## Python will convert \n to os.linesep
-# f.close()
-
-
-
-# sk = skeletonize(np.where(m_out>ivt_min, 1, 0))
-# ir,ic = np.nonzero(sk)
-
-# rl = max(ir) - min(ir)
-# cl = max(ic) - min(ic) 
-
-# if rl > cl:
-# 	ar_flag = "vertical"
-# elif rl < cl:
-# 	ar_flag = "horizontal"
-
-
-# duplicates = []
-# newr,newc = [],[]
-
-# for ind,row in enumerate(ir):
-#   if np.count_nonzero(np.where(ir == ir[ind])) > 1 and row not in duplicates:
-#     duplicates.append(row)
-#     newr.append(ir[ind])
-#     newc.append(np.min(ic[np.where(ir == ir[ind])]))
-#   elif row in duplicates:
-#     continue
-#   else:
-#     newr.append(ir[ind])
-#     newc.append(ic[ind])
-
-# snewr, snewc = (list(el) for el in zip(*sorted(zip(newr, newc))))
-# z = np.polyfit(snewr,snewc,3)
-# p = np.poly1d(z)
-# y = np.arange(np.min(snewr),np.max(snewr)+1,1)
-# # y = np.where(y >= bounds[3], bounds[3]-0.1, y)
-# x= p(y)
-
-# bounds = (67., 5., 252., 118.) # As: N, S, E, W
-# lats = np.arange(-90, 90.5, 0.5)
-# lons = np.arange(30, 390, 2./3)
-# ur_lat_ind,ur_lat = min(enumerate(lats), key=lambda i: abs(i[1]-bounds[0]))
-# ur_lon_ind,ur_lon = min(enumerate(lons), key=lambda i: abs(i[1]-bounds[2]))
-# ll_lat_ind,ll_lat = min(enumerate(lats), key=lambda i: abs(i[1]-bounds[1]))
-# ll_lon_ind,ll_lon = min(enumerate(lons), key=lambda i: abs(i[1]-bounds[3]))
-# sub_lats = lats[ll_lat_ind:ur_lat_ind]
-# sub_lons = lons[ll_lon_ind:ur_lon_ind]
-# nrows = len(sub_lats)
-# ncols = len(sub_lons)
-
-
-# y_vals = np.copy(y)
-# y_pixel_km = (1./2)*(111.2) # Approx. pixel extent in km
-# piecewise_length = []
-
-# for i in xrange(0,len(x)-1,1):
-#     # Visiting Pythagoras to estimate length of skeleton in km
-#     x_pixel_km = (2./3)*(np.pi/180.0)*6378.137*abs(np.cos((np.pi/180.0)*sub_lats[y_vals[i]]))
-#     len_km = np.sqrt((abs(y_vals[i+1]-y_vals[i])*x_pixel_km)**2+(abs(x[i+1]-x[i])*y_pixel_km)**2)
-#     piecewise_length.append(len_km)
-
-
-
-
-
-# cost = abs(out-np.max(out))
-
-
-# ends0 = setEndCol0(cost)
-# l_cost = least_cost(ends0)
-# # # ishow(l_cost[0]*50 + cost_out)
-# out = spatial_filter(l_cost[0], cost, 4, 1)
-# # foo = unsub(np.where(out>-1, 1, 0),  pwat, height, width)
-
-# ishow(np.where(foo==1, 9, pwat))
-
-
-
-
-
-
-
-
-
-####I/O
-
-####Step1: Read prob File
-# percentile_file = '/Users/will/Desktop/Atm-Riv/ProbabilityPWAT.nc'	
-# ds = Dataset(percentile_file).variables
-# ks = ds.keys()[2:21]
-# dic = {}
-# #subsets prob array, stores in dic
-# map(lambda V: subhelper(ds, V, h, w), ks)
-
-# ####Read in files
-# #atm precip water 
-# fname = ('/Users/will/Desktop/Atm-Riv/figures/pgbf2010060500.01.2010053100.nc', 'PWAT_P0_2L108_GLL0')
-# pwat, lat ,lon = ReadNc(fname[0], fname[1])
-# foo = iter(dic, pwat, h, w)
-# ####
-# cost_out =  iter(fi, pwat)
