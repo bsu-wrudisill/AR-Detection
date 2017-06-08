@@ -11,7 +11,7 @@ O: TBD
 from netCDF4 import Dataset
 import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits.basemap import Basemap
+from mpl_toolkits.basemap import Basemap, cm
 from skimage.measure import regionprops
 import glob
 import json
@@ -28,6 +28,8 @@ from scipy import ndimage
 
 #path = "/home/wrudisill/scratch/Find_ARs/sample/20101226-20101231_IVT.nc"
 path = '/home/wrudisill/scratch/Find_ARs/sample/20100601-20100605_IVT.nc'
+#path =  '/home/wrudisill/scratch/Find_ARS/sample/19961226-19961231_IVT.nc'
+
 ivt_min = 250                     # Minimum IVT value in kg/ms to be retained
 size_mask = 1000                  # Min Grid cell size of object
 cell_to_km = 50                   # km
@@ -75,8 +77,8 @@ def FindAR(fname, time):
         rad_wnd = np.where(wnd > 0, wnd, 180 - wnd)/180 * np.pi
 
         # IVT magnitude
-        u_ivt = np.where(ivt*np.cos(rad_wnd) < 20, 0, ivt*np.cos(rad_wnd))/3000
-        v_ivt = np.where(ivt*np.sin(rad_wnd) < 20, 0, ivt*np.sin(rad_wnd))/3000
+        u_ivt = ivt*np.cos(rad_wnd)/3000
+        v_ivt = ivt*np.sin(rad_wnd)/3000
         
 	#subtract mean. TODO: subtract seasonal variation
 	#m_out = out - np.mean(out)
@@ -123,7 +125,7 @@ def FindAR(fname, time):
                 #  Test Flags; set to true if passing 
                 #-------------------------------------------------------------------------#
                 TC_a = False      # Mean IVT 
-                TC_b = True      # Coherency in IVT Direction  (variance)
+                TC_b = False      # Coherency in IVT Direction  (variance)
                 TC_c = False      # Object Mean Meridonal IVT 
                 TC_d = False      # Object/IVT direction Consistency
                 TC_e = False      # Length/Width Ratio
@@ -171,14 +173,14 @@ def FindAR(fname, time):
                         blob_dir = (blob.orientation/np.pi*180, 180 + blob.orientation/np.pi*180)
 
 
-                mean_wind_dir = np.mean(wnd[label_indices])         
+                mean_wind_dir = np.mean(rad_wnd[label_indices])         
 #                print blob_dir, mean_wind_dir
 
                 # Angular difference between object and mean wind dir
                 angle_diff = map(lambda X: subtract_angle(X, mean_wind_dir), wnd[label_indices])
                 angle_gt_mean = map(lambda x: x>45, angle_diff).count(True) # Counts angles gt 45 deg from mean dir
                 
-                # Poleward IVT and  IVT; zonal (u) used to draw barbs later
+                # Poleward IVT 
                 poleward_IVT = mean_ivt*np.sin(mean_wind_dir)
 
                 
@@ -195,7 +197,7 @@ def FindAR(fname, time):
                 
                         TC_c = True
                 
-                if poleward_IVT > 50.0:
+                if abs(poleward_IVT) > 50.0:
                         TC_d = True
                 
                 if blob_length > 2000.0:           # Later add a width component...maybe this does not matter
@@ -236,7 +238,7 @@ def FindAR(fname, time):
                         Results_dictionary[fname[40:]][AR_Name] = info
                         
                         # Add AR to output Array
-                        new_arr[label_indices] = mean_ivt
+                        new_arr[label_indices] = ivt[label_indices]
 #                        new_arr[label_indices] = mean_wind_dir
                         
 #                else:
@@ -285,13 +287,15 @@ def FindAR(fname, time):
                 m.drawcountries()
                 
                 varmask = np.ma.masked_less(new_arr, 1)
+                #clevs = range(50,3500,100)
+                #cs = m.contourf(xi,yi,varmask,clevs,cmap='plasma')
                 cs = m.pcolor(xi,yi,varmask,latlon=True)
                 
                 #Plot IVT magnitudes
                 yy = np.arange(0, yi.shape[0], 10)
                 xx = np.arange(0, xi.shape[1], 10)
                 points = np.meshgrid(yy, xx) 
-                m.quiver(xi[points], yi[points], u_ivt[points], v_ivt[points], scale = 20) 
+                m.quiver(xi[points], yi[points], u_ivt[points], v_ivt[points], scale = 20, latlon=True) 
                 ##
 
                 #plot and save figure
@@ -306,7 +310,7 @@ def FindAR(fname, time):
 #-----------------------------------------------------------------------------------------#
 
 
-for i in range(1,20):
+for i in range(1,5):
         FindAR(path, i)
         print 'done with %s' %i
 
