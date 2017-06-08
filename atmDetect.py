@@ -39,7 +39,7 @@ Results_dictionary = {}           # output dictionary
 #-------------------------------------------------------------------------#
 
 def subtract_angle(a,b):
-        # Returns the smallest angle between two angles between [-180, 180]
+        # Returns smalles angle in degrees for [-180, 180]
         tup = (360 - (a - b), a-b)
         return abs(min(tup))
 
@@ -70,7 +70,14 @@ def FindAR(fname, time):
         # Subset of wind_direction; 
         wnd = ds.variables['w_dir']
         wnd = wnd[0, 0, :, :]
-                
+        
+        # wind_dir in radians
+        rad_wnd = np.where(wnd > 0, wnd, 180 - wnd)/180 * np.pi
+
+        # IVT magnitude
+        u_ivt = np.where(ivt*np.cos(rad_wnd) < 20, 0, ivt*np.cos(rad_wnd))/3000
+        v_ivt = np.where(ivt*np.sin(rad_wnd) < 20, 0, ivt*np.sin(rad_wnd))/3000
+        
 	#subtract mean. TODO: subtract seasonal variation
 	#m_out = out - np.mean(out)
 
@@ -116,7 +123,7 @@ def FindAR(fname, time):
                 #  Test Flags; set to true if passing 
                 #-------------------------------------------------------------------------#
                 TC_a = False      # Mean IVT 
-                TC_b = False      # Coherency in IVT Direction (i.e. variance)
+                TC_b = True      # Coherency in IVT Direction  (variance)
                 TC_c = False      # Object Mean Meridonal IVT 
                 TC_d = False      # Object/IVT direction Consistency
                 TC_e = False      # Length/Width Ratio
@@ -171,9 +178,10 @@ def FindAR(fname, time):
                 angle_diff = map(lambda X: subtract_angle(X, mean_wind_dir), wnd[label_indices])
                 angle_gt_mean = map(lambda x: x>45, angle_diff).count(True) # Counts angles gt 45 deg from mean dir
                 
-                # Poleward IVT
+                # Poleward IVT and  IVT; zonal (u) used to draw barbs later
                 poleward_IVT = mean_ivt*np.sin(mean_wind_dir)
 
+                
                 #----------------------------------------------------------------------------------#
                 # Object Testing 
                 #----------------------------------------------------------------------------------#
@@ -228,7 +236,7 @@ def FindAR(fname, time):
                         Results_dictionary[fname[40:]][AR_Name] = info
                         
                         # Add AR to output Array
-                        new_arr[label_indices] = blob_num * 100
+                        new_arr[label_indices] = mean_ivt
 #                        new_arr[label_indices] = mean_wind_dir
                         
 #                else:
@@ -270,13 +278,25 @@ def FindAR(fname, time):
                 m = Basemap(projection='cyl', resolution='c')
                 lon, lat = np.meshgrid(lons, lats)
                 xi, yi = m(lon, lat)
-                m.drawparallels(np.arange(-80., 81., 20.), labels=[1,0,0,0], fontsize=5)
-                m.drawmeridians(np.arange(-180., 181., 20.), labels=[0,0,0,1], fontsize=5)
+#                m.drawparallels(np.arange(-80., 81., 20.), labels=[1,0,0,0], fontsize=5)
+#                m.drawmeridians(np.arange(-180., 181., 20.), labels=[0,0,0,1], fontsize=5)
                 m.drawcoastlines()
                 m.drawstates()
                 m.drawcountries()
-                cs = m.pcolor(xi,yi,new_arr,latlon=True)
-                plt.colorbar()
+                
+                varmask = np.ma.masked_less(new_arr, 1)
+                cs = m.pcolor(xi,yi,varmask,latlon=True)
+                
+                #Plot IVT magnitudes
+                yy = np.arange(0, yi.shape[0], 10)
+                xx = np.arange(0, xi.shape[1], 10)
+                points = np.meshgrid(yy, xx) 
+                m.quiver(xi[points], yi[points], u_ivt[points], v_ivt[points], scale = 20) 
+                ##
+
+                #plot and save figure
+                cbar = m.colorbar(cs,location='bottom',pad="5%")
+                cbar.set_label('mm')
                 plt.savefig('testmap' + str(time),format='png', dpi = 700)
                 plt.close()
 
@@ -286,7 +306,7 @@ def FindAR(fname, time):
 #-----------------------------------------------------------------------------------------#
 
 
-for i in range(1,10):
+for i in range(1,20):
         FindAR(path, i)
         print 'done with %s' %i
 
