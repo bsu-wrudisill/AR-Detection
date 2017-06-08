@@ -80,7 +80,7 @@ def IVT(infile, outfile):
 		u = subset['UGRD_P0_L100_GLL0'][i,:]
                 v = subset['VGRD_P0_L100_GLL0'][i,:]
                 tV = (u**2)*(v**2)**.5
-                phi =np.arctan2(u,v)/np.pi*180 #first arg is the y dir, second x dir (meridonal, zonal)                
+                phi =np.arctan2(v,u)/np.pi*180 #first arg is the y dir, second x dir (meridonal, zonal)                
 		g = 9.81 
 		dp = 25.00 #pa
 		ivtval = np.ndarray.sum(Q*tV, axis=0)*1/g*dp
@@ -92,6 +92,8 @@ def IVT(infile, outfile):
 	dataset.close()
 
 
-IVT('sample/pgbhnl.gdas.20101226-20101231.nc', 'sample/20101226-20101231_IVT.nc')
+#IVT('sample/pgbhnl.gdas.20101226-20101231.nc', 'sample/20101226-20101231_IVT.nc')
+
+IVT('input_files/pgbhnl.gdas.20100601-20100605.nc', 'sample/20100601-20100605_IVT.nc')
 
 print 'Im done'
