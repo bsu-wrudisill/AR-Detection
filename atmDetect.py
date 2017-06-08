@@ -26,7 +26,8 @@ from scipy import ndimage
 # Global Values, Filepaths, etc.
 #-------------------------------------------------------------------------#
 
-path = "/home/wrudisill/scratch/Find_ARs/sample/20101226-20101231_IVT.nc"
+#path = "/home/wrudisill/scratch/Find_ARs/sample/20101226-20101231_IVT.nc"
+path = '/home/wrudisill/scratch/Find_ARs/sample/20100601-20100605_IVT.nc'
 ivt_min = 250                     # Minimum IVT value in kg/ms to be retained
 size_mask = 1000                  # Min Grid cell size of object
 cell_to_km = 50                   # km
@@ -156,9 +157,13 @@ def FindAR(fname, time):
                 # TC_d:  Mean wind dir must have 'significant' poleward (meridonal) component;    
                 #-------------------------------------------------------------------------#
                 
-                # Blob Orientation
-                blob_dir = blob.orientation/np.pi*180
-                
+                # Blob Orientation; we must deal with ambiguity of blob orientation w.r.t to wind dir
+                if  blob.orientation/np.pi*180 > 0:
+                        blob_dir = (blob.orientation/np.pi*180, 180 - blob.orientation/np.pi*180)
+                else:
+                        blob_dir = (blob.orientation/np.pi*180, 180 + blob.orientation/np.pi*180)
+
+
                 mean_wind_dir = np.mean(wnd[label_indices])         
 #                print blob_dir, mean_wind_dir
 
@@ -178,7 +183,8 @@ def FindAR(fname, time):
                 if angle_gt_mean < len(angle_diff)/2:
                         TC_b = True
                 
-                if subtract_angle(mean_wind_dir, blob_dir) < 45.0: 
+                if (subtract_angle(mean_wind_dir, blob_dir[0]) < 45.0) or (subtract_angle(mean_wind_dir, blob_dir[1]) < 45.0):
+                
                         TC_c = True
                 
                 if poleward_IVT > 50.0:
@@ -203,10 +209,12 @@ def FindAR(fname, time):
                         # optional: save output plot
                         # 
                         #-------------------------------------------------------------------------#
-                                
+
+
+                        blob_num = blob_num + 1                                
                         # Name of AR 
                         AR_Name = 'AR_' + str(blob_num)
-                        blob_num = blob_num + 1 
+ 
 
                         # Dictionary Entry 
                         info = {'object_orientation_direction': blob_dir, 
@@ -220,8 +228,8 @@ def FindAR(fname, time):
                         Results_dictionary[fname[40:]][AR_Name] = info
                         
                         # Add AR to output Array
-#                        new_arr[label_indices] = blob_num * 100
-                        new_arr[label_indices] = mean_wind_dir
+                        new_arr[label_indices] = blob_num * 100
+#                        new_arr[label_indices] = mean_wind_dir
                         
 #                else:
         #----------------------------------------------------------------------------------------#
@@ -278,7 +286,7 @@ def FindAR(fname, time):
 #-----------------------------------------------------------------------------------------#
 
 
-for i in range(1,2):
+for i in range(1,10):
         FindAR(path, i)
         print 'done with %s' %i
 
