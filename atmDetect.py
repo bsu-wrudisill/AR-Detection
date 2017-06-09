@@ -21,6 +21,16 @@ from scipy.ndimage import filters, morphology, measurements
 #from skimage.graph import route_through_array
 from scipy import ndimage
 
+#-------------------------------------------------------------------------#
+# TO DO List
+# 1. Land mask
+# 2. Subtract seasonal means
+# 3. Properly calculate grid cell size
+# 4. 
+#-------------------------------------------------------------------------#
+
+
+
 
 #-------------------------------------------------------------------------#
 # Global Values, Filepaths, etc.
@@ -77,8 +87,8 @@ def FindAR(fname, time):
         rad_wnd = np.where(wnd > 0, wnd, 180 - wnd)/180 * np.pi
 
         # IVT magnitude
-        u_ivt = ivt*np.cos(rad_wnd)/3000
-        v_ivt = ivt*np.sin(rad_wnd)/3000
+        u_ivt = ivt*np.cos(rad_wnd)/1000
+        v_ivt = ivt*np.sin(rad_wnd)/1000
         
 	#subtract mean. TODO: subtract seasonal variation
 	#m_out = out - np.mean(out)
@@ -143,15 +153,21 @@ def FindAR(fname, time):
                 # Region Properties of blob of interest
                 # From scipy.morphology.regionprops
                 #-------------------------------------------------------------------------#
-                
                 blob = regionprops(sub_array)[0]                    # set to 0, since there is only one region
 
+                
                 #-------------------------------------------------------------------------#
                 # Lenght/Width Criteria
                 # TC_e: Length must be gt. 2000km, width gt. 
                 #-------------------------------------------------------------------------#                
                 blob_length = blob.major_axis_length*cell_to_km
                 blob_width = blob.minor_axis_length*cell_to_km
+                blob_size = blob.filled_area*cell_to_km
+                # Break loop if there is no width...
+                if blob_width == 0: 
+                        break
+                blob_length_width_ratio = blob_length/blob_width
+
 
                 #-------------------------------------------------------------------------#
                 # Mean IVT Calculation
@@ -172,9 +188,8 @@ def FindAR(fname, time):
                 else:
                         blob_dir = (blob.orientation/np.pi*180, 180 + blob.orientation/np.pi*180)
 
-
+                # Mean Wind direction... hmm... 
                 mean_wind_dir = np.mean(rad_wnd[label_indices])         
-#                print blob_dir, mean_wind_dir
 
                 # Angular difference between object and mean wind dir
                 angle_diff = map(lambda X: subtract_angle(X, mean_wind_dir), wnd[label_indices])
@@ -197,10 +212,10 @@ def FindAR(fname, time):
                 
                         TC_c = True
                 
-                if abs(poleward_IVT) > 50.0:
+                if abs(poleward_IVT) > 50.0:      # Should southern/northern hemispher require south/north directed flow?
                         TC_d = True
                 
-                if blob_length > 2000.0:           # Later add a width component...maybe this does not matter
+                if (blob_length > 2000.0) and blob_length_width_ratio > 2.0: # Later add a width component...maybe this does not matter
                         TC_e = True
            
                 
@@ -233,7 +248,8 @@ def FindAR(fname, time):
                                 'mean_IVT': mean_ivt, 
                                 'mean_wind_dir': mean_wind_dir,
                                 'poleward_IVT': poleward_IVT,
-                        }
+                                'lenght_to_width':blob_length_width_ratio,
+                        } 
 
                         Results_dictionary[fname[40:]][AR_Name] = info
                         
@@ -275,33 +291,66 @@ def FindAR(fname, time):
                 #-------------------------------------------------------------------------#
 
                 #-------------------------------------------------------------------------#
-                # Plot with Basemap
+                # 1.0 Plot with Basemap
                 #-------------------------------------------------------------------------#
                 m = Basemap(projection='cyl', resolution='c')
                 lon, lat = np.meshgrid(lons, lats)
                 xi, yi = m(lon, lat)
+
+                #-------------------------------------------------------------------------#
+                # 1.a Draw State/country Borders
+                #-------------------------------------------------------------------------#
+
 #                m.drawparallels(np.arange(-80., 81., 20.), labels=[1,0,0,0], fontsize=5)
 #                m.drawmeridians(np.arange(-180., 181., 20.), labels=[0,0,0,1], fontsize=5)
                 m.drawcoastlines()
                 m.drawstates()
                 m.drawcountries()
-                
-                varmask = np.ma.masked_less(new_arr, 1)
-                #clevs = range(50,3500,100)
-                #cs = m.contourf(xi,yi,varmask,clevs,cmap='plasma')
-                cs = m.pcolor(xi,yi,varmask,latlon=True)
-                
-                #Plot IVT magnitudes
-                yy = np.arange(0, yi.shape[0], 10)
-                xx = np.arange(0, xi.shape[1], 10)
-                points = np.meshgrid(yy, xx) 
-                m.quiver(xi[points], yi[points], u_ivt[points], v_ivt[points], scale = 20, latlon=True) 
-                ##
 
-                #plot and save figure
+
+                #-------------------------------------------------------------------------#
+                # 1.b Plot Wind Barbs
+                #-------------------------------------------------------------------------#
+                
+                # Mask out 0 Values using numpy mask
+                varmask = np.ma.masked_less(new_arr, 1)
+                cs = m.pcolor(xi,yi,varmask,latlon=True)
+
+                # Option: plot with contours
+                #clevs = range(50,3500,100)                
+                #cs = m.contourf(xi,yi,varmask,clevs,cmap='plasma')
+
+
+
+                #-------------------------------------------------------------------------#
+                # 1.c Plot Wind Barbs
+                #-------------------------------------------------------------------------#
+                
+                # Create a sparse array for plotting barbs to prevent clutter
+                yy = np.arange(0, yi.shape[0], 3)
+                xx = np.arange(0, xi.shape[1], 3)
+                points = np.meshgrid(yy, xx) 
+                m.quiver(xi[points], yi[points], u_ivt[points], v_ivt[points], scale = 100, 
+                         latlon=True, minlength=.5, pivot='mid', width =0.001, color='grey') 
+
+
+
+                #-------------------------------------------------------------------------#
+                # 1.d Save Figure
+                #-------------------------------------------------------------------------#
+
+                # Set Colorbar
                 cbar = m.colorbar(cs,location='bottom',pad="5%")
                 cbar.set_label('mm')
-                plt.savefig('testmap' + str(time),format='png', dpi = 700)
+                
+                # Format Name string; pad with Zeros
+                if len(str(time)) == 1:
+                        ts = '0'+str(time)
+                else:
+                        ts = str(time)
+
+                # Save Plots
+                plt.savefig('testmap' + ts ,format='png', dpi = 700)
                 plt.close()
 
         print "Finished"
@@ -310,7 +359,7 @@ def FindAR(fname, time):
 #-----------------------------------------------------------------------------------------#
 
 
-for i in range(1,5):
+for i in range(1,20):
         FindAR(path, i)
         print 'done with %s' %i
 
