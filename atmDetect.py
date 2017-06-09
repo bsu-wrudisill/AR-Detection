@@ -50,11 +50,11 @@ Results_dictionary = {}           # output dictionary
 # Helper Functions 
 #-------------------------------------------------------------------------#
 
-def subtract_angle(a,b):
-        # Returns smalles angle in degrees for [-180, 180]
-        tup = (360 - (a - b), a-b)
-        return abs(min(tup))
 
+def smallest_angle(a,b):
+        # Returns smalles angle in degrees for [-180, 180]
+        tup = (360 - abs(a - b), a-b)
+        return min(map(abs, tup))
 
 
 #-------------------------------------------------------------------------#
@@ -87,21 +87,20 @@ def FindAR(fname, time):
         ivt = ivt[time, 0, :, :] # Right now we're only looking at one time!!!
         
         # Subset of wind_direction; 
-        wnd = ds.variables['w_dir']
+        wnd = ds.variables['w_dir'] # In Units of Radians
         wnd = wnd[0, 0, :, :]
-        
+
+        # Convert Wind Dir to [0, 359.9]
+        wnd_360 = np.where(wnd/np.pi*180 < 0, 360 + wnd/np.pi*180, wnd/np.pi*180)
         # Close Dataset
 
         #-------------------------------------------------------------------------#
         # 
         #-------------------------------------------------------------------------#     
 
-        # wind_dir in radians
-        rad_wnd = np.where(wnd > 0, wnd, 180 - wnd)/180 * np.pi
-
         # IVT magnitude
-        u_ivt = ivt*np.cos(rad_wnd)/1000
-        v_ivt = ivt*np.sin(rad_wnd)/1000
+        u_ivt = ivt*np.cos(wnd)/1000
+        v_ivt = ivt*np.sin(wnd)/1000
         
 	#subtract mean. TODO: subtract seasonal variation
 	#m_out = out - np.mean(out)
@@ -146,9 +145,9 @@ def FindAR(fname, time):
                 #  Test Flags; set to true if passing 
                 #-------------------------------------------------------------------------#
                 TC_a = False      # Mean IVT 
-                TC_b = False      # Coherency in IVT Direction  (variance)
-                TC_c = False      # Object Mean Meridonal IVT 
-                TC_d = False      # Object/IVT direction Consistency
+                TC_b = True      # Coherency in IVT Direction  (variance)
+                TC_c = False       # Object Mean Meridonal IVT (flowing towards a pole)
+                TC_d = True       # Object/IVT direction Consistency
                 TC_e = False      # Length/Width Ratio
                 TC_f = True       # Lanfalling 
                 #-------------------------------------------------------------------------#
@@ -168,20 +167,44 @@ def FindAR(fname, time):
                 #    TC_e: Length must be gt. 2000km and l:w gt 2. 
                 #-------------------------------------------------------------------------#
 
-                blob = regionprops(sub_array)[0]                    # set to 0; only 1 region
+                blob = regionprops(sub_array)[0]                    # set to 0; only 1 region        
                 blob_length = blob.major_axis_length*cell_to_km
                 blob_width = blob.minor_axis_length*cell_to_km
                 blob_size = blob.filled_area*cell_to_km
                 
+                #-------------------------------------------------------------------------#
+                # Blob Direction Calulations....
+                #-------------------------------------------------------------------------#
+                blob_dir_raw = blob.orientation / np.pi * 180
+                blob_dir_corrected = blob_dir_raw * -1 
+
+                # Blob Orientation; we must deal with ambiguity of blob orientation w.r.t to wind dir
+                # So we give it two possible directions
+                # Recalls: orientation is between -90 and 90. So we should convert that to [0,359.9]
+
+                if  blob_dir_corrected >= 0:                                        # Positive blob dir
+                        blob_dir = (blob_dir_corrected, 180+blob_dir_corrected)
+        
+                else:                                                         # Negative blob dir
+                        blob_dir = (360 - abs(blob_dir_corrected), 90 + abs(blob_dir_corrected))
+        
+                #-------------------------------------------------------------------------#
+                # Blob Width/Length 
+                #-------------------------------------------------------------------------#
                 # Break loop if there is no width...
                 if blob_width == 0: 
                         break
                 blob_length_width_ratio = blob_length/blob_width
 
+                #-------------------------------------------------------------------------#
+                # AR Perimeter Boundary Grid Cells
+                #-------------------------------------------------------------------------#
                 # scipy.ndimage.morphology.distance_transform_edt
                 # outputs euclidian distance to the outer object
                 # Use to find AR perimeter
                 
+
+
                 #-------------------------------------------------------------------------#
                 #    Mean IVT Calculation
                 #    
@@ -198,21 +221,15 @@ def FindAR(fname, time):
                 #    TC_d:  Mean wind dir must have 'significant' poleward (meridonal) component;    
                 #-------------------------------------------------------------------------#
                 
-                # Blob Orientation; we must deal with ambiguity of blob orientation w.r.t to wind dir
-                if  blob.orientation/np.pi*180 > 0:
-                        blob_dir = (blob.orientation/np.pi*180, 180 - blob.orientation/np.pi*180)
-                else:
-                        blob_dir = (blob.orientation/np.pi*180, 180 + blob.orientation/np.pi*180)
-
                 # Mean Wind direction... hmm... 
-                mean_wind_dir = np.mean(rad_wnd[label_indices])         
+                mean_wind_dir = np.mean(wnd_360[label_indices])         
 
                 # Angular difference between object and mean wind dir
-                angle_diff = map(lambda X: subtract_angle(X, mean_wind_dir), wnd[label_indices])
+                angle_diff = map(lambda X: smallest_angle(X, mean_wind_dir), wnd_360[label_indices])
                 angle_gt_mean = map(lambda x: x>45, angle_diff).count(True) # Counts angles gt 45 deg from mean dir
                 
                 # Poleward IVT 
-                poleward_IVT = mean_ivt*np.sin(mean_wind_dir)
+                poleward_IVT = mean_ivt*np.sin(mean_wind_dir/180*np.pi)
 
                 
                 #----------------------------------------------------------------------------------#
@@ -225,13 +242,13 @@ def FindAR(fname, time):
                 if angle_gt_mean < len(angle_diff)/2:
                         TC_b = True
                 
-                if (subtract_angle(mean_wind_dir, blob_dir[0]) < 45.0) or (subtract_angle(mean_wind_dir, blob_dir[1]) < 45.0):
+                if smallest_angle(mean_wind_dir, blob_dir[0]) < 50.0 or smallest_angle(mean_wind_dir, blob_dir[1]) < 50.0:
                         TC_c = True
                 
                 if abs(poleward_IVT) > 50.0:      # Should southern/northern hemispher require south/north directed flow?
                         TC_d = True
                 
-                if (blob_length > 2000.0) and blob_length_width_ratio > 2.0: # Later add a width component...maybe this does not matter
+                if (blob_length > 2000.0) and (blob_length_width_ratio > 2.0): # Later add a width component...maybe this does not matter
                         TC_e = True
            
                 
@@ -270,8 +287,8 @@ def FindAR(fname, time):
                         Results_dictionary[fname[40:]][AR_Name] = info
                         
                         #Add AR to output Array
-                        new_arr[label_indices] = ivt[label_indices]
-#                       new_arr[label_indices] = mean_wind_dir
+                        #new_arr[label_indices] = ivt[label_indices]
+                        new_arr[label_indices] = blob_num * 100
                         
 #                else:
         #----------------------------------------------------------------------------------------#
@@ -301,6 +318,9 @@ def FindAR(fname, time):
                 #-------------------------------------------------------------------------#
                 # 1.0 Plot with Basemap
                 #-------------------------------------------------------------------------#
+                global lons, lats
+                global xi, yi
+
                 m = Basemap(projection='cyl', resolution='c')
                 lon, lat = np.meshgrid(lons, lats)
                 xi, yi = m(lon, lat)
@@ -321,12 +341,12 @@ def FindAR(fname, time):
                 #-------------------------------------------------------------------------#
                 
                 # Mask out 0 Values using numpy mask
-                varmask = np.ma.masked_less(new_arr, 1)
-                cs = m.pcolor(xi,yi,varmask,latlon=True)
+                varmask = np.ma.masked_less(new_arr, 99)
+#                cs = m.pcolor(xi,yi,varmask,latlon=True)
 
                 # Option: plot with contours
-                #clevs = range(50,3500,100)                
-                #cs = m.contourf(xi,yi,varmask,clevs,cmap='plasma')
+                clevs = range(0,1000,100)                
+                cs = m.contourf(xi,yi,varmask,clevs,cmap='plasma')
 
 
                 #-------------------------------------------------------------------------#
@@ -337,8 +357,7 @@ def FindAR(fname, time):
                 yy = np.arange(0, yi.shape[0], 3)
                 xx = np.arange(0, xi.shape[1], 3)
                 points = np.meshgrid(yy, xx) 
-                m.quiver(xi[points], yi[points], u_ivt[points], v_ivt[points], scale = 100, 
-                         latlon=True, pivot='mid', width =0.001, color='grey') 
+                m.quiver(xi[points], yi[points], u_ivt[points], v_ivt[points], scale = 100, pivot='mid', width =0.001, color='grey') 
 
 
 
@@ -359,17 +378,18 @@ def FindAR(fname, time):
                 # Save Plots
                 plt.savefig('testmap' + ts ,format='png', dpi = 700)
                 plt.close()
-
+                
+                return varmask
         print "Finished"
+
 #-----------------------------------------------------------------------------------------#
 # END Main_Function
 #-----------------------------------------------------------------------------------------#
 
 
-for i in range(1,2):
-        FindAR(path, i)
+for i in range(8,9):
+        var = FindAR(path, i)
         print 'done with %s' %i
-
 
 
 
