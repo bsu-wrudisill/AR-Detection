@@ -26,7 +26,7 @@ from scipy import ndimage
 # 1. Land mask
 # 2. Subtract seasonal means
 # 3. Properly calculate grid cell size
-# 4. 
+# 4. Fix poleward component test; northern needs to be positive, southern negative
 #-------------------------------------------------------------------------#
 
 
@@ -37,7 +37,7 @@ from scipy import ndimage
 #-------------------------------------------------------------------------#
 
 #path = "/home/wrudisill/scratch/Find_ARs/sample/20101226-20101231_IVT.nc"
-path = '/home/wrudisill/scratch/Find_ARs/sample/20100601-20100605_IVT.nc'
+path = '/home/wrudisill/scratch/Find_ARs/sample/19961226-19961231_IVT.nc'
 #path =  '/home/wrudisill/scratch/Find_ARS/sample/19961226-19961231_IVT.nc'
 
 ivt_min = 250                     # Minimum IVT value in kg/ms to be retained
@@ -68,14 +68,21 @@ def subtract_angle(a,b):
 def FindAR(fname, time):
         #  Fname -- netcdf file of IVT (string)
         #  Time  -- arraay index correspongding to timestamp (integer)
-        # Name of stuff
+     
+        # Output Dictionary
         Results_dictionary[fname[40:]] = {}
         AR_EXISTS = False
 
+        #-------------------------------------------------------------------------#
         # Open netcdf dataset
+        #-------------------------------------------------------------------------#
         ds = Dataset(fname, format='NETCDF4_CLASSIC')
-
-	# Subset of IVT
+        
+        # Get lat/lon for plotting pu
+        lons = ds.variables['longitude'][:]
+        lats = ds.variables['latitude'][:]
+        
+        # Subset of IVT
         ivt =ds.variables['ivt']
         ivt = ivt[time, 0, :, :] # Right now we're only looking at one time!!!
         
@@ -83,6 +90,12 @@ def FindAR(fname, time):
         wnd = ds.variables['w_dir']
         wnd = wnd[0, 0, :, :]
         
+        # Close Dataset
+
+        #-------------------------------------------------------------------------#
+        # 
+        #-------------------------------------------------------------------------#     
+
         # wind_dir in radians
         rad_wnd = np.where(wnd > 0, wnd, 180 - wnd)/180 * np.pi
 
@@ -95,11 +108,10 @@ def FindAR(fname, time):
 
 	# Convert to binary. 1 is above min value
 	threshold_array = np.where(ivt > ivt_min, 1, 0)
-        
+
 	# Labeled components. given values of 1:n
+        # Each 'blob' identified is assigned a label 
 	label_array, num_labels = ndimage.measurements.label(threshold_array)
-        
-        #each 'blob' identified is assigned a label 
 
 	# List of the label values 
 	labels = np.array(range(num_labels + 1))
@@ -111,7 +123,6 @@ def FindAR(fname, time):
 	keep_label = labels[sizes > size_mask]
 
         # If there is nothing to keep, write to dic and continue
-	
         if not keep_label.any():
 		info = 'No ATM Rivers'
 		Results_dictionary[fname[41:]] = info 
@@ -150,36 +161,41 @@ def FindAR(fname, time):
                 sub_array = np.where(label_array == label, 1, 0)
 
                 #-------------------------------------------------------------------------#
-                # Region Properties of blob of interest
-                # From scipy.morphology.regionprops
+                #    Region Properties of blob of interest 
+                #    
+                #    From scipy.morphology.regionprops
+                #    Lenght/Width Criteria                
+                #    TC_e: Length must be gt. 2000km and l:w gt 2. 
                 #-------------------------------------------------------------------------#
-                blob = regionprops(sub_array)[0]                    # set to 0, since there is only one region
 
-                
-                #-------------------------------------------------------------------------#
-                # Lenght/Width Criteria
-                # TC_e: Length must be gt. 2000km, width gt. 
-                #-------------------------------------------------------------------------#                
+                blob = regionprops(sub_array)[0]                    # set to 0; only 1 region
                 blob_length = blob.major_axis_length*cell_to_km
                 blob_width = blob.minor_axis_length*cell_to_km
                 blob_size = blob.filled_area*cell_to_km
+                
                 # Break loop if there is no width...
                 if blob_width == 0: 
                         break
                 blob_length_width_ratio = blob_length/blob_width
 
-
+                # scipy.ndimage.morphology.distance_transform_edt
+                # outputs euclidian distance to the outer object
+                # Use to find AR perimeter
+                
                 #-------------------------------------------------------------------------#
-                # Mean IVT Calculation
-                # TC_a: Mean IVT must be greater than 250 kg/m/s
+                #    Mean IVT Calculation
+                #    
+                #   TC_a: Mean IVT must be greater than 250 kg/m/s
                 #-------------------------------------------------------------------------#
                 mean_ivt = np.mean(ivt[label_indices])              # Mean IVT of blob
                 
                 #-------------------------------------------------------------------------#
-                # Wind Direction calculations
-                # TC_b:  No more than 1/2 of gridcells in blob should deviate more than 45* from objects mean IVT direction
-                # TC_c:  Mean wind dir and Object Orientation (blob_dir) Should not deviate by more than 45*
-                # TC_d:  Mean wind dir must have 'significant' poleward (meridonal) component;    
+                #    Wind Direction calculations
+                #
+                #    TC_b:  No more than 1/2 of gridcells in blob should deviate more than 45* 
+                #           from objects mean IVT direction
+                #    TC_c:  Mean wind dir and Object Orientation (blob_dir) Should not deviate by more than 45*
+                #    TC_d:  Mean wind dir must have 'significant' poleward (meridonal) component;    
                 #-------------------------------------------------------------------------#
                 
                 # Blob Orientation; we must deal with ambiguity of blob orientation w.r.t to wind dir
@@ -202,6 +218,7 @@ def FindAR(fname, time):
                 #----------------------------------------------------------------------------------#
                 # Object Testing 
                 #----------------------------------------------------------------------------------#
+
                 if mean_ivt > 250.0:
                         TC_a = True
 
@@ -209,7 +226,6 @@ def FindAR(fname, time):
                         TC_b = True
                 
                 if (subtract_angle(mean_wind_dir, blob_dir[0]) < 45.0) or (subtract_angle(mean_wind_dir, blob_dir[1]) < 45.0):
-                
                         TC_c = True
                 
                 if abs(poleward_IVT) > 50.0:      # Should southern/northern hemispher require south/north directed flow?
@@ -235,7 +251,7 @@ def FindAR(fname, time):
                         # 
                         #-------------------------------------------------------------------------#
 
-
+                        # ID of AR blob feature
                         blob_num = blob_num + 1                                
                         # Name of AR 
                         AR_Name = 'AR_' + str(blob_num)
@@ -253,9 +269,9 @@ def FindAR(fname, time):
 
                         Results_dictionary[fname[40:]][AR_Name] = info
                         
-                        # Add AR to output Array
+                        #Add AR to output Array
                         new_arr[label_indices] = ivt[label_indices]
-#                        new_arr[label_indices] = mean_wind_dir
+#                       new_arr[label_indices] = mean_wind_dir
                         
 #                else:
         #----------------------------------------------------------------------------------------#
@@ -272,14 +288,6 @@ def FindAR(fname, time):
         if AR_EXISTS == True:
                 print Results_dictionary
                 
-                #-------------------------------------------------------------------------#
-                # Get lat/lon for plotting pu
-                lons = ds.variables['longitude'][:]
-                lats = ds.variables['latitude'][:]
-                ds.close() # close Netcdf File 
-                #-------------------------------------------------------------------------#
-
-
                 #-------------------------------------------------------------------------#
                 # Feature: Write out to a netcdf file.
                 #ds = Dataset(fname, 'r+') # not working; HDF5 error
@@ -321,7 +329,6 @@ def FindAR(fname, time):
                 #cs = m.contourf(xi,yi,varmask,clevs,cmap='plasma')
 
 
-
                 #-------------------------------------------------------------------------#
                 # 1.c Plot Wind Barbs
                 #-------------------------------------------------------------------------#
@@ -331,7 +338,7 @@ def FindAR(fname, time):
                 xx = np.arange(0, xi.shape[1], 3)
                 points = np.meshgrid(yy, xx) 
                 m.quiver(xi[points], yi[points], u_ivt[points], v_ivt[points], scale = 100, 
-                         latlon=True, minlength=.5, pivot='mid', width =0.001, color='grey') 
+                         latlon=True, pivot='mid', width =0.001, color='grey') 
 
 
 
@@ -359,7 +366,7 @@ def FindAR(fname, time):
 #-----------------------------------------------------------------------------------------#
 
 
-for i in range(1,20):
+for i in range(1,2):
         FindAR(path, i)
         print 'done with %s' %i
 
