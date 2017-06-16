@@ -58,6 +58,11 @@ def IVT(infile, outfile):
 	wnd.units = 'Degrees'
 	wnd.long_name = 'Mean Wind Direction'
         
+        # Create World Landcover Var
+        land = dataset.createVariable('landcover', np.float32, ('time', 'level', 'lat', 'lon'))
+	land.grid_type = "Latitude/longitude"
+	land.units = 'Degrees'
+	land.long_name = 'Landcover Type; from Modis'
 
 	#create geo dimensions.we know a-priori its a .5 degree grid 
 	latitudes[:] =  np.arange(-90,90.5,.5)
@@ -74,13 +79,18 @@ def IVT(infile, outfile):
 	times[:] = date2num(dates,units=times.units,calendar=times.calendar)
 
 
+        # read land data so we don't read it in a loop;
+        landval = np.load('world_landcover.npy')
+        landval = landval[::-1,:]
+        print landval.shape
+
 	#Loop through pressure and Time levels, calculate IVT
 	for i in range(20):
 		Q = subset['SPFH_P0_L100_GLL0'][i,:]
 		u = subset['UGRD_P0_L100_GLL0'][i,:]
                 v = subset['VGRD_P0_L100_GLL0'][i,:]
-                v_mean = np.ndarray.mean(v)
-                u_mean = np.ndarray.mean(u)
+                v_mean = np.ndarray.mean(v, axis=0)
+                u_mean = np.ndarray.mean(u, axis=0)
                 
                 # IVT Calc
                 tV = (u**2)*(v**2)**.5
@@ -89,12 +99,13 @@ def IVT(infile, outfile):
 		ivtval = np.ndarray.sum(Q*tV, axis=0)*1/g*dp
 
                 # Wind Calc 
-                phi =np.arctan2(v_mean,u_mean) # Keep in pi units. first arg is the y dir, second x dir (meridonal, zonal)           
+                phi =np.arctan2(v_mean,u_mean) # Keep in pi units. first arg is the y dir, second x dir (meridonal, zonal)         
                 wndval = phi
                 
                 # Assign to variables (time, pressure (1), lat, lon)
-                ivt[i,:,:,:] = ivtval
-                wnd[i,:,:,:] = wndval
+                ivt[i,:,:,:]   = ivtval
+                wnd[i,:,:,:]   = wndval
+                land[i,:,:,:]  = landval
 
         subset.close()
 	dataset.close()
