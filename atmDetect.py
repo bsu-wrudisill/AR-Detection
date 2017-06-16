@@ -91,16 +91,23 @@ def FindAR(fname, time):
         wnd = wnd[0, 0, :, :]
 
         # Convert Wind Dir to [0, 359.9]
-        wnd_360 = np.where(wnd/np.pi*180 < 0, 360 + wnd/np.pi*180, wnd/np.pi*180)
-        # Close Dataset
+        wnd_ = wnd/np.pi * 180.0
+        wnd_360 = np.where(wnd_ < 0, 360 + wnd_, wnd_)
 
+        # Close Dataset
+        ds.close()
+
+        # u and v components (coordinates of unit vector)
+        u_i = np.cos(wnd)
+        v_i = np.sin(wnd)
+
+        # IVT magnitude
+        u_ivt = ivt*u_i/1000.0
+        v_ivt = ivt*v_i/1000.0
+        
         #-------------------------------------------------------------------------#
         # 
         #-------------------------------------------------------------------------#     
-
-        # IVT magnitude
-        u_ivt = ivt*np.cos(wnd)/1000
-        v_ivt = ivt*np.sin(wnd)/1000
         
 	#subtract mean. TODO: subtract seasonal variation
 	#m_out = out - np.mean(out)
@@ -210,6 +217,7 @@ def FindAR(fname, time):
                 #    
                 #   TC_a: Mean IVT must be greater than 250 kg/m/s
                 #-------------------------------------------------------------------------#
+
                 mean_ivt = np.mean(ivt[label_indices])              # Mean IVT of blob
                 
                 #-------------------------------------------------------------------------#
@@ -221,8 +229,15 @@ def FindAR(fname, time):
                 #    TC_d:  Mean wind dir must have 'significant' poleward (meridonal) component;    
                 #-------------------------------------------------------------------------#
                 
-                # Mean Wind direction... hmm... 
-                mean_wind_dir = np.mean(wnd_360[label_indices])         
+                # Mean Wind direction
+                # Calculated by finding the mean of the u and v components respectively, then 
+                # Finding the angle between them and converting to degree coordinates
+                # And finally converting to the range [0, 359.0]
+                
+                mean_u_i        = np.mean(u_i[label_indices])
+                mean_v_i        = np.mean(v_i[label_indices])
+                mean_wind_dir_  = np.arctan2(mean_v_i,mean_u_i)/np.pi * 180
+                mean_wind_dir   = np.where(mean_wind_dir_< 0, 360 + mean_wind_dir_ , mean_wind_dir_)
 
                 # Angular difference between object and mean wind dir
                 angle_diff = map(lambda X: smallest_angle(X, mean_wind_dir), wnd_360[label_indices])
@@ -265,7 +280,6 @@ def FindAR(fname, time):
                         #-------------------------------------------------------------------------#
                         # Write output to dictionary 
                         # optional: save output plot
-                        # 
                         #-------------------------------------------------------------------------#
 
                         # ID of AR blob feature
