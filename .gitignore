@@ -1,5 +1,9 @@
+#gitignore
+
 CFS_Reanalysis_Partial_RDA/
 input_files/
 misc/
 ivt_files/
-sample/./testmap*
+sample/*
+testmap/*
+\#*\#
