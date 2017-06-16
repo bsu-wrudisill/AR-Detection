@@ -75,24 +75,30 @@ def FindAR(fname, time):
 
         #-------------------------------------------------------------------------#
         # Open netcdf dataset
+        # Wind, IVT Field Calcs
         #-------------------------------------------------------------------------#
-        ds = Dataset(fname, format='NETCDF4_CLASSIC')
+        ds    = Dataset(fname, format='NETCDF4_CLASSIC')
         
         # Get lat/lon for plotting pu
-        lons = ds.variables['longitude'][:]
-        lats = ds.variables['latitude'][:]
+        lons  = ds.variables['longitude'][:]
+        lats  = ds.variables['latitude'][:]
         
         # Subset of IVT
-        ivt =ds.variables['ivt']
-        ivt = ivt[time, 0, :, :] # Right now we're only looking at one time!!!
+        ivt   = ds.variables['ivt']
+        ivt   = ivt[time, 0, :, :] # Right now we're only looking at one time!!!
         
         # Subset of wind_direction; 
-        wnd = ds.variables['w_dir'] # In Units of Radians
-        wnd = wnd[0, 0, :, :]
+        wnd   = ds.variables['w_dir'] # In Units of Radians
+        wnd   = wnd[0, 0, :, :]
 
         # Convert Wind Dir to [0, 359.9]
-        wnd_ = wnd/np.pi * 180.0
-        wnd_360 = np.where(wnd_ < 0, 360 + wnd_, wnd_)
+        wnd_           = wnd/np.pi * 180.0
+        wnd_360        = np.where(wnd_ < 0, 360 + wnd_, wnd_)
+
+        # Landcover 
+        global_cover_class  = ds.variables['landcover'][0, 0, :, :]
+        land_mask           = np.where(global_cover_class > 0)
+        water_mask          = np.where(global_cover_class == 0)
 
         # Close Dataset
         ds.close()
@@ -106,7 +112,8 @@ def FindAR(fname, time):
         v_ivt = ivt*v_i/1000.0
         
         #-------------------------------------------------------------------------#
-        # 
+        # Label Regions (Blobs)
+        # Threshold IVT 
         #-------------------------------------------------------------------------#     
         
 	#subtract mean. TODO: subtract seasonal variation
@@ -152,9 +159,9 @@ def FindAR(fname, time):
                 #  Test Flags; set to true if passing 
                 #-------------------------------------------------------------------------#
                 TC_a = False      # Mean IVT 
-                TC_b = True      # Coherency in IVT Direction  (variance)
-                TC_c = False       # Object Mean Meridonal IVT (flowing towards a pole)
-                TC_d = True       # Object/IVT direction Consistency
+                TC_b = False      # Coherency in IVT Direction  (variance)
+                TC_c = False      # Object Mean Meridonal IVT (flowing towards a pole)
+                TC_d = False       # Object/IVT direction Consistency
                 TC_e = False      # Length/Width Ratio
                 TC_f = True       # Lanfalling 
                 #-------------------------------------------------------------------------#
@@ -167,38 +174,40 @@ def FindAR(fname, time):
                 sub_array = np.where(label_array == label, 1, 0)
 
                 #-------------------------------------------------------------------------#
-                #    Region Properties of blob of interest 
+                # Region Properties of blob of interest 
                 #    
                 #    From scipy.morphology.regionprops
                 #    Lenght/Width Criteria                
                 #    TC_e: Length must be gt. 2000km and l:w gt 2. 
                 #-------------------------------------------------------------------------#
 
-                blob = regionprops(sub_array)[0]                    # set to 0; only 1 region        
-                blob_length = blob.major_axis_length*cell_to_km
-                blob_width = blob.minor_axis_length*cell_to_km
-                blob_size = blob.filled_area*cell_to_km
+                blob          = regionprops(sub_array)[0]                    # set to 0; only 1 region        
+                blob_length   = blob.major_axis_length*cell_to_km
+                blob_width    = blob.minor_axis_length*cell_to_km
+                blob_size     = blob.filled_area*cell_to_km
                 
                 #-------------------------------------------------------------------------#
-                # Blob Direction Calulations....
+                # Blob Direction Calulations;
+                # We must flip blob dir (*-1) since the array is flipped w.r.t lat
                 #-------------------------------------------------------------------------#
-                blob_dir_raw = blob.orientation / np.pi * 180
-                blob_dir_corrected = blob_dir_raw * -1 
+                blob_dir_raw         = blob.orientation / np.pi * 180
+                blob_dir_corrected   = blob_dir_raw * -1 
 
                 # Blob Orientation; we must deal with ambiguity of blob orientation w.r.t to wind dir
                 # So we give it two possible directions
-                # Recalls: orientation is between -90 and 90. So we should convert that to [0,359.9]
+                # Recalls: orientation is between -90 and 90. So we convert that to [0,359.9]
 
                 if  blob_dir_corrected >= 0:                                        # Positive blob dir
                         blob_dir = (blob_dir_corrected, 180+blob_dir_corrected)
-        
-                else:                                                         # Negative blob dir
+                else:                                                               # Negative blob dir
                         blob_dir = (360 - abs(blob_dir_corrected), 90 + abs(blob_dir_corrected))
         
                 #-------------------------------------------------------------------------#
                 # Blob Width/Length 
                 #-------------------------------------------------------------------------#
+
                 # Break loop if there is no width...
+
                 if blob_width == 0: 
                         break
                 blob_length_width_ratio = blob_length/blob_width
@@ -209,8 +218,6 @@ def FindAR(fname, time):
                 # scipy.ndimage.morphology.distance_transform_edt
                 # outputs euclidian distance to the outer object
                 # Use to find AR perimeter
-                
-
 
                 #-------------------------------------------------------------------------#
                 #    Mean IVT Calculation
@@ -302,7 +309,7 @@ def FindAR(fname, time):
                         
                         #Add AR to output Array
                         #new_arr[label_indices] = ivt[label_indices]
-                        new_arr[label_indices] = blob_num * 100
+                        new_arr[label_indices] = ivt[label_indices]
                         
 #                else:
         #----------------------------------------------------------------------------------------#
@@ -356,12 +363,12 @@ def FindAR(fname, time):
                 
                 # Mask out 0 Values using numpy mask
                 varmask = np.ma.masked_less(new_arr, 99)
-#                cs = m.pcolor(xi,yi,varmask,latlon=True)
+                cs = m.pcolor(xi,yi,varmask,latlon=True)
 
                 # Option: plot with contours
-                clevs = range(0,1000,100)                
-                cs = m.contourf(xi,yi,varmask,clevs,cmap='plasma')
-
+                clevs = range(0,35,1)                
+                cs = m.contourf(xi,yi,global_cover_class,clevs,cmap='plasma')
+#                cs = m.contourf(xi, yi, global_cover_class)
 
                 #-------------------------------------------------------------------------#
                 # 1.c Plot Wind Barbs
@@ -401,7 +408,7 @@ def FindAR(fname, time):
 #-----------------------------------------------------------------------------------------#
 
 
-for i in range(8,9):
+for i in range(0,1):
         var = FindAR(path, i)
         print 'done with %s' %i
 
