@@ -43,7 +43,7 @@ def IVT(infile, outfile):
 	longitudes.units = "degrees east"
 	longitudes.grid_type = "Latitude/Longitude"
 	longitudes.long_name = "longitude" 
-        
+         
         # Create IVT var
 	# To assign ivt a var, ivt[i,:,:,:] = var, i is time dim 
 	ivt = dataset.createVariable('ivt', np.float32,('time','level','lat','lon'))
@@ -51,17 +51,17 @@ def IVT(infile, outfile):
 	ivt.units = 'kg m-1 s-1'
 	ivt.long_name = 'Integrated Vapor Transport'
         
+
         # Create Wind Direction Var 
         wnd = dataset.createVariable('w_dir', np.float32,('time','level','lat','lon'))
 	wnd.grid_type = "Latitude/longitude"
 	wnd.units = 'Degrees'
 	wnd.long_name = 'Mean Wind Direction'
-
+        
 
 	#create geo dimensions.we know a-priori its a .5 degree grid 
 	latitudes[:] =  np.arange(-90,90.5,.5)
 	longitudes[:] =  np.arange(-180,180,.5)
-
 
 	# Dataset of interest
 	subset = Dataset(infile)
@@ -79,12 +79,20 @@ def IVT(infile, outfile):
 		Q = subset['SPFH_P0_L100_GLL0'][i,:]
 		u = subset['UGRD_P0_L100_GLL0'][i,:]
                 v = subset['VGRD_P0_L100_GLL0'][i,:]
+                v_mean = np.ndarray.mean(v)
+                u_mean = np.ndarray.mean(u)
+                
+                # IVT Calc
                 tV = (u**2)*(v**2)**.5
-                phi =np.arctan2(v,u)/np.pi*180 #first arg is the y dir, second x dir (meridonal, zonal)                
 		g = 9.81 
 		dp = 25.00 #pa
 		ivtval = np.ndarray.sum(Q*tV, axis=0)*1/g*dp
-                wndval = np.ndarray.mean(phi, axis=0)
+
+                # Wind Calc 
+                phi =np.arctan2(v_mean,u_mean) # Keep in pi units. first arg is the y dir, second x dir (meridonal, zonal)           
+                wndval = phi
+                
+                # Assign to variables (time, pressure (1), lat, lon)
                 ivt[i,:,:,:] = ivtval
                 wnd[i,:,:,:] = wndval
 
@@ -92,8 +100,8 @@ def IVT(infile, outfile):
 	dataset.close()
 
 
-#IVT('sample/pgbhnl.gdas.20101226-20101231.nc', 'sample/20101226-20101231_IVT.nc')
+IVT('input_files/pgbhnl.gdas.20101226-20101231.nc', 'sample/20101226-20101231_IVT.nc')
 
-IVT('input_files/pgbhnl.gdas.20100601-20100605.nc', 'sample/20100601-20100605_IVT.nc')
+IVT('input_files/pgbhnl.gdas.19961226-19961231.nc', 'sample/19961226-19961231_IVT.nc')
 
 print 'Im done'
