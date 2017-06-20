@@ -36,9 +36,7 @@ from scipy import ndimage
 # Global Values, Filepaths, etc.
 #-------------------------------------------------------------------------#
 
-#path = "/home/wrudisill/scratch/Find_ARs/sample/20101226-20101231_IVT.nc"
-path = '/home/wrudisill/scratch/Find_ARs/sample/19961226-19961231_IVT.nc'
-#path =  '/home/wrudisill/scratch/Find_ARS/sample/19961226-19961231_IVT.nc'
+path = '/home/wrudisill/scratch/Find_ARs/sample/20101226-20101231_IVT.nc'
 
 ivt_min = 250                     # Minimum IVT value in kg/ms to be retained
 size_mask = 1000                  # Min Grid cell size of object
@@ -253,7 +251,11 @@ def FindAR(fname, time):
                 # Poleward IVT 
                 poleward_IVT = mean_ivt*np.sin(mean_wind_dir/180*np.pi)
 
-                
+                #----------------------------------------------------------------------------------#
+                # Landfalling 
+                #----------------------------------------------------------------------------------#
+        
+
                 #----------------------------------------------------------------------------------#
                 # Object Testing 
                 #----------------------------------------------------------------------------------#
@@ -339,10 +341,15 @@ def FindAR(fname, time):
                 #-------------------------------------------------------------------------#
                 # 1.0 Plot with Basemap
                 #-------------------------------------------------------------------------#
-                global lons, lats
-                global xi, yi
 
-                m = Basemap(projection='cyl', resolution='c')
+                m = Basemap(projection='cyl', 
+                            resolution='c', 
+                            llcrnrlat= -90,
+                            urcrnrlat= 90,
+                            llcrnrlon= 0,
+                            urcrnrlon= 360)
+
+                lons = m.shiftdata(lons, lon_0=180)
                 lon, lat = np.meshgrid(lons, lats)
                 xi, yi = m(lon, lat)
 
@@ -362,13 +369,13 @@ def FindAR(fname, time):
                 #-------------------------------------------------------------------------#
                 
                 # Mask out 0 Values using numpy mask
-                varmask = np.ma.masked_less(new_arr, 99)
+                varmask = np.ma.masked_less(ivt, 250)
                 cs = m.pcolor(xi,yi,varmask,latlon=True)
 
+
                 # Option: plot with contours
-                clevs = range(0,35,1)                
+                clevs = range(0,100,1)                
                 cs = m.contourf(xi,yi,global_cover_class,clevs,cmap='plasma')
-#                cs = m.contourf(xi, yi, global_cover_class)
 
                 #-------------------------------------------------------------------------#
                 # 1.c Plot Wind Barbs
