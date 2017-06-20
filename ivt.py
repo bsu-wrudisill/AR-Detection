@@ -1,7 +1,7 @@
 from netCDF4 import Dataset, num2date, date2num
 import numpy as np
 from datetime import datetime, timedelta
-import pandas as pd 
+
 
 
 def IVT(infile, outfile):
@@ -80,8 +80,8 @@ def IVT(infile, outfile):
 
 
         # read land data so we don't read it in a loop;
-        landval = np.load('world_landcover.npy')
-        landval = landval[::-1,:]
+        land_input = Dataset('global_veg.nc')
+        landval = land_input['VEG_P0_L1_GLL0'][0, ::-1, :]
         print landval.shape
 
 	#Loop through pressure and Time levels, calculate IVT
@@ -99,7 +99,7 @@ def IVT(infile, outfile):
 		ivtval = np.ndarray.sum(Q*tV, axis=0)*1/g*dp
 
                 # Wind Calc 
-                phi =np.arctan2(v_mean,u_mean) # Keep in pi units. first arg is the y dir, second x dir (meridonal, zonal)         
+                phi =np.arctan2(v_mean,u_mean) # Keep in pi units. first arg is the y dir, second x dir (meridonal, zonal)  
                 wndval = phi
                 
                 # Assign to variables (time, pressure (1), lat, lon)
@@ -111,8 +111,6 @@ def IVT(infile, outfile):
 	dataset.close()
 
 
-IVT('input_files/pgbhnl.gdas.20101226-20101231.nc', 'sample/20101226-20101231_IVT.nc')
-
-IVT('input_files/pgbhnl.gdas.19961226-19961231.nc', 'sample/19961226-19961231_IVT.nc')
+IVT('cfsr_nc/pgbhnl.gdas.20101226-20101231.nc', 'sample/20101226-20101231_IVT.nc')
 
 print 'Im done'
