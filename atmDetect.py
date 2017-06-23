@@ -20,6 +20,7 @@ from skimage.morphology import skeletonize
 from scipy.ndimage import filters, morphology, measurements
 #from skimage.graph import route_through_array
 from scipy import ndimage
+from datetime import datetime, timedelta
 
 #-------------------------------------------------------------------------#
 # TO DO List
@@ -54,6 +55,11 @@ def smallest_angle(a,b):
         tup = (360 - abs(a - b), a-b)
         return min(map(abs, tup))
 
+def format_date(hours):
+        t0 = datetime(1801, 01, 01, 00)
+        dt = t0 + timedelta(hours=hours)
+        return dt
+
 
 #-------------------------------------------------------------------------#
 # Main 
@@ -76,6 +82,9 @@ def FindAR(fname, time):
         # Wind, IVT Field Calcs
         #-------------------------------------------------------------------------#
         ds    = Dataset(fname, format='NETCDF4_CLASSIC')
+        
+        # Get the date time and convert it to Human Readable
+        hr_time  = format_date(ds.variables['time'][time])
         
         # Get lat/lon for plotting pu
         lons  = ds.variables['longitude'][:]
@@ -105,7 +114,7 @@ def FindAR(fname, time):
         u_i = np.cos(wnd)
         v_i = np.sin(wnd)
 
-        # IVT magnitude
+        #Components of IVT 
         u_ivt = ivt*u_i/1000.0
         v_ivt = ivt*v_i/1000.0
         
@@ -369,13 +378,13 @@ def FindAR(fname, time):
                 #-------------------------------------------------------------------------#
                 
                 # Mask out 0 Values using numpy mask
-                varmask = np.ma.masked_less(ivt, 250)
+                varmask = np.ma.masked_less(new_arr, 1)
                 cs = m.pcolor(xi,yi,varmask,latlon=True)
 
 
                 # Option: plot with contours
-                clevs = range(0,100,1)                
-                cs = m.contourf(xi,yi,global_cover_class,clevs,cmap='plasma')
+#                clevs = range(0,100,1)                
+#                cs = m.contourf(xi,yi,global_cover_class,clevs,cmap='plasma')
 
                 #-------------------------------------------------------------------------#
                 # 1.c Plot Wind Barbs
@@ -384,7 +393,8 @@ def FindAR(fname, time):
                 # Create a sparse array for plotting barbs to prevent clutter
                 yy = np.arange(0, yi.shape[0], 3)
                 xx = np.arange(0, xi.shape[1], 3)
-                points = np.meshgrid(yy, xx) 
+
+                points      = np.meshgrid(yy, xx)                                 
                 m.quiver(xi[points], yi[points], u_ivt[points], v_ivt[points], scale = 100, pivot='mid', width =0.001, color='grey') 
 
 
@@ -404,6 +414,7 @@ def FindAR(fname, time):
                         ts = str(time)
 
                 # Save Plots
+                plt.title(hr_time)
                 plt.savefig('testmap' + ts ,format='png', dpi = 700)
                 plt.close()
                 
