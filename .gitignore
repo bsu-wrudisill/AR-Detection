@@ -7,3 +7,12 @@ ivt_files/
 sample/*
 testmap/*
 \#*\#
+*.pyc
+*sh
+*.csh
+*.json
+*.nc
+cfsr_nc/
+cfsr_grib
+*.log
+*.db
