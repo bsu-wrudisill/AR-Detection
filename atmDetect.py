@@ -1,3 +1,4 @@
+
 """
 ===============
 Title: Atmospheric River Detection 
@@ -18,9 +19,11 @@ import json
 #from scipy.ndimage.interpolation import rotate
 from skimage.morphology import skeletonize
 from scipy.ndimage import filters, morphology, measurements
-#from skimage.graph import route_through_array
+from skimage.graph import route_through_array
 from scipy import ndimage
 from datetime import datetime, timedelta
+from scipy.spatial import distance
+
 
 #-------------------------------------------------------------------------#
 # TO DO List
@@ -28,6 +31,7 @@ from datetime import datetime, timedelta
 # 2. Subtract seasonal means
 # 3. Properly calculate grid cell size
 # 4. Fix poleward component test; northern needs to be positive, southern negative
+# 5. Check on len/width ratio math 
 #-------------------------------------------------------------------------#
 
 
@@ -36,13 +40,14 @@ from datetime import datetime, timedelta
 #-------------------------------------------------------------------------#
 # Global Values, Filepaths, etc.
 #-------------------------------------------------------------------------#
-
-path = '/home/wrudisill/scratch/Find_ARs/sample/20101226-20101231_IVT.nc'
-
+#path = '/home/wrudisill/scratch/Find_ARs/ivt_files/pgbhnl.gdas.20000201-20000205.nc'
 ivt_min = 250                     # Minimum IVT value in kg/ms to be retained
 size_mask = 1000                  # Min Grid cell size of object
 cell_to_km = 50                   # km
 Results_dictionary = {}           # output dictionary
+
+
+
 
 
 #-------------------------------------------------------------------------#
@@ -60,6 +65,28 @@ def format_date(hours):
         dt = t0 + timedelta(hours=hours)
         return dt
 
+def least_cost(array, start, end):
+	#start, end are tuples of indices (row,col)
+	nrow,ncol = array.shape
+	indices, cost = route_through_array(array, start, end)
+	indices = np.array(indices).T
+	path = np.zeros_like(array)
+	path[indices[0], indices[1]] = 1
+        path_len = len(indices[0])
+	return path, cost, path_len 
+
+def distance_matrix(array):
+        # Find the two points with the greatest distance from a shape
+        # The entry array is a binary array where 1 == object
+        # returns the start and end points of shape 
+        ind = np.argwhere(array == 1)     # Argwhere returns coords as array ([[j,k], [.,.]...)
+        dmat = distance.cdist(ind, ind)   # Scipy euclidian distance matrix
+        points = np.argwhere(dmat == dmat.max())     # Coords where there is max distance  
+        if len(points) > 0:
+                points = points[0]
+        start = ind[points[0]]
+        end =   ind[points[1]]
+        return start, end 
 
 #-------------------------------------------------------------------------#
 # Main 
@@ -73,19 +100,25 @@ def FindAR(fname, time):
         #  Fname -- netcdf file of IVT (string)
         #  Time  -- arraay index correspongding to timestamp (integer)
      
-        # Output Dictionary
-        Results_dictionary[fname[40:]] = {}
+        # AR logic flag; false initially 
         AR_EXISTS = False
 
         #-------------------------------------------------------------------------#
         # Open netcdf dataset
         # Wind, IVT Field Calcs
         #-------------------------------------------------------------------------#
-        ds    = Dataset(fname, format='NETCDF4_CLASSIC')
+        ds  = Dataset(fname, format='NETCDF4_CLASSIC')
         
         # Get the date time and convert it to Human Readable
-        hr_time  = format_date(ds.variables['time'][time])
-        
+        hr_time      = format_date(ds.variables['time'][time])
+        hr_time_str  = hr_time.strftime("%Y-%m-%d_%H")
+
+        #-------------------------------------------------------------------------#
+        # Create Output Dictionary; one for each file 
+        #-------------------------------------------------------------------------#
+
+#        Results_dictionary[hr_time_str] = {}
+
         # Get lat/lon for plotting pu
         lons  = ds.variables['longitude'][:]
         lats  = ds.variables['latitude'][:]
@@ -145,7 +178,7 @@ def FindAR(fname, time):
         # If there is nothing to keep, write to dic and continue
         if not keep_label.any():
 		info = 'No ATM Rivers'
-		Results_dictionary[fname[41:]] = info 
+		#Results_dictionary[fname[41:]] = info 
 		#does no execute the rest of the loop, starts back at top
                 return
 
@@ -153,9 +186,14 @@ def FindAR(fname, time):
 
         #labeled components to keep 
         blob_num = int(0)
+
+        #-------------------------------------------------------------------------#
+        # Placeholder Arrays; Fill up with useful things 
+        # 
+        #-------------------------------------------------------------------------#
         
-        # Array of Zeros; fill up w/ AR that get ID'd
-        new_arr = np.zeros_like(label_array)        
+        zero_arr_0 = np.zeros_like(label_array)        
+        zero_arr_1 = np.zeros_like(label_array)        
 
         #-------------------------------------------------------------------------#
         # BEGIN Blob-Loop: Loop through each blob in the list of canditate blobs
@@ -168,12 +206,13 @@ def FindAR(fname, time):
                 TC_a = False      # Mean IVT 
                 TC_b = False      # Coherency in IVT Direction  (variance)
                 TC_c = False      # Object Mean Meridonal IVT (flowing towards a pole)
-                TC_d = False       # Object/IVT direction Consistency
+                TC_d = False      # Object/IVT direction Consistency
                 TC_e = False      # Length/Width Ratio
                 TC_f = True       # Lanfalling 
+                TC_g = False      # NOT crossing equator (we don't want AR crossing eq)
                 #-------------------------------------------------------------------------#
                 
-
+                
                 # Indicies of blob of interest
                 label_indices = np.where(label_array == label)
 
@@ -192,7 +231,8 @@ def FindAR(fname, time):
                 blob_length   = blob.major_axis_length*cell_to_km
                 blob_width    = blob.minor_axis_length*cell_to_km
                 blob_size     = blob.filled_area*cell_to_km
-                
+                blob_bbox     = map(int, blob.bbox)
+
                 #-------------------------------------------------------------------------#
                 # Blob Direction Calulations;
                 # We must flip blob dir (*-1) since the array is flipped w.r.t lat
@@ -235,6 +275,25 @@ def FindAR(fname, time):
                 mean_ivt = np.mean(ivt[label_indices])              # Mean IVT of blob
                 
                 #-------------------------------------------------------------------------#
+                # Blog Lenght Calc -- route throgh array method
+                #-------------------------------------------------------------------------#
+                try:
+                        
+                        cost_arr   = np.ones_like(sub_array)*9999.999
+                        cost_arr[label_indices] = max(ivt[label_indices]) - ivt[label_indices]
+                                
+#                        start      = np.array([blob_bbox[0], blob_bbox[1]])
+#                        end        = np.array([blob_bbox[2], blob_bbox[3]])
+                        start, end = distance_matrix(sub_array)
+                        path, cost, path_len = least_cost(cost_arr, start, end)
+                        path_len = path_len * cell_to_km
+                        
+                except Exception:
+                        print hr_time_str
+                        continue
+
+
+                #-------------------------------------------------------------------------#
                 #    Wind Direction calculations
                 #
                 #    TC_b:  No more than 1/2 of gridcells in blob should deviate more than 45* 
@@ -261,6 +320,24 @@ def FindAR(fname, time):
                 poleward_IVT = mean_ivt*np.sin(mean_wind_dir/180*np.pi)
 
                 #----------------------------------------------------------------------------------#
+                # Hemisphere -- North or South 
+                # Throw out if the object crosses the equator
+                #----------------------------------------------------------------------------------#
+                
+                if any(n < 0 for n in lats[label_indices[0]]) == True:
+                        
+                        Hemisphere = 'Southern'
+                        
+                        #if any(n > 0 for n in lats[label_indices[0]]) == True:
+                        #        break
+                        #else: 
+                        #        continue
+                else:
+                        Hemisphere = 'Northern'
+                        TC_f       = True
+
+
+                #----------------------------------------------------------------------------------#
                 # Landfalling 
                 #----------------------------------------------------------------------------------#
         
@@ -269,7 +346,7 @@ def FindAR(fname, time):
                 # Object Testing 
                 #----------------------------------------------------------------------------------#
 
-                if mean_ivt > 250.0:
+                if mean_ivt > 350.0:
                         TC_a = True
 
                 if angle_gt_mean < len(angle_diff)/2:
@@ -278,8 +355,12 @@ def FindAR(fname, time):
                 if smallest_angle(mean_wind_dir, blob_dir[0]) < 50.0 or smallest_angle(mean_wind_dir, blob_dir[1]) < 50.0:
                         TC_c = True
                 
-                if abs(poleward_IVT) > 50.0:      # Should southern/northern hemispher require south/north directed flow?
-                        TC_d = True
+                if Hemisphere == 'Northern':
+                        if poleward_IVT > 50.0:     
+                                TC_d = True
+
+                elif abs(poleward_IVT) > 50:
+                        TC_d = True 
                 
                 if (blob_length > 2000.0) and (blob_length_width_ratio > 2.0): # Later add a width component...maybe this does not matter
                         TC_e = True
@@ -307,22 +388,40 @@ def FindAR(fname, time):
  
 
                         # Dictionary Entry 
-                        info = {'object_orientation_direction': blob_dir, 
+                        info = {'AR_Name': AR_Name,
+                                'hr_time_str': hr_time_str,
+                                'object_orientation_direction': blob_dir, 
                                 'object_length': blob_length, 
-                                'object_width':blob_width, 
-                                'mean_IVT': mean_ivt, 
+                                'object_width':  blob_width, 
+                                'mean_IVT':  mean_ivt, 
                                 'mean_wind_dir': mean_wind_dir,
-                                'poleward_IVT': poleward_IVT,
-                                'lenght_to_width':blob_length_width_ratio,
+                                'poleward_IVT':  poleward_IVT,
+                                'length_to_width': blob_length_width_ratio,
+                                'Hemispere':  Hemisphere,
+                                'Path_len' :  path_len,
+                                'fname':  fname
                         } 
 
-                        Results_dictionary[fname[40:]][AR_Name] = info
+#                        Results_dictionary[hr_time_str][AR_Name] = info
                         
+
+                        import make_dbase
+                        make_dbase.log_AR(**info)
+
+
+                        
+                        #-----------------------------------------------------------------------# 
+                        # Create Output Arrays for plotting; fill zero Arrays
+                        #-----------------------------------------------------------------------# 
+                        zero_arr_0                = zero_arr_0 + path           # Least-cost path
+                        zero_arr_1[label_indices] = ivt[label_indices]
+
                         #Add AR to output Array
                         #new_arr[label_indices] = ivt[label_indices]
                         new_arr[label_indices] = ivt[label_indices]
-                        
-#                else:
+                        ar_index_list.append(label_indices)
+                else:
+                        continue
         #----------------------------------------------------------------------------------------#
         # END Blob-Loop
         #---------------------------------------------------------------------------------#
@@ -334,9 +433,10 @@ def FindAR(fname, time):
         #    c. In progress --- write AR array out to a NCfile
         #---------------------------------------------------------------------------------#
 
-        if AR_EXISTS == True:
-                print Results_dictionary
-                
+                if AR_EXISTS == True:
+                        print 'bar'
+
+        
                 #-------------------------------------------------------------------------#
                 # Feature: Write out to a netcdf file.
                 #ds = Dataset(fname, 'r+') # not working; HDF5 error
@@ -366,7 +466,7 @@ def FindAR(fname, time):
                 # 1.a Draw State/country Borders
                 #-------------------------------------------------------------------------#
 
-#                m.drawparallels(np.arange(-80., 81., 20.), labels=[1,0,0,0], fontsize=5)
+                m.drawparallels(np.arange(-80., 81., 20.), labels=[1,0,0,0], fontsize=5)
 #                m.drawmeridians(np.arange(-180., 181., 20.), labels=[0,0,0,1], fontsize=5)
                 m.drawcoastlines()
                 m.drawstates()
@@ -378,8 +478,12 @@ def FindAR(fname, time):
                 #-------------------------------------------------------------------------#
                 
                 # Mask out 0 Values using numpy mask
-                varmask = np.ma.masked_less(new_arr, 1)
-                cs = m.pcolor(xi,yi,varmask,latlon=True)
+
+                varmask = np.ma.masked_less(zero_arr_1, 1)
+                cs = m.pcolor(xi,yi,varmask,latlon=True, vmin = 200.0, vmax=1000.0)
+
+                varmask0 = np.ma.masked_less(zero_arr_0, 1)
+                cs0 = m.pcolor(xi,yi,varmask0,latlon=True)
 
 
                 # Option: plot with contours
@@ -393,10 +497,12 @@ def FindAR(fname, time):
                 # Create a sparse array for plotting barbs to prevent clutter
                 yy = np.arange(0, yi.shape[0], 3)
                 xx = np.arange(0, xi.shape[1], 3)
-
-                points      = np.meshgrid(yy, xx)                                 
-                m.quiver(xi[points], yi[points], u_ivt[points], v_ivt[points], scale = 100, pivot='mid', width =0.001, color='grey') 
-
+                points  = np.meshgrid(yy, xx)                                 
+                
+#                m.quiver(xi[points], yi[points], u_ivt[points], v_ivt[points], scale = 100, pivot='mid', width =0.001, color='grey') 
+                
+#                label_ = np.where(new_arr > 0)
+#                m.quiver(xi[label_], yi[label_], u_ivt[label_], v_ivt[label_], scale = 100, pivot='mid', width =0.001, color='grey')           
 
 
                 #-------------------------------------------------------------------------#
@@ -404,21 +510,21 @@ def FindAR(fname, time):
                 #-------------------------------------------------------------------------#
 
                 # Set Colorbar
-                cbar = m.colorbar(cs,location='bottom',pad="5%")
-                cbar.set_label('mm')
+                #cbar = m.colorbar(cs,location='bottom',pad="5%")
+                #cbar.set_label('mm')
                 
                 # Format Name string; pad with Zeros
-                if len(str(time)) == 1:
-                        ts = '0'+str(time)
-                else:
-                        ts = str(time)
+                #if len(str(time)) == 1:
+                #        ts = '0'+str(time)
+                #else:
+#                        ts = str(time)
 
-                # Save Plots
-                plt.title(hr_time)
-                plt.savefig('testmap' + ts ,format='png', dpi = 700)
-                plt.close()
+                # Save Plot
+                #plt.title(hr_time)
+                #plt.savefig('AR_'+hr_time_str ,format='png', dpi = 700)
+                #plt.close()
                 
-                return varmask
+
         print "Finished"
 
 #-----------------------------------------------------------------------------------------#
@@ -426,16 +532,8 @@ def FindAR(fname, time):
 #-----------------------------------------------------------------------------------------#
 
 
-for i in range(0,1):
-        var = FindAR(path, i)
-        print 'done with %s' %i
 
 
 
-
-
-#with open('results.json', 'w') as outfile:
-#        json.dump(Results_dictionary, outfile)
-#            blob_skeleton = skeletonize(sub_array) # Perhaps use this to calc the lengths...
 
 

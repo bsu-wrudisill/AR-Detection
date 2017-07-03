@@ -1,10 +1,11 @@
 from netCDF4 import Dataset, num2date, date2num
 import numpy as np
 from datetime import datetime, timedelta
+from glob import glob
+import os
+import logging
 
-
-
-def IVT(infile, outfile):
+def IVT(infile,outfile):
  	# Infile is the CFS Reanalysis data to convert, out is the name for 
 	# the new file. CRSR downloaded from NCAR RDA
 	name = outfile
@@ -80,9 +81,9 @@ def IVT(infile, outfile):
 
 
         # read land data so we don't read it in a loop;
-        land_input = Dataset('global_veg.nc')
+        land_input = Dataset('../global_veg.nc')
         landval = land_input['VEG_P0_L1_GLL0'][0, ::-1, :]
-        print landval.shape
+
 
 	#Loop through pressure and Time levels, calculate IVT
 	for i in range(20):
@@ -109,8 +110,21 @@ def IVT(infile, outfile):
 
         subset.close()
 	dataset.close()
+        # End Funcion 
+
+def try_IVT(infile,outfile):
+        try: 
+                return IVT(infile,outfile)
+        except Exception as e:
+                logging.exception('message')
+                
+
+os.chdir('cfsr_nc/')
+
+file_list     = glob('*')
+out_file_list = map(lambda X: '../ivt_files/'+X, file_list)
+map(try_IVT, file_list, out_file_list)
+
+os.chdir('../.')
 
 
-IVT('cfsr_nc/pgbhnl.gdas.20101226-20101231.nc', 'sample/20101226-20101231_IVT.nc')
-
-print 'Im done'
