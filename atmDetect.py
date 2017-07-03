@@ -41,10 +41,10 @@ from scipy.spatial import distance
 # Global Values, Filepaths, etc.
 #-------------------------------------------------------------------------#
 #path = '/home/wrudisill/scratch/Find_ARs/ivt_files/pgbhnl.gdas.20000201-20000205.nc'
-ivt_min = 250                     # Minimum IVT value in kg/ms to be retained
-size_mask = 1000                  # Min Grid cell size of object
-cell_to_km = 50                   # km
-Results_dictionary = {}           # output dictionary
+#ivt_min = 250                     # Minimum IVT value in kg/ms to be retained
+#size_mask = 1000                  # Min Grid cell size of object
+#cell_to_km = 50                   # km
+#Results_dictionary = {}           # output dictionary
 
 
 
@@ -390,19 +390,24 @@ def FindAR(fname, time):
                         # Dictionary Entry 
                         info = {'AR_Name': AR_Name,
                                 'hr_time_str': hr_time_str,
-                                'object_orientation_direction': blob_dir, 
-                                'object_length': blob_length, 
-                                'object_width':  blob_width, 
-                                'mean_IVT':  mean_ivt, 
-                                'mean_wind_dir': mean_wind_dir,
-                                'poleward_IVT':  poleward_IVT,
-                                'length_to_width': blob_length_width_ratio,
+                                'object_orientation_direction_a': blob_dir[0],
+                                'object_orientation_direction_b': blob_dir[1],
+                                'object_length': float(blob_length), 
+                                'object_width':  float(blob_width), 
+                                'mean_IVT':  float(mean_ivt), 
+                                'mean_wind_dir': float(mean_wind_dir),
+                                'poleward_IVT':  float(poleward_IVT),
+                                'length_to_width': float(blob_length_width_ratio),
                                 'Hemispere':  Hemisphere,
-                                'Path_len' :  path_len,
+                                'Path_len' :  float(path_len),
                                 'fname':  fname
                         } 
 
-#                        Results_dictionary[hr_time_str][AR_Name] = info
+                        for i in info.keys():
+                
+                                print i, type(info[i]), info[i]
+        #
+                        #Results_dictionary[hr_time_str][AR_Name] = info
                         
 
                         import make_dbase
@@ -418,8 +423,8 @@ def FindAR(fname, time):
 
                         #Add AR to output Array
                         #new_arr[label_indices] = ivt[label_indices]
-                        new_arr[label_indices] = ivt[label_indices]
-                        ar_index_list.append(label_indices)
+                        #new_arr[label_indices] = ivt[label_indices]
+#                        ar_index_list.append(label_indices)
                 else:
                         continue
         #----------------------------------------------------------------------------------------#
@@ -535,5 +540,18 @@ def FindAR(fname, time):
 
 
 
+if __name__ == '__main__':
+        path = '/home/wrudisill/scratch/Find_ARs/ivt_files/pgbhnl.gdas.20000201-20000205.nc'
+        ivt_min = 250                     # Minimum IVT value in kg/ms to be retained
+        size_mask  = 1000                  # Min Grid cell size of object
+        cell_to_km = 50                   # km
+        for i in range(0,1):
+                FindAR(path, i)
 
 
+
+        
+        
+
+
+        
