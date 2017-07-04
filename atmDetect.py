@@ -41,11 +41,10 @@ from scipy.spatial import distance
 # Global Values, Filepaths, etc.
 #-------------------------------------------------------------------------#
 #path = '/home/wrudisill/scratch/Find_ARs/ivt_files/pgbhnl.gdas.20000201-20000205.nc'
-#ivt_min = 250                     # Minimum IVT value in kg/ms to be retained
-#size_mask = 1000                  # Min Grid cell size of object
-#cell_to_km = 50                   # km
+ivt_min = 250                     # Minimum IVT value in kg/ms to be retained
+size_mask = 1000                  # Min Grid cell size of object
+cell_to_km = 50                   # km
 #Results_dictionary = {}           # output dictionary
-
 
 
 
@@ -97,9 +96,24 @@ def distance_matrix(array):
 #-------------------------------------------------------------------------#
 
 def FindAR(fname, time):
+        #-------------------------------------------------------------------------#
+        # FUNCTION INPUTS
+        #-------------------------------------------------------------------------#
         #  Fname -- netcdf file of IVT (string)
         #  Time  -- arraay index correspongding to timestamp (integer)
-     
+        #-------------------------------------------------------------------------#
+
+
+        #-------------------------------------------------------------------------#
+        # Global Values 
+        #-------------------------------------------------------------------------#
+        ivt_min = 250                     # Minimum IVT value in kg/ms to be retained
+        size_mask = 1000                  # Min Grid cell size of object
+        cell_to_km = 50                   # km
+        #-------------------------------------------------------------------------#
+
+
+
         # AR logic flag; false initially 
         AR_EXISTS = False
 
@@ -107,8 +121,8 @@ def FindAR(fname, time):
         # Open netcdf dataset
         # Wind, IVT Field Calcs
         #-------------------------------------------------------------------------#
-        ds  = Dataset(fname, format='NETCDF4_CLASSIC')
-        
+
+        ds  = Dataset(fname, format='NETCDF4_CLASSIC')        
         # Get the date time and convert it to Human Readable
         hr_time      = format_date(ds.variables['time'][time])
         hr_time_str  = hr_time.strftime("%Y-%m-%d_%H")
@@ -281,9 +295,6 @@ def FindAR(fname, time):
                         
                         cost_arr   = np.ones_like(sub_array)*9999.999
                         cost_arr[label_indices] = max(ivt[label_indices]) - ivt[label_indices]
-                                
-#                        start      = np.array([blob_bbox[0], blob_bbox[1]])
-#                        end        = np.array([blob_bbox[2], blob_bbox[3]])
                         start, end = distance_matrix(sub_array)
                         path, cost, path_len = least_cost(cost_arr, start, end)
                         path_len = path_len * cell_to_km
@@ -300,29 +311,31 @@ def FindAR(fname, time):
                 #           from objects mean IVT direction
                 #    TC_c:  Mean wind dir and Object Orientation (blob_dir) Should not deviate by more than 45*
                 #    TC_d:  Mean wind dir must have 'significant' poleward (meridonal) component;    
+                #    
                 #-------------------------------------------------------------------------#
-                
-                # Mean Wind direction
-                # Calculated by finding the mean of the u and v components respectively, then 
-                # Finding the angle between them and converting to degree coordinates
-                # And finally converting to the range [0, 359.0]
-                
+                 
+
+                #    ----------Mean Wind direction-----------
+                #    Calculated by finding the mean of the u and v components respectively, then 
+                #    Finding the angle between them and converting to degree coordinates
+                #    And finally converting to the range [0, 359.0]
+
                 mean_u_i        = np.mean(u_i[label_indices])
                 mean_v_i        = np.mean(v_i[label_indices])
                 mean_wind_dir_  = np.arctan2(mean_v_i,mean_u_i)/np.pi * 180
                 mean_wind_dir   = np.where(mean_wind_dir_< 0, 360 + mean_wind_dir_ , mean_wind_dir_)
 
-                # Angular difference between object and mean wind dir
+                #    ----------Angular difference between object and mean wind dir-------
                 angle_diff = map(lambda X: smallest_angle(X, mean_wind_dir), wnd_360[label_indices])
                 angle_gt_mean = map(lambda x: x>45, angle_diff).count(True) # Counts angles gt 45 deg from mean dir
                 
-                # Poleward IVT 
+                #    ----------Poleward IVT----------
                 poleward_IVT = mean_ivt*np.sin(mean_wind_dir/180*np.pi)
 
-                #----------------------------------------------------------------------------------#
-                # Hemisphere -- North or South 
+
+                #    ----------Hemisphere ----------- 
                 # Throw out if the object crosses the equator
-                #----------------------------------------------------------------------------------#
+                
                 
                 if any(n < 0 for n in lats[label_indices[0]]) == True:
                         
@@ -438,9 +451,8 @@ def FindAR(fname, time):
         #    c. In progress --- write AR array out to a NCfile
         #---------------------------------------------------------------------------------#
 
-                if AR_EXISTS == True:
-                        print 'bar'
-
+        if AR_EXISTS == True:
+                
         
                 #-------------------------------------------------------------------------#
                 # Feature: Write out to a netcdf file.
@@ -538,8 +550,7 @@ def FindAR(fname, time):
 
 
 
-
-
+# Runs Script if called directly; 
 if __name__ == '__main__':
         path = '/home/wrudisill/scratch/Find_ARs/ivt_files/pgbhnl.gdas.20000201-20000205.nc'
         ivt_min = 250                     # Minimum IVT value in kg/ms to be retained

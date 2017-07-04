@@ -14,8 +14,8 @@ cell_to_km = 50                   # km
 Results_dictionary = {}           # output dictionary
 
 
-for i in range(0,3):
-        atmDetect.FindAR(path, i)
+for i in range(0,20):
+        atmDetect.FindAR(path, i, ivt_min = 250, size_mask = 1000, cell_to_km = 50)
 
 #        print 'done with %s' %i
 
