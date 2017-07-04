@@ -16,3 +16,4 @@ cfsr_nc/
 cfsr_grib
 *.log
 *.db
+*AR_*
