@@ -36,19 +36,6 @@ from scipy.spatial import distance
 
 
 
-
-#-------------------------------------------------------------------------#
-# Global Values, Filepaths, etc.
-#-------------------------------------------------------------------------#
-#path = '/home/wrudisill/scratch/Find_ARs/ivt_files/pgbhnl.gdas.20000201-20000205.nc'
-ivt_min = 250                     # Minimum IVT value in kg/ms to be retained
-size_mask = 1000                  # Min Grid cell size of object
-cell_to_km = 50                   # km
-#Results_dictionary = {}           # output dictionary
-
-
-
-
 #-------------------------------------------------------------------------#
 # Helper Functions 
 #-------------------------------------------------------------------------#
@@ -134,8 +121,11 @@ def FindAR(fname, time):
 #        Results_dictionary[hr_time_str] = {}
 
         # Get lat/lon for plotting pu
-        lons  = ds.variables['longitude'][:]
-        lats  = ds.variables['latitude'][:]
+        lons  = ds.variables['lon_0'][:]
+        lats  = ds.variables['lat_0'][:]
+        
+        # meshgrid
+        lons_mesh, lats_mesh  = np.meshgrid(lons, lats)
         
         # Subset of IVT
         ivt   = ds.variables['ivt']
@@ -143,7 +133,7 @@ def FindAR(fname, time):
         
         # Subset of wind_direction; 
         wnd   = ds.variables['w_dir'] # In Units of Radians
-        wnd   = wnd[0, 0, :, :]
+        wnd   = wnd[time, 0, :, :]
 
         # Convert Wind Dir to [0, 359.9]
         wnd_           = wnd/np.pi * 180.0
@@ -222,7 +212,7 @@ def FindAR(fname, time):
                 TC_c = False      # Object Mean Meridonal IVT (flowing towards a pole)
                 TC_d = False      # Object/IVT direction Consistency
                 TC_e = False      # Length/Width Ratio
-                TC_f = True       # Lanfalling 
+                TC_f = False      # Interior USA Landfalling 
                 TC_g = False      # NOT crossing equator (we don't want AR crossing eq)
                 #-------------------------------------------------------------------------#
                 
@@ -261,8 +251,9 @@ def FindAR(fname, time):
                 if  blob_dir_corrected >= 0:                                        # Positive blob dir
                         blob_dir = (blob_dir_corrected, 180+blob_dir_corrected)
                 else:                                                               # Negative blob dir
-                        blob_dir = (360 - abs(blob_dir_corrected), 90 + abs(blob_dir_corrected))
-        
+                        blob_dir = (360 - abs(blob_dir_corrected), 360 - abs(blob_dir_corrected) - 180)
+                        
+                
                 #-------------------------------------------------------------------------#
                 # Blob Width/Length 
                 #-------------------------------------------------------------------------#
@@ -279,6 +270,9 @@ def FindAR(fname, time):
                 # scipy.ndimage.morphology.distance_transform_edt
                 # outputs euclidian distance to the outer object
                 # Use to find AR perimeter
+
+
+
 
                 #-------------------------------------------------------------------------#
                 #    Mean IVT Calculation
@@ -333,7 +327,10 @@ def FindAR(fname, time):
                 poleward_IVT = mean_ivt*np.sin(mean_wind_dir/180*np.pi)
 
 
-                #    ----------Hemisphere ----------- 
+
+                #-------------------------------------------------------------------------#
+                #  Location Calculations
+                #-------------------------------------------------------------------------#
                 # Throw out if the object crosses the equator
                 
                 
@@ -347,8 +344,17 @@ def FindAR(fname, time):
                         #        continue
                 else:
                         Hemisphere = 'Northern'
-                        TC_f       = True
 
+                
+                
+                # Does AR make it into interior West?
+                if any( (n > 240) and (n < 260 ) for n in lons_mesh[label_indices]) == True:
+                        Interior_Landfalling = True
+
+                else:
+                        Interior_Landfalling = False
+
+ 
 
                 #----------------------------------------------------------------------------------#
                 # Landfalling 
@@ -375,20 +381,25 @@ def FindAR(fname, time):
                 elif abs(poleward_IVT) > 50:
                         TC_d = True 
                 
+
                 if (blob_length > 2000.0) and (blob_length_width_ratio > 2.0): # Later add a width component...maybe this does not matter
                         TC_e = True
            
-                
+                #if Interior_Landfalling == True:
+                #        TC_f = True
+                TC_f = True         
+                        
                 # Add landfalling later
+
                 
                 #---------------------------------------------------------------------------------#
                 # Write output to dictionary or do Nothing
                 #---------------------------------------------------------------------------------#
                                 
-                if TC_a + TC_b + TC_c + TC_d + TC_e == 5:  # In Python, True == 1 
+                if TC_a + TC_b + TC_c + TC_d + TC_e + TC_f == 6:  # In Python, True == 1 
                         
                         AR_EXISTS = True
-                        
+
                         #-------------------------------------------------------------------------#
                         # Write output to dictionary 
                         # optional: save output plot
@@ -398,7 +409,7 @@ def FindAR(fname, time):
                         blob_num = blob_num + 1                                
                         # Name of AR 
                         AR_Name = 'AR_' + str(blob_num)
- 
+                        
 
                         # Dictionary Entry 
                         info = {'AR_Name': AR_Name,
@@ -435,7 +446,9 @@ def FindAR(fname, time):
         #----------------------------------------------------------------------------------------#
         # END Blob-Loop
         #---------------------------------------------------------------------------------#
-                
+#        lon, lat = np.meshgrid(lons, lats)
+
+        
         #---------------------------------------------------------------------------------#
         #  If there are AR:
         #    a. Print out summary statistics
@@ -455,13 +468,14 @@ def FindAR(fname, time):
 
 
 
-# Runs Script if called directly; 
+# Runs Script if called directly, i.e. python atmDetect.py
 if __name__ == '__main__':
-        path = '/home/wrudisill/scratch/Find_ARs/ivt_files/pgbhnl.gdas.20000201-20000205.nc'
+#        path = '/home/wrudisill/scratch/Find_ARs/ivt_files/pgbhnl.gdas.20000201-20000205.nc'
+        path = 'foo.nc'
         ivt_min = 250                     # Minimum IVT value in kg/ms to be retained
         size_mask  = 1000                  # Min Grid cell size of object
         cell_to_km = 50                   # km
-        for i in range(0,1):
+        for i in range(20):
                 FindAR(path, i)
 
 
