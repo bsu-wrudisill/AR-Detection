@@ -11,8 +11,8 @@ def IVT(infile,outfile):
 	name = outfile
 	dataset = Dataset(name,'w' ,format='NETCDF4_CLASSIC')
 	level = dataset.createDimension('level', 1)
-	lat = dataset.createDimension('lat', 361)
-	lon = dataset.createDimension('lon', 720)
+	lat = dataset.createDimension('lat_0', 361)
+	lon = dataset.createDimension('lon_0', 720)
 	time = dataset.createDimension('time', None)
 
 	# create NetCDF variables
@@ -20,14 +20,14 @@ def IVT(infile,outfile):
 	times.units = "hours since 1801-01-01 00:00:00.0" 
 	times.calendar = "gregorian"
 	levels = dataset.createVariable('level', np.int32, ('level',))
-	latitudes = dataset.createVariable('latitude', np.float32, ('lat',))
-	longitudes = dataset.createVariable('longitude', np.float32, ('lon',))
+	latitudes = dataset.createVariable('lat_0', np.float32, ('lat_0',))
+	longitudes = dataset.createVariable('lon_0', np.float32, ('lon_0',))
 
 	#set lat attrbutes
 	latitudes.La1 = '90.f'
 	latitudes.Lo1 = '0.f'
 	latitudes.La2 = '-90.f'
-	latitudes.Lo1 = '359.5f'
+	latitudes.Lo2 = '359.5f'
 	latitudes.Di = '0.5f'
 	latitudes.Dj = '0.5f'
 	latitudes.units = "degrees north"
@@ -38,7 +38,7 @@ def IVT(infile,outfile):
 	longitudes.La1 = '90.f'
 	longitudes.Lo1 = '0.f'
 	longitudes.La2 = '-90.f'
-	longitudes.Lo1 = '359.5f'
+	longitudes.Lo2 = '359.5f'
 	longitudes.Di = '0.5f'
 	longitudes.Dj = '0.5f'
 	longitudes.units = "degrees east"
@@ -47,27 +47,27 @@ def IVT(infile,outfile):
          
         # Create IVT var
 	# To assign ivt a var, ivt[i,:,:,:] = var, i is time dim 
-	ivt = dataset.createVariable('ivt', np.float32,('time','level','lat','lon'))
+	ivt = dataset.createVariable('ivt', np.float32,('time','level','lat_0','lon_0'))
 	ivt.grid_type = "Latitude/longitude"
 	ivt.units = 'kg m-1 s-1'
 	ivt.long_name = 'Integrated Vapor Transport'
         
 
         # Create Wind Direction Var 
-        wnd = dataset.createVariable('w_dir', np.float32,('time','level','lat','lon'))
+        wnd = dataset.createVariable('w_dir', np.float32,('time','level','lat_0','lon_0'))
 	wnd.grid_type = "Latitude/longitude"
 	wnd.units = 'Degrees'
 	wnd.long_name = 'Mean Wind Direction'
         
         # Create World Landcover Var
-        land = dataset.createVariable('landcover', np.float32, ('time', 'level', 'lat', 'lon'))
+        land = dataset.createVariable('landcover', np.float32, ('time', 'level', 'lat_0', 'lon_0'))
 	land.grid_type = "Latitude/longitude"
 	land.units = 'Degrees'
 	land.long_name = 'Landcover Type; from Modis'
 
 	#create geo dimensions.we know a-priori its a .5 degree grid 
 	latitudes[:] =  np.arange(-90,90.5,.5)
-	longitudes[:] =  np.arange(-180,180,.5)
+	longitudes[:] =  np.arange(0,360,.5)
 
 	# Dataset of interest
 	subset = Dataset(infile)
@@ -81,7 +81,7 @@ def IVT(infile,outfile):
 
 
         # read land data so we don't read it in a loop;
-        land_input = Dataset('../global_veg.nc')
+        land_input = Dataset('global_veg.nc')
         landval = land_input['VEG_P0_L1_GLL0'][0, ::-1, :]
 
 
@@ -119,12 +119,16 @@ def try_IVT(infile,outfile):
                 logging.exception('message')
                 
 
-os.chdir('cfsr_nc/')
+#os.chdir('cfsr_nc/')
+#file_list     = glob('*')
+#out_file_list = map(lambda X: '../ivt_files/'+X, file_list)
+#map(try_IVT, file_list, out_file_list)
+#os.chdir('../.')
 
-file_list     = glob('*')
-out_file_list = map(lambda X: '../ivt_files/'+X, file_list)
-map(try_IVT, file_list, out_file_list)
 
-os.chdir('../.')
+file_list     = 'pgbhnl.gdas.20101111-20101115.nc'
+IVT(file_list, 'foo.nc')
+
+
 
 
