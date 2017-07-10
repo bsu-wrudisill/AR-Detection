@@ -76,8 +76,6 @@ def FindAR(fname, time):
         cell_to_km = 50                   # km
         #-------------------------------------------------------------------------#
 
-
-
         # AR logic flag; false initially 
         AR_EXISTS = False
 
@@ -263,10 +261,14 @@ def FindAR(fname, time):
                 #-------------------------------------------------------------------------#
                 # Blog Length Calc -- route through array method
                 #-------------------------------------------------------------------------#
-                try:
-                        center   = Centerline(label_indices_alt, label_indices, ivt)
 
-                        
+                try:
+                        center   = Centerline(label_indices_alt, label_indices, ivt, land_mask)
+                        if center.landfall_location:
+                                landfall_point = (lats_mesh[center.landfall_location],lons_mesh[center.landfall_location])
+                        else:
+                                landfall_point = None
+
                 except Exception:
                         print hr_time_str
                         continue
@@ -287,6 +289,7 @@ def FindAR(fname, time):
                 #    Calculated by finding the mean of the u and v components respectively, then 
                 #    Finding the angle between them and converting to degree coordinates
                 #    And finally converting to the range [0, 359.0]
+
                 mean_u_i        = np.mean(u_i[label_indices])
                 mean_v_i        = np.mean(v_i[label_indices])
                 mean_wind_dir_  = np.arctan2(mean_v_i,mean_u_i)/np.pi * 180
@@ -314,10 +317,6 @@ def FindAR(fname, time):
                         
                         Hemisphere = 'Southern'
                         
-                        #if any(n > 0 for n in lats[label_indices[0]]) == True:
-                        #        break
-                        #else: 
-                        #        continue
                 else:
                         Hemisphere = 'Northern'
 
@@ -343,6 +342,10 @@ def FindAR(fname, time):
                         Interior_Landfalling = False
 
 
+                #----------------------------------------------------------------------------------#
+                # Landfalling Location 
+                #----------------------------------------------------------------------------------#
+                
 
 
                 #----------------------------------------------------------------------------------#
@@ -411,10 +414,11 @@ def FindAR(fname, time):
                                 'Path_len' :  float(center.path_len),
                                 'fname':  fname, 
                                 'ID_Landfalling ': str(Interior_Landfalling),
-                                'Landfalling' : str(Landfalling)
-} 
+                                'Landfalling' : str(Landfalling),
+                                'Landfall_point' : landfall_point
+        } 
                         print info   
-                
+                        global lats_mesh
                         #-----------------------------------------------------------------------# 
                         # import make_dbase function;
                         # log AR info to sqli
@@ -448,7 +452,7 @@ def FindAR(fname, time):
 
         if AR_EXISTS == True:
                 from plot_ar import make_plot
-                make_plot(lons, lats, land_mask, u_ivt, v_ivt, hr_time_str, save_me=True)
+                make_plot(lons, lats, zero_arr_1, u_ivt, v_ivt, hr_time_str, save_me=True)
                 print "Finished"
                 
 
