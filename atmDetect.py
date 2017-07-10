@@ -19,11 +19,9 @@ import json
 #from scipy.ndimage.interpolation import rotate
 from skimage.morphology import skeletonize
 from scipy.ndimage import filters, morphology, measurements
-from skimage.graph import route_through_array
 from scipy import ndimage
 from datetime import datetime, timedelta
-from scipy.spatial import distance
-
+from centerline import Centerline
 
 #-------------------------------------------------------------------------#
 # TO DO List
@@ -32,6 +30,7 @@ from scipy.spatial import distance
 # 3. Properly calculate grid cell size
 # 4. Fix poleward component test; northern needs to be positive, southern negative
 # 5. Check on len/width ratio math 
+
 #-------------------------------------------------------------------------#
 
 
@@ -51,28 +50,6 @@ def format_date(hours):
         dt = t0 + timedelta(hours=hours)
         return dt
 
-def least_cost(array, start, end):
-	#start, end are tuples of indices (row,col)
-	nrow,ncol = array.shape
-	indices, cost = route_through_array(array, start, end)
-	indices = np.array(indices).T
-	path = np.zeros_like(array)
-	path[indices[0], indices[1]] = 1
-        path_len = len(indices[0])
-	return path, cost, path_len 
-
-def distance_matrix(array):
-        # Find the two points with the greatest distance from a shape
-        # The entry array is a binary array where 1 == object
-        # returns the start and end points of shape 
-        ind = np.argwhere(array == 1)     # Argwhere returns coords as array ([[j,k], [.,.]...)
-        dmat = distance.cdist(ind, ind)   # Scipy euclidian distance matrix
-        points = np.argwhere(dmat == dmat.max())     # Coords where there is max distance  
-        if len(points) > 0:
-                points = points[0]
-        start = ind[points[0]]
-        end =   ind[points[1]]
-        return start, end 
 
 #-------------------------------------------------------------------------#
 # Main 
@@ -108,8 +85,8 @@ def FindAR(fname, time):
         # Open netcdf dataset
         # Wind, IVT Field Calcs
         #-------------------------------------------------------------------------#
-
         ds  = Dataset(fname, format='NETCDF4_CLASSIC')        
+        
         # Get the date time and convert it to Human Readable
         hr_time      = format_date(ds.variables['time'][time])
         hr_time_str  = hr_time.strftime("%Y-%m-%d_%H")
@@ -141,9 +118,8 @@ def FindAR(fname, time):
 
         # Landcover 
         global_cover_class  = ds.variables['landcover'][0, 0, :, :]
-        land_mask           = np.where(global_cover_class > 0)
-        water_mask          = np.where(global_cover_class == 0)
-
+        land_mask           = np.where(global_cover_class < 1000, 1, 0)
+        
         # Close Dataset
         ds.close()
 
@@ -218,7 +194,9 @@ def FindAR(fname, time):
                 
                 
                 # Indicies of blob of interest
-                label_indices = np.where(label_array == label)
+                label_indices     = np.where(label_array == label)
+                label_indices_alt = np.argwhere(label_array == label) 
+
 
                 # Remove all elements except blob of interest
                 sub_array = np.where(label_array == label, 1, 0)
@@ -283,20 +261,16 @@ def FindAR(fname, time):
                 mean_ivt = np.mean(ivt[label_indices])              # Mean IVT of blob
                 
                 #-------------------------------------------------------------------------#
-                # Blog Lenght Calc -- route throgh array method
+                # Blog Length Calc -- route through array method
                 #-------------------------------------------------------------------------#
                 try:
-                        
-                        cost_arr   = np.ones_like(sub_array)*9999.999
-                        cost_arr[label_indices] = max(ivt[label_indices]) - ivt[label_indices]
-                        start, end = distance_matrix(sub_array)
-                        path, cost, path_len = least_cost(cost_arr, start, end)
-                        path_len = path_len * cell_to_km
+                        center   = Centerline(label_indices_alt, label_indices, ivt)
+
                         
                 except Exception:
                         print hr_time_str
                         continue
-
+                
 
                 #-------------------------------------------------------------------------#
                 #    Wind Direction calculations
@@ -313,7 +287,6 @@ def FindAR(fname, time):
                 #    Calculated by finding the mean of the u and v components respectively, then 
                 #    Finding the angle between them and converting to degree coordinates
                 #    And finally converting to the range [0, 359.0]
-
                 mean_u_i        = np.mean(u_i[label_indices])
                 mean_v_i        = np.mean(v_i[label_indices])
                 mean_wind_dir_  = np.arctan2(mean_v_i,mean_u_i)/np.pi * 180
@@ -328,12 +301,15 @@ def FindAR(fname, time):
 
 
 
-                #-------------------------------------------------------------------------#
+                #--------------------------------------------------------------------
                 #  Location Calculations
-                #-------------------------------------------------------------------------#
+                #--------------------------------------------------------------------
                 # Throw out if the object crosses the equator
                 
-                
+
+                #--------------------------------------------------------------------
+                # Hemispere
+                #--------------------------------------------------------------------
                 if any(n < 0 for n in lats[label_indices[0]]) == True:
                         
                         Hemisphere = 'Southern'
@@ -345,21 +321,29 @@ def FindAR(fname, time):
                 else:
                         Hemisphere = 'Northern'
 
+                #----------------------------------------------------------------------------------#
+                # Landfalling 
+                #----------------------------------------------------------------------------------#
                 
+                if any( n == 1 for n in land_mask[label_indices]) == True:
+                        Landfalling = True 
+                else:
+                        Landfalling = False
+
+
                 
-                # Does AR make it into interior West?
+                #------------------------------------------------------------------
+                # Does AR make it into interior West? Between 120 W and 100 W 
+                #--------------------------------------------------------------------
+
                 if any( (n > 240) and (n < 260 ) for n in lons_mesh[label_indices]) == True:
                         Interior_Landfalling = True
 
                 else:
                         Interior_Landfalling = False
 
- 
 
-                #----------------------------------------------------------------------------------#
-                # Landfalling 
-                #----------------------------------------------------------------------------------#
-        
+
 
                 #----------------------------------------------------------------------------------#
                 # Object Testing 
@@ -387,6 +371,7 @@ def FindAR(fname, time):
            
                 #if Interior_Landfalling == True:
                 #        TC_f = True
+    
                 TC_f = True         
                         
                 # Add landfalling later
@@ -423,23 +408,28 @@ def FindAR(fname, time):
                                 'poleward_IVT':  float(poleward_IVT),
                                 'length_to_width': float(blob_length_width_ratio),
                                 'Hemispere':  Hemisphere,
-                                'Path_len' :  float(path_len),
-                                'fname':  fname
-                        } 
-  
+                                'Path_len' :  float(center.path_len),
+                                'fname':  fname, 
+                                'ID_Landfalling ': str(Interior_Landfalling),
+                                'Landfalling' : str(Landfalling)
+} 
+                        print info   
+                
                         #-----------------------------------------------------------------------# 
                         # import make_dbase function;
                         # log AR info to sqli
                         #-----------------------------------------------------------------------# 
                         import make_dbase
-                        make_dbase.log_AR(**info)
+#                        make_dbase.log_AR(**info)
+
+
 
                         #-----------------------------------------------------------------------# 
                         # Create Output Arrays for plotting; fill zero Arrays
                         #-----------------------------------------------------------------------# 
-                        zero_arr_0                = zero_arr_0 + path           # Least-cost path
+                        zero_arr_0                = zero_arr_0 + center.path           # Least-cost path
                         zero_arr_1[label_indices] = ivt[label_indices]
-
+                        
                 else:
                         continue
 
@@ -458,7 +448,7 @@ def FindAR(fname, time):
 
         if AR_EXISTS == True:
                 from plot_ar import make_plot
-                make_plot(lons, lats, zero_arr_1, u_ivt, v_ivt, hr_time_str, save_me=True)
+                make_plot(lons, lats, land_mask, u_ivt, v_ivt, hr_time_str, save_me=True)
                 print "Finished"
                 
 
@@ -475,7 +465,7 @@ if __name__ == '__main__':
         ivt_min = 250                     # Minimum IVT value in kg/ms to be retained
         size_mask  = 1000                  # Min Grid cell size of object
         cell_to_km = 50                   # km
-        for i in range(20):
+        for i in range(1):
                 FindAR(path, i)
 
 
