@@ -66,10 +66,10 @@ def make_plot(lons, lats, data_array, u_ivt, v_ivt, hr_time_str, save_me):
     #-------------------------------------------------------------------------#
                 
     # Create a sparse array for plotting barbs to prevent clutter
-    yy = np.arange(0, yi.shape[0], 3)
-    xx = np.arange(0, xi.shape[1], 3)
-    points  = np.meshgrid(yy, xx)                                 
-    m.quiver(xi[points], yi[points], u_ivt[points], v_ivt[points], scale = 100, pivot='mid', width =0.001, color='grey') 
+#    yy = np.arange(0, yi.shape[0], 3)
+#    xx = np.arange(0, xi.shape[1], 3)
+#    points  = np.meshgrid(yy, xx)                                 
+#    m.quiver(xi[points], yi[points], u_ivt[points], v_ivt[points], scale = 100, pivot='mid', width =0.001, color='grey') 
                 
 
 
