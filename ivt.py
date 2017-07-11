@@ -4,11 +4,16 @@ from datetime import datetime, timedelta
 from glob import glob
 import os
 import logging
+from multiprocessing import Pool
 
-def IVT(infile,outfile):
+def IVT(infile):
  	# Infile is the CFS Reanalysis data to convert, out is the name for 
 	# the new file. CRSR downloaded from NCAR RDA
-	name = outfile
+        
+        #Output filename 
+	name  = 'new_ivt_files/IVT_'+infile[48:]
+
+        #
 	dataset = Dataset(name,'w' ,format='NETCDF4_CLASSIC')
 	level = dataset.createDimension('level', 1)
 	lat = dataset.createDimension('lat_0', 361)
@@ -81,7 +86,7 @@ def IVT(infile,outfile):
 
 
         # read land data so we don't read it in a loop;
-        land_input = Dataset('global_veg.nc')
+        land_input = Dataset('/scratch/wrudisill/Find_ARs/global_veg.nc')
         landval = land_input['VEG_P0_L1_GLL0'][0, ::-1, :]
 
 
@@ -112,22 +117,28 @@ def IVT(infile,outfile):
 	dataset.close()
         # End Funcion 
 
-def try_IVT(infile,outfile):
+
+
+def try_IVT(infile):
         try: 
-                return IVT(infile,outfile)
+                return IVT(infile)
         except Exception as e:
                 logging.exception('message')
                 
 
-#os.chdir('cfsr_nc/')
-#file_list     = glob('*')
-#out_file_list = map(lambda X: '../ivt_files/'+X, file_list)
-#map(try_IVT, file_list, out_file_list)
-#os.chdir('../.')
+
+#max count of processors
+p = Pool(16)
+
+# list files
+file_list = glob('/scratch/wrudisill/Find_ARs/cfsr_nc/*')
+
+# maybe this works
+p.map(try_IVT, file_list)
 
 
-file_list     = 'pgbhnl.gdas.20101111-20101115.nc'
-IVT(file_list, 'foo.nc')
+#file_list     = 'pgbhnl.gdas.20101111-20101115.nc'
+#IVT(file_list)
 
 
 
