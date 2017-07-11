@@ -240,6 +240,7 @@ def FindAR(fname, time):
                         break
                 blob_length_width_ratio = blob_length/blob_width
 
+        
                 #-------------------------------------------------------------------------#
                 # AR Perimeter Boundary Grid Cells
                 #-------------------------------------------------------------------------#
@@ -258,29 +259,6 @@ def FindAR(fname, time):
                 
 
                 #-------------------------------------------------------------------------#
-                # Blog Length Calc -- route through array method
-                # And Landfalling Location 
-                #-------------------------------------------------------------------------#
-                
-
-                try:
-                        center   = Centerline(label_indices_alt, label_indices, ivt, land_mask)
-                        global center
-
-                        if center.landfall_location:
-                                landfall_point = []
-                                for i in center.landfall_location:
-                                        landfall_point.append((lats_mesh[i],lons_mesh[i]))
-                        else:
-                                landfall_point = None
-
-                except Exception:
-                        print Exception
-                        continue 
-                        
-                
-
-                #-------------------------------------------------------------------------#
                 #    Wind Direction calculations
                 #
                 #    TC_b:  No more than 1/2 of gridcells in blob should deviate more than 45* 
@@ -288,13 +266,11 @@ def FindAR(fname, time):
                 #    TC_c:  Mean wind dir and Object Orientation (blob_dir) Should not deviate by more than 45*
                 #    TC_d:  Mean wind dir must have 'significant' poleward (meridonal) component;    
                 #    
-                #-------------------------------------------------------------------------#
-                 
-
                 #    ----------Mean Wind direction-----------
                 #    Calculated by finding the mean of the u and v components respectively, then 
                 #    Finding the angle between them and converting to degree coordinates
                 #    And finally converting to the range [0, 359.0]
+                #--------------------------------------------------------------------
 
                 mean_u_i        = np.mean(u_i[label_indices])
                 mean_v_i        = np.mean(v_i[label_indices])
@@ -303,20 +279,16 @@ def FindAR(fname, time):
 
                 #    ----------Angular difference between object and mean wind dir-------
                 angle_diff = map(lambda X: smallest_angle(X, mean_wind_dir), wnd_360[label_indices])
-                angle_gt_mean = map(lambda x: x>45, angle_diff).count(True) # Counts angles gt 45 deg from mean dir
+
+                # Counts angles gt 45 deg from mean dir
+                angle_gt_mean = map(lambda x: x>45, angle_diff).count(True) 
 
                 
                 #    ----------Poleward IVT----------
                 poleward_IVT = mean_ivt*np.sin(mean_wind_dir/180*np.pi)
 
 
-
-                #--------------------------------------------------------------------
-                #  Location Calculations
-                #--------------------------------------------------------------------
-                # Throw out if the object crosses the equator
-                
-
+        
                 #--------------------------------------------------------------------
                 # Hemispere
                 #--------------------------------------------------------------------
@@ -349,6 +321,26 @@ def FindAR(fname, time):
                         Interior_Landfalling = False
 
 
+
+                        
+                #-------------------------------------------------------------------------#
+                # Blog Length Calc -- route through array method
+                # And Landfalling Location 
+                #-------------------------------------------------------------------------#
+                
+                center   = Centerline(label_indices_alt, label_indices, ivt, land_mask)
+                
+                if center.landfall_location:
+                        landfall_point = []
+                        for i in center.landfall_location:
+                                landfall_point.append((lats_mesh[i],lons_mesh[i]))
+                
+                else:
+                        landfall_point = None
+
+
+
+
                 #----------------------------------------------------------------------------------#
                 # Object Testing 
                 #----------------------------------------------------------------------------------#
@@ -373,9 +365,9 @@ def FindAR(fname, time):
                 if (blob_length > 2000.0) and (blob_length_width_ratio > 2.0): # Later add a width component...maybe this does not matter
                         TC_e = True
            
-                #if Interior_Landfalling == True:
+                # if Interior_Landfalling == True:
                 #        TC_f = True
-    
+                
                 TC_f = True         
                         
                 # Add landfalling later
@@ -396,35 +388,41 @@ def FindAR(fname, time):
 
                         # ID of AR blob feature
                         blob_num = blob_num + 1                                
+                
                         # Name of AR 
                         AR_Name = 'AR_' + str(blob_num)
                         
 
                         # Dictionary Entry 
-                        info = {'AR_Name': AR_Name,
-                                'hr_time_str': hr_time_str,
-                                'object_orientation_direction_a': blob_dir[0],
-                                'object_orientation_direction_b': blob_dir[1],
-                                'object_length': float(blob_length), 
-                                'object_width':  float(blob_width), 
-                                'mean_IVT':  float(mean_ivt), 
-                                'mean_wind_dir': float(mean_wind_dir),
-                                'poleward_IVT':  float(poleward_IVT),
-                                'length_to_width': float(blob_length_width_ratio),
-                                'Hemispere':  Hemisphere,
-                                'Path_len' :  float(center.path_len),
-                                'fname':  fname, 
-                                'ID_Landfalling ': str(Interior_Landfalling),
-                                'Landfalling' : str(Landfalling),
-                                'Landfall_point' : landfall_point
-        } 
-                        print info   
+                       
+
+                        info =  {
+                                'hr_time_str'                      : hr_time_str,
+                                'AR_Name'                          : AR_Name,
+                                'fname'                            : fname,
+                                'object_length'                    : float(blob_length),
+                                'object_width'                     : float(blob_width),
+                                'mean_IVT'                         : float(mean_ivt),
+                                'mean_wind_dir'                    : float(mean_wind_dir),
+                                'poleward_IVT'                     : float(poleward_IVT),
+                                'object_orientation_direction_a'   : float(blob_dir[0]),
+                                'object_orientation_direction_b'   : float(blob_dir[1]),
+                                'length_to_width'                  : float(blob_length_width_ratio),
+                                'Hemispere'                        : str(Hemisphere),       
+                                'Path_len'                         : float(center.path_len),
+                                'ID_Landfalling'                   : str(Interior_Landfalling),
+                                'Landfalling'                      : str(Landfalling),
+                                'Landfall_point'                   : str(landfall_point)
+                        }
+                        
+
+
                         #-----------------------------------------------------------------------# 
                         # import make_dbase function;
                         # log AR info to sqli
                         #-----------------------------------------------------------------------# 
                         import make_dbase
-#                        make_dbase.log_AR(**info)
+                        make_dbase.make_db(**info)
 
 
 
@@ -450,10 +448,10 @@ def FindAR(fname, time):
         #    c. In progress --- write AR array out to a NCfile
         #---------------------------------------------------------------------------------#
 
-        if AR_EXISTS == True:
-                from plot_ar import make_plot
-                make_plot(lons, lats, zero_arr_1, u_ivt, v_ivt, hr_time_str, save_me=True)
-                print "Finished"
+#        if AR_EXISTS == True:
+#                from plot_ar import make_plot
+#                make_plot(lons, lats, zero_arr_1, u_ivt, v_ivt, hr_time_str, save_me=True)
+#                print "Finished"
                 
 
 #-----------------------------------------------------------------------------------------#
