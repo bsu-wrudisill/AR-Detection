@@ -248,8 +248,6 @@ def FindAR(fname, time):
                 # Use to find AR perimeter
 
 
-
-
                 #-------------------------------------------------------------------------#
                 #    Mean IVT Calculation
                 #    
@@ -258,20 +256,28 @@ def FindAR(fname, time):
 
                 mean_ivt = np.mean(ivt[label_indices])              # Mean IVT of blob
                 
+
                 #-------------------------------------------------------------------------#
                 # Blog Length Calc -- route through array method
+                # And Landfalling Location 
                 #-------------------------------------------------------------------------#
+                
 
                 try:
                         center   = Centerline(label_indices_alt, label_indices, ivt, land_mask)
+                        global center
+
                         if center.landfall_location:
-                                landfall_point = (lats_mesh[center.landfall_location],lons_mesh[center.landfall_location])
+                                landfall_point = []
+                                for i in center.landfall_location:
+                                        landfall_point.append((lats_mesh[i],lons_mesh[i]))
                         else:
                                 landfall_point = None
 
                 except Exception:
-                        print hr_time_str
-                        continue
+                        print Exception
+                        continue 
+                        
                 
 
                 #-------------------------------------------------------------------------#
@@ -298,6 +304,7 @@ def FindAR(fname, time):
                 #    ----------Angular difference between object and mean wind dir-------
                 angle_diff = map(lambda X: smallest_angle(X, mean_wind_dir), wnd_360[label_indices])
                 angle_gt_mean = map(lambda x: x>45, angle_diff).count(True) # Counts angles gt 45 deg from mean dir
+
                 
                 #    ----------Poleward IVT----------
                 poleward_IVT = mean_ivt*np.sin(mean_wind_dir/180*np.pi)
@@ -340,12 +347,6 @@ def FindAR(fname, time):
 
                 else:
                         Interior_Landfalling = False
-
-
-                #----------------------------------------------------------------------------------#
-                # Landfalling Location 
-                #----------------------------------------------------------------------------------#
-                
 
 
                 #----------------------------------------------------------------------------------#
@@ -418,7 +419,6 @@ def FindAR(fname, time):
                                 'Landfall_point' : landfall_point
         } 
                         print info   
-                        global lats_mesh
                         #-----------------------------------------------------------------------# 
                         # import make_dbase function;
                         # log AR info to sqli
@@ -469,7 +469,7 @@ if __name__ == '__main__':
         ivt_min = 250                     # Minimum IVT value in kg/ms to be retained
         size_mask  = 1000                  # Min Grid cell size of object
         cell_to_km = 50                   # km
-        for i in range(1):
+        for i in range(20):
                 FindAR(path, i)
 
 
