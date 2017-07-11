@@ -57,8 +57,11 @@ class Centerline():
             p_diff  = np.diff(p)
             p_where = np.argwhere(abs(p_diff) == 1)
             self.p_where = p_where
+            self.landfall_location = [] 
+
             try:
-                self.landfall_location = (self.ind[0][p_where[0][0]],self.ind[1][p_where[0][0]])
+                for i in p_where:
+                        self.landfall_location.append((self.ind[0][i[0]],self.ind[1][i[0]]))
                 # returns a tuple of grid indices of landfall location
 
             except:
