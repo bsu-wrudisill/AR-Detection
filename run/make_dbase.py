@@ -29,7 +29,7 @@ def make_db(
 
   dBase = sqlite3.connect('Atmospheric_River.db')
   cursor = dBase.cursor()
-  cursor.execute('''CREATE TABLE IF NOT EXISTS xRivers(
+  cursor.execute('''CREATE TABLE IF NOT EXISTS Rivers(
                             hr_time_str TEXT, 
                             AR_Name TEXT,
                             fname TEXT,
