@@ -315,8 +315,10 @@ def FindAR(fname, time):
                 #--------------------------------------------------------------------
 
                 if any( (n > 240) and (n < 260 ) for n in lons_mesh[label_indices]) == True:
-                        Interior_Landfalling = True
-
+                        if any( (n > 40) and (n < 50) for n in lats_mesh[label_indices]) == True:
+                                Interior_Landfalling = True
+                        else:
+                                Interior_Landfalling = False
                 else:
                         Interior_Landfalling = False
 
@@ -463,7 +465,7 @@ def FindAR(fname, time):
 # Runs Script if called directly, i.e. python atmDetect.py
 if __name__ == '__main__':
 #        path = '/home/wrudisill/scratch/Find_ARs/ivt_files/pgbhnl.gdas.20000201-20000205.nc'
-        path = 'foo.nc'
+        path = '../foo.nc'
         ivt_min = 250                     # Minimum IVT value in kg/ms to be retained
         size_mask  = 1000                  # Min Grid cell size of object
         cell_to_km = 50                   # km
