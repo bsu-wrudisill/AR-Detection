@@ -1,14 +1,29 @@
 import atmDetect
+from multiprocessing import Pool
+from glob import glob
+import gc
 
-#if __name__ == '__main__':
-#    main()
 
-#path = '/home/wrudisill/scratch/Find_ARs/ivt_files/pgbhnl.gdas.20000201-20000205.nc'
+#enable automatic garbage collection
+gc.enable()
 
-path = 'foo.nc'
+#Multiprocessing Pool
+p = Pool(14)
 
-for i in range(0,1):
-        atmDetect.FindAR(path, i)
-        print 'done with %s' %i
+# File List
+file_list = glob('/home/wrudisill/scratch/Find_ARs/data/new_ivt_files/IVT_2010*')
+
+# Map Function 
+p.map(atmDetect.FindAR_Wrapper, file_list)
+
+p.close()
+p.join()
+
+
+print 'Done'
+
+
+
+
 
 
