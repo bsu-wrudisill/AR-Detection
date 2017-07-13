@@ -22,6 +22,7 @@ from scipy.ndimage import filters, morphology, measurements
 from scipy import ndimage
 from datetime import datetime, timedelta
 from centerline import Centerline
+import logging
 
 #-------------------------------------------------------------------------#
 # TO DO List
@@ -36,7 +37,7 @@ from centerline import Centerline
 
 
 #-------------------------------------------------------------------------#
-# Helper Functions 
+#  Functions 
 #-------------------------------------------------------------------------#
 
 
@@ -51,20 +52,29 @@ def format_date(hours):
         return dt
 
 
-#-------------------------------------------------------------------------#
-# Main 
-#-------------------------------------------------------------------------#
 
-#-------------------------------------------------------------------------#
-# BEGIN Main_Function
-#-------------------------------------------------------------------------#
+def FindAR_Wrapper(fname):
+        # Open nc dataset
+        ds  = Dataset(fname, format='NETCDF4_CLASSIC')        
 
-def FindAR(fname, time):
+        # Number of timesteps in file
+        tlen = range(len(ds.variables['time'][:]))
+        
+        # Map function to timelist 
+        map(lambda X: FindAR(ds, fname, X), tlen)
+        
+        #Close dataset
+        ds.close()
+
+
+def FindAR(dataset, fname, time):
+
         #-------------------------------------------------------------------------#
         # FUNCTION INPUTS
         #-------------------------------------------------------------------------#
-        #  Fname -- netcdf file of IVT (string)
-        #  Time  -- arraay index correspongding to timestamp (integer)
+        #  dataset -- opened netcdf dataset
+        #  fname -- netcdf file of IVT (string) (this is just used as as ref)
+        #  time  -- arraay index correspongding to timestamp (integer)
         #-------------------------------------------------------------------------#
 
 
@@ -75,7 +85,6 @@ def FindAR(fname, time):
         size_mask = 1000                  # Min Grid cell size of object
         cell_to_km = 50                   # km
         #-------------------------------------------------------------------------#
-
         # AR logic flag; false initially 
         AR_EXISTS = False
 
@@ -83,8 +92,15 @@ def FindAR(fname, time):
         # Open netcdf dataset
         # Wind, IVT Field Calcs
         #-------------------------------------------------------------------------#
-        ds  = Dataset(fname, format='NETCDF4_CLASSIC')        
         
+
+        #Let's pass in the opened dataset rather than read each loop 
+        ds = dataset 
+
+        # Number of timesteps in file
+        tlen = len(ds.variables['time'][:])
+
+
         # Get the date time and convert it to Human Readable
         hr_time      = format_date(ds.variables['time'][time])
         hr_time_str  = hr_time.strftime("%Y-%m-%d_%H")
@@ -119,7 +135,7 @@ def FindAR(fname, time):
         land_mask           = np.where(global_cover_class < 1000, 1, 0)
         
         # Close Dataset
-        ds.close()
+#        ds.close()
 
         # u and v components (coordinates of unit vector)
         u_i = np.cos(wnd)
@@ -170,8 +186,8 @@ def FindAR(fname, time):
         # 
         #-------------------------------------------------------------------------#
         
-        zero_arr_0 = np.zeros_like(label_array)        
-        zero_arr_1 = np.zeros_like(label_array)        
+ #       zero_arr_0 = np.zeros_like(label_array)        
+ #       zero_arr_1 = np.zeros_like(label_array)        
 
         #-------------------------------------------------------------------------#
         # BEGIN Blob-Loop: Loop through each blob in the list of canditate blobs
@@ -193,7 +209,7 @@ def FindAR(fname, time):
                 
                 # Indicies of blob of interest
                 label_indices     = np.where(label_array == label)
-                label_indices_alt = np.argwhere(label_array == label) 
+                label_indices_alt = np.argwhere(label_array == label)  # indices in [(a,b), ....] fmt
 
 
                 # Remove all elements except blob of interest
@@ -234,7 +250,7 @@ def FindAR(fname, time):
                 # Blob Width/Length 
                 #-------------------------------------------------------------------------#
 
-                # Break loop if there is no width...
+                # Break loop if there is no width... ???
 
                 if blob_width == 0: 
                         break
@@ -330,6 +346,7 @@ def FindAR(fname, time):
                 # And Landfalling Location 
                 #-------------------------------------------------------------------------#
                 
+                # For description see Centerline object 
                 center   = Centerline(label_indices_alt, label_indices, ivt, land_mask)
                 
                 if center.landfall_location:
@@ -360,7 +377,7 @@ def FindAR(fname, time):
                         if poleward_IVT > 50.0:     
                                 TC_d = True
 
-                elif abs(poleward_IVT) > 50:
+                elif poleward_IVT <  -50:
                         TC_d = True 
                 
 
@@ -431,8 +448,8 @@ def FindAR(fname, time):
                         #-----------------------------------------------------------------------# 
                         # Create Output Arrays for plotting; fill zero Arrays
                         #-----------------------------------------------------------------------# 
-                        zero_arr_0                = zero_arr_0 + center.path           # Least-cost path
-                        zero_arr_1[label_indices] = ivt[label_indices]
+#                        zero_arr_0                = zero_arr_0 + center.path           # Least-cost path
+#                        zero_arr_1[label_indices] = ivt[label_indices]
                         
                 else:
                         continue
@@ -456,6 +473,9 @@ def FindAR(fname, time):
 #                print "Finished"
                 
 
+
+
+
 #-----------------------------------------------------------------------------------------#
 # END Main_Function
 #-----------------------------------------------------------------------------------------#
@@ -469,8 +489,7 @@ if __name__ == '__main__':
         ivt_min = 250                     # Minimum IVT value in kg/ms to be retained
         size_mask  = 1000                  # Min Grid cell size of object
         cell_to_km = 50                   # km
-        for i in range(20):
-                FindAR(path, i)
+        FindAR_Wrapper(path)
 
 
 
