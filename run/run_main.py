@@ -10,7 +10,7 @@ np.seterr(all='print')
 p = Pool(28)
 
 # File List
-file_list = glob('/home/wrudisill/scratch/Find_ARs/data/new_ivt_files/IVT_2000*')
+file_list = glob('/home/wrudisill/scratch/Find_ARs/data/new_ivt_files/IVT_19961226-19961231.nc*')
 
 
 # Map Function 

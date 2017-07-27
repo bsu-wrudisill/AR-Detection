@@ -7,8 +7,6 @@ from atmDetect import *
 
 np.seterr(all='print')
 
-
-
 def Blob_Tester(blob_num,label,label_array,u_i, v_i, wnd_360, ivt,land_mask,lats, lons,lats_mesh, lons_mesh, hr_time_str, fname):
 
     ##INPUTS##
@@ -124,7 +122,6 @@ def Blob_Tester(blob_num,label,label_array,u_i, v_i, wnd_360, ivt,land_mask,lats
     # Counts angles gt 45 deg from mean dir
     angle_gt_mean = map(lambda x: x>45, angle_diff).count(True) 
 
-
     #    ----------Poleward IVT----------
     poleward_IVT = mean_ivt*np.sin(mean_wind_dir/180*np.pi)
 
@@ -139,7 +136,7 @@ def Blob_Tester(blob_num,label,label_array,u_i, v_i, wnd_360, ivt,land_mask,lats
         Hemisphere = 'Northern'
 
         #----------------------------------------------------------------------------------#
-        # Landfalling 
+# Landfalling 
         #----------------------------------------------------------------------------------#
 
     if any( n == 1 for n in land_mask[label_indices]) == True:
@@ -284,7 +281,6 @@ def Blob_Tester(blob_num,label,label_array,u_i, v_i, wnd_360, ivt,land_mask,lats
         import make_dbase
         make_dbase.make_db(**info)
      
-
 
     else: #This is probably not needed... 
         return 
