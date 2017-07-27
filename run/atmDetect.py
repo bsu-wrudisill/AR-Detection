@@ -44,8 +44,9 @@ class Logger():
                 pass 
 
         def success(self, obj):
+                log_name = datetime.now().strftime('%Y-%m-%d_%H:%M:%S') + '_AR_Detect.log'
                 logger = logging.getLogger('TK')
-                hdlr = logging.FileHandler('TK.log')
+                hdlr = logging.FileHandler('log_name')
                 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
                 hdlr.setFormatter(formatter)
                 logger.addHandler(hdlr) 
@@ -53,8 +54,9 @@ class Logger():
                 logger.info('completed_%s', obj)
 
         def failure(self,obj):
-                logger = logging.getLogger('TK')
-                hdlr = logging.FileHandler('TK.log')
+                log_name = datetime.now().strftime('%Y-%m-%d_%H:%M:%S') + '_AR_Detect.log'
+                logger = logging.getLogger(log_name)
+                hdlr = logging.FileHandler(log_name)
                 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
                 hdlr.setFormatter(formatter)
                 logger.addHandler(hdlr) 
@@ -87,7 +89,7 @@ def timeit(method):
 
 #@timeit
 def FindAR_Wrapper(fname):
-        np.seterr(all='print')
+        #Xnp.seterr(all='print')
         
         # Open nc dataset
         
@@ -127,7 +129,6 @@ def FindAR_Wrapper(fname):
 
         #Close dataset
         ds.close()
-
         # Log Success 
 
 
@@ -234,6 +235,14 @@ def FindAR(dataset, fname, land_mask, lons_mesh, lats_mesh, wnd, ivt, lons, lats
                 Logger().failure(fname)
                 raise e
         
+        
+        # Now Make a Plot
+#----------------------------------------------------------------------------------#
+# FIGURE OUT HOW TO PLOT THINGS HERE
+#----------------------------------------------------------------------------------#
+#        from plot_ar import make_plot
+#        make_plot(lons, lats, zero_arr_1, u_ivt, v_ivt, hr_time_str, save_me=True)
+
         gc.collect()
         
 
