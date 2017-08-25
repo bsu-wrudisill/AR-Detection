@@ -39,7 +39,10 @@ np.seterr(all='print')
 #-------------------------------------------------------------------------#
 
 class Logger():        
+        '''
+        Logger Class. Log write to log based on failure/success
 
+        '''
         def __init__(self):
                 pass 
 
@@ -75,8 +78,7 @@ def format_date(hours):
         return dt
 
 
- 
-def timeit(method):
+ def timeit(method):
         def timed(*args, **kw):
                 ts = time.time()
                 result = method(*args, **kw)
@@ -92,7 +94,6 @@ def FindAR_Wrapper(fname):
         #Xnp.seterr(all='print')
         
         # Open nc dataset
-        
         ds  = Dataset(fname, format='NETCDF4_CLASSIC')        
         
         # Read in the static fields, pass them into FX
@@ -118,6 +119,7 @@ def FindAR_Wrapper(fname):
         tlen = range(len(ds.variables['time'][:]))
         
         # Map function to timelist 
+        # Note that FindAR exists w/in function scope... 
         try:
                 map(lambda X: FindAR(ds, fname, land_mask, lons_mesh, lats_mesh, wnd, ivt, lons, lats,  X), tlen)
                 Logger().success(fname)
@@ -134,15 +136,21 @@ def FindAR_Wrapper(fname):
 
 def FindAR(dataset, fname, land_mask, lons_mesh, lats_mesh, wnd, ivt, lons, lats, time):
 
-        #-------------------------------------------------------------------------#
-        # FUNCTION INPUTS
-        #-------------------------------------------------------------------------#
-        #  dataset -- opened netcdf dataset
-        #  fname -- netcdf file of IVT (string) (this is just used as as ref)
-        #  time  -- arraay index correspongding to timestamp (integer)
-        #-------------------------------------------------------------------------#
+        '''
+        FUNCTION INPUTS
+        -------------------------------------------------------------------------#
+        dataset -- opened netcdf dataset
+        fname -- netcdf file of IVT (string) (this is just used as as ref)
+        time  -- arraay index correspongding to timestamp (integer)
+        -------------------------------------------------------------------------#
+        ''' 
 
+        # Enable Garbage Collection
         gc.enable()
+
+
+
+
         #-------------------------------------------------------------------------#
         # Global Values 
         #-------------------------------------------------------------------------#
@@ -156,8 +164,7 @@ def FindAR(dataset, fname, land_mask, lons_mesh, lats_mesh, wnd, ivt, lons, lats
         
         #Let's pass in the opened dataset rather than read each loop 
         ds = dataset 
-        
-        
+                
         # Get the date time and convert it to Human Readable
         hr_time      = format_date(ds.variables['time'][time])
         hr_time_str  = hr_time.strftime("%Y-%m-%d_%H")
@@ -167,9 +174,10 @@ def FindAR(dataset, fname, land_mask, lons_mesh, lats_mesh, wnd, ivt, lons, lats
         # Subset of wind_direction; 
         wnd   = wnd[time, 0, :, :]
 
-        
-        #THESE MAY BE SUSPECT...
-        
+        #-------------------------------------------------------------------------#
+        # Wind Direction Calculations. 
+        # Nested in Try loop since there may be overflow.... 
+        #-------------------------------------------------------------------------#
         try:
                 # Convert Wind Dir to [0, 359.9]
                 wnd_           = wnd/np.pi * 180.0
@@ -189,7 +197,6 @@ def FindAR(dataset, fname, land_mask, lons_mesh, lats_mesh, wnd, ivt, lons, lats
                 return 
 
 
-        
         #-------------------------------------------------------------------------#
         # Label Regions (Blobs)
         # Threshold IVT 
@@ -237,6 +244,8 @@ def FindAR(dataset, fname, land_mask, lons_mesh, lats_mesh, wnd, ivt, lons, lats
         
         
         # Now Make a Plot
+
+
 #----------------------------------------------------------------------------------#
 # FIGURE OUT HOW TO PLOT THINGS HERE
 #----------------------------------------------------------------------------------#
@@ -248,9 +257,11 @@ def FindAR(dataset, fname, land_mask, lons_mesh, lats_mesh, wnd, ivt, lons, lats
 
 
 
+#----------------------------------------------------------------------------------#
 # Runs Script if called directly, i.e. python atmDetect.py
+#----------------------------------------------------------------------------------#
+
 if __name__ == '__main__':
-#        path = '/home/wrudisill/scratch/Find_ARs/ivt_files/pgbhnl.gdas.20000201-20000205.nc'
         path = '../foo.nc'
         ivt_min = 250                     # Minimum IVT value in kg/ms to be retained
         size_mask  = 1000                  # Min Grid cell size of object
