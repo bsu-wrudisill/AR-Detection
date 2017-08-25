@@ -278,10 +278,15 @@ def Blob_Tester(blob_num,label,label_array,u_i, v_i, wnd_360, ivt,land_mask,lats
         # import make_dbase function;
         # log AR info to sqli
         #-----------------------------------------------------------------------# 
-        import make_dbase
-        make_dbase.make_db(**info)
-     
+        #import make_dbase
+        #make_dbase.make_db(**info)
 
+
+        #        def make_plot(lons, lats, data_array, u_ivt, v_ivt, hr_time_str, save_me):
+        from plot_ar import make_plot
+        make_plot(lons,lats,
+
+        
     else: #This is probably not needed... 
         return 
 
