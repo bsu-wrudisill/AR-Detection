@@ -186,7 +186,7 @@ def FindAR(dataset, fname, time):
         # 
         #-------------------------------------------------------------------------#
         
- #       zero_arr_0 = np.zeros_like(label_array)        
+        zero_arr_0 = np.zeros_like(label_array)        
  #       zero_arr_1 = np.zeros_like(label_array)        
 
         #-------------------------------------------------------------------------#
@@ -441,16 +441,16 @@ def FindAR(dataset, fname, time):
                         # log AR info to sqli
                         #-----------------------------------------------------------------------# 
                         import make_dbase
-                        make_dbase.make_db(**info)
+#                        make_dbase.make_db(**info)
 
 
 
                         #-----------------------------------------------------------------------# 
                         # Create Output Arrays for plotting; fill zero Arrays
                         #-----------------------------------------------------------------------# 
-#                        zero_arr_0                = zero_arr_0 + center.path           # Least-cost path
-#                        zero_arr_1[label_indices] = ivt[label_indices]
-                        
+                        zero_arr_1                = zero_arr_0 + center.path*500           # Least-cost path
+                        zero_arr_1[label_indices] = ivt[label_indices]
+
                 else:
                         continue
 
@@ -467,10 +467,10 @@ def FindAR(dataset, fname, time):
         #    c. In progress --- write AR array out to a NCfile
         #---------------------------------------------------------------------------------#
 
-#        if AR_EXISTS == True:
-#                from plot_ar import make_plot
-#                make_plot(lons, lats, zero_arr_1, u_ivt, v_ivt, hr_time_str, save_me=True)
-#                print "Finished"
+        if AR_EXISTS == True:
+                from plot_ar import make_plot
+                make_plot(lons, lats, zero_arr_1, u_ivt, v_ivt, hr_time_str, save_me=True)
+                print "Finished"
                 
 
 
@@ -484,11 +484,12 @@ def FindAR(dataset, fname, time):
 
 # Runs Script if called directly, i.e. python atmDetect.py
 if __name__ == '__main__':
-#        path = '/home/wrudisill/scratch/Find_ARs/ivt_files/pgbhnl.gdas.20000201-20000205.nc'
-        path = '../foo.nc'
+        path = '/home/wrudisill/scratch/Find_ARs/data/new_ivt_files/IVT_19970101-19970105.nc'
+#        path = '../foo.nc'
         ivt_min = 250                     # Minimum IVT value in kg/ms to be retained
         size_mask  = 1000                  # Min Grid cell size of object
         cell_to_km = 50                   # km
+        print 'foo'
         FindAR_Wrapper(path)
 
 
