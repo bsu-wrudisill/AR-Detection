@@ -14,120 +14,147 @@ import logging
 import gc 
 import time 
 import traceback
+from skimage.measure import regionprops
+from centerline import Centerline
 
 
-#fname                   = '../data/IVT_19960516-19960520.nc'
-fname                   = '../data/global_veg.nc'
-ds                      = Dataset(fname, format='NETCDF4_CLASSIC')        
-lons                    = ds.variables['lon_0'][:]
-lats                    = ds.variables['lat_0'][:]
-_lons_mesh, lats_mesh   = np.meshgrid(lons, lats)
-lons_mesh               =  np.where (_lons_mesh > 180.0, _lons_mesh - 360, _lons_mesh) 
-
-
-
-veg                     = ds.variables['VEG_P0_L1_GLL0']
-# ivt                     = ds.variables['ivt'][0,0,:,:]
-# wnd                     = ds.variables['w_dir'][0,0,:,:] # In Units of Radians
-# wnd_                    = wnd/np.pi * 180.0
-# wnd_360                 = np.where(wnd_ < 0, 360 + wnd_, wnd_)
-
-# # u and v components (coordinates of unit vector)
-# u_i = np.cos(wnd)
-# v_i = np.sin(wnd)
-
-# #Components of IVT 
-# u_ivt = ivt*u_i/1000.0
-# v_ivt = ivt*v_i/1000.0  
-
-fig, [ax1, ax2] = plt.subplots(2,1)
-
-vv = veg[0, :,:] 
+if 'fig' in locals():  # Delete fig object if it exists 
+    del fig
 
 
 def lat_lon_to_indices(lat,lon):
+	# lat and lon are geographic coordinates 
+
     lat = round(lat * 2)/2   # rounds to nearest .5
     lon = round(lon * 2)/2   # rounds to nearest .5   
     x = np.where(lats_mesh == lat)[0]
     y = np.where(lons_mesh == lon)[1]
     return x,y
 
-x,y = lat_lon_to_indices(-49.029864, -69.162492)
+def indices_to_lat_lon(index): 
+	#input a TUPLE () of grid values 
+    x = lats_mesh[index]   #
+    y = lons_mesh[index]   # 
+    return x,y
 
-vv[:,y] = 1000.0
-vv[x,:]  = 1000.0
-
-
-ax1.imshow(vv)
-levels = np.linspace(-180, 180, 10)
-im = ax2.contourf(lons_mesh, interpolation='None', levels=levels)
-
-plt.colorbar(im)
-plt.show()
-
-
-
-# m = Basemap(projection='cyl', 
-#             resolution='c', 
-#             llcrnrlat= -90,
-#             urcrnrlat= 90,
-#             llcrnrlon= 0,
-#             urcrnrlon= 360)
+def roi():
+	idx = np.where((lons_mesh > -125.) & (lons_mesh < -112.) & (lats_mesh > 30.) & (lats_mesh < 50.))
+	foo = np.zeros_like(lons_mesh) 
+	foo[idx] = 1
+	n_idx = np.where(foo != 1)
+	return idx, n_idx
 
 
-# #shifted_lons = m.shiftdata(lons, lon_0=180)
-# lon, lat = np.meshgrid(lons, lats)
-# xi, yi = m(lon, lat)
+# x,y = lat_lon_to_indices(-49.029864, -69.162492)
+def calc_ivt(filename, time):
+	# calculate IVT and other things...
+	ds                      = Dataset(filename, format='NETCDF4_CLASSIC')        
+	lons                    = ds.variables['lon_0'][:]
+	lats                    = ds.variables['lat_0'][:]
+	_lons_mesh, lats_mesh   = np.meshgrid(lons, lats)
+	lons_mesh               = np.where (_lons_mesh > 180.0, _lons_mesh - 360, _lons_mesh) 
 
-# #-------------------------------------------------------------------------#
-# # 1.a Draw State/country Borders
-# #-------------------------------------------------------------------------#
+	ivt =  np.zeros((20, 361, 720))
+	g = 9.81 
+	dp = 25.00 #pa
 
-# m.drawparallels(np.arange(-80., 81., 20.), labels=[1,0,0,0], fontsize=5)
-# m.drawmeridians(np.arange(-180., 181., 20.), labels=[0,0,0,1], fontsize=5)
-# m.drawcoastlines()
-# m.drawstates()
-# m.drawcountries()
-
-
-#-------------------------------------------------------------------------#
-# 1.b Plot 2d Field 
-#-------------------------------------------------------------------------#
-
-# Mask out 0 Values using numpy mask
-
-#varmask = np.ma.masked_less(ivt, 0)
-#cs = m.pcolor(xi,yi,varmask,latlon=True, vmin =250, vmax=1000.0)
+	for i in range(20):
+	    spfh = ds.variables['SPFH_P0_L100_GLL0'][time,i,:,:]
+	    vgrd = ds.variables['VGRD_P0_L100_GLL0'][time,i,:,:]
+	    ugrd = ds.variables['UGRD_P0_L100_GLL0'][time,i,:,:]
+	    phi =np.arctan2(vgrd,ugrd)
+	    tV = (ugrd**2)*(vgrd**2)**.5
+	    ivt[i,:,:] = spfh*tV/g*dp
+	ivt_integral = np.ndarray.sum(ivt, axis=0)
+	vgrd =  ds.variables['VGRD_P0_L100_GLL0'][time,:,:,:]
+	ugrd =  ds.variables['UGRD_P0_L100_GLL0'][time,:,:,:]
+	ds.close()
+	return ivt_integral, vgrd, ugrd, lons_mesh, lats_mesh, lons, lats
 
 #-------------------------------------------------------------------------#
-# 1.c Plot Wind Barbs
+# Global Values 
 #-------------------------------------------------------------------------#
-        
-# Create a sparse array for plotting barbs to prevent clutter
-#yy = np.arange(0, yi.shape[0], 3)
-#xx = np.arange(0, xi.shape[1], 3)
-#points  = np.meshgrid(yy, xx)                                 
-#m.quiver(xi[points], yi[points], u_ivt[points], v_ivt[points], scale = 100, pivot='mid', width =0.001, color='grey') 
 
-# class FxToArray(np.ndarray):
+ivt_min    = 120.0                     # Minimum IVT value in kg/ms to be retained
+size_mask  = 100000.0                  # Min Grid cell size of object
+cell_to_km = 50.0                   # km
+land 	   = np.load('../data/land.npy')
+coastline  = np.load('../data/west_coast.npy')
 
-#     def __new__(cls, input_array, info=None):
-#         # Input array is an already formed ndarray instance
-#         # We first cast to be our class type
-#         obj = np.asarray(input_array).view(cls)
-#         # add the new attribute to the created instance
-#         obj.info = info
-#         # Finally, we must return the newly created object:
-#         return obj
+#-------------------------------------------------------------------------#
 
 
-
-#     def __array_finalize__(self, obj):
-#         # see InfoArray.__array_finalize__ for comments
-#         if obj is None: return
-#         self.info = getattr(obj, 'info', None)
+# Calculate IVT
+ivt, vgrd, ugrd, lons_mesh, lats_mesh, lons, lats = calc_ivt('../data/pgbhnl.gdas.19960516-19960520.nc', 10)
 
 
+# Convert to binary. 1 is above min value
+threshold_array = np.where(ivt > ivt_min, 1, 0)
+
+# Labeled components. given values of 1:n
+# Each 'blob' identified is assigned a label 
+label_array, num_labels = ndimage.measurements.label(threshold_array)
+
+# List of the label values 
+labels = np.array(range(num_labels + 1))
+
+# List size, in pixels, of components 
+sizes = ndimage.sum(label_array, label_array, range(num_labels + 1))
+   
+# Labels to keep (corresponding w/ objects gt. than size threshold)
+keep_label = labels[sizes > size_mask]
+
+
+# '''
+# Go through AR identifier criteria
+# '''
+
+# AR_EXISTS = False
+
+#-------------------------------------------------------------------------#
+#  Test Flags; set to true if passing 
+#-------------------------------------------------------------------------#
+TC_a = False      # Mean IVT 
+TC_b = False      # Coherency in IVT Direction  (variance)
+TC_c = False      # Object Mean Meridonal IVT (flowing towards a pole)
+TC_d = False      # Object/IVT direction Consistency
+TC_e = False      # Length/Width Ratio
+TC_f = False      # Interior USA Landfalling 
+TC_g = False      # NOT crossing equator (we don't want AR crossing eq)
+#-------------------------------------------------------------------------#
+
+output = np.zeros_like(land)
+
+for label in keep_label:
+
+	# Indicies of blob of interest
+	label_indices     = np.where(label_array == label)
+	label_indices_alt = np.argwhere(label_array == label)  # indices in [(a,b), ....] fmt
+
+	# Remove all elements except blob of interest
+	sub_array     = np.where(label_array == label, 1, 0)
+	blob          = regionprops(sub_array)[0]                    # set to 0; only 1 region        
+	blob_length   = blob.major_axis_length*cell_to_km
+	blob_width    = blob.minor_axis_length*cell_to_km
+	blob_size     = blob.filled_area*cell_to_km
+
+
+	mean_ivt  	  = np.mean(ivt[label_indices])              # Mean IVT of blob
+	# mean_u_i        = np.mean(u_i[label_indices])
+	# mean_v_i        = np.mean(v_i[label_indices])
+	# mean_wind_dir_  = np.arctan2(mean_v_i,mean_u_i)/np.pi * 180
+	# mean_wind_dir   = np.where(mean_wind_dir_< 0, 360 + mean_wind_dir_ , mean_wind_dir_)
+
+	#get center of blob
+	cntr = tuple(map(int, map(round, blob.centroid)))
+	sub_array[cntr] = 10
+	center   = Centerline(label_indices_alt, label_indices, ivt, land)
+	output = output + center.path
+	print center.landfall_location
+# fig, ax1 = plt.subplots(1)
+# ax1.imshow(sub_array + center.path)
+
+#ax2.imshow(ivt, vmin=100.0, vmax = 1000.00)
 
 
 

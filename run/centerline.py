@@ -3,6 +3,19 @@ from scipy.spatial import distance
 import numpy as np
 from atmDetect import Logger
 
+############ CHANGE ME ##########
+############ CHANGE ME ##########
+
+
+'''
+I should use a call method rather than what I'm doing here; create class object using static data,
+call method to apply to each AR object... 
+
+'''
+
+############ CHANGE ME ##########
+############ CHANGE ME ##########
+
 
 class Centerline():
     '''
@@ -12,6 +25,14 @@ class Centerline():
       3. Finds least cost path between points
       4. Finds landfalling location along path
     '''        
+
+    # this seems dumb
+    
+    def indices_to_lat_lon(index): 
+        #input a TUPLE () of grid values 
+        x = lats_mesh[index]   #
+        y = lons_mesh[index]   # 
+        return x,y
 
     def distance_matrix(self, label_indices_alt):
         # Find # TODO: he two points with the greatest distance from a shape
@@ -67,20 +88,29 @@ class Centerline():
 
 
     def landfall_locator(self, land_mask):
+        # a/c are the list of array grid coords A = [np.ndarray[x,y], .... ] for 
+        ###### Could also do something like this...
+        # the center path and the land mask ...
+        # land = map(tuple, a)
+        # c = map(tuple, c)
+        # list(set(a).intersection(c))
+        # map(np.array, list(set(a).intersection(c)))
+
+
         p       = land_mask[self.ind]
         p_diff  = np.diff(p)
         p_where = np.argwhere(abs(p_diff) == 1)
         self.p_where = p_where
         self.landfall_location = [] 
-        
         try:
             for i in p_where:
                 self.landfall_location.append((self.ind[0][i[0]],self.ind[1][i[0]]))
             # returns a tuple of grid indices of landfall location
-
         except:
             self.landfall_location = None
-            
+        
+
+
 
         # NOTE: Double Underscores
     def __init__(self, label_indices_alt, label_indices, ivt, land_mask):
@@ -95,4 +125,11 @@ class Centerline():
             self.path              = None
             self.path_len          = None
             self.ind               = None
+
+
+
+
+
+
+
 
