@@ -52,7 +52,7 @@ def saveplots(fname):
                 cb.set_label("IVT kgm-1s-1")
                 #plt.savefig(header+'IVT.png', format='png', dpi=300, transparent=True)
 		plt.show()
-                plt.close()
+        plt.close()
 	print 'done'
 	ds.close()
 

@@ -78,15 +78,14 @@ def format_date(hours):
         return dt
 
 
- def timeit(method):
-        def timed(*args, **kw):
-                ts = time.time()
-                result = method(*args, **kw)
-                te = time.time()
-                print  method.__name__,  str(te-ts) + 's'
-                
-                return result
-        return timed
+def timeit(method):
+    def timed(*args, **kw):
+        ts = time.time()
+        result = method(*args, **kw)
+        te = time.time()
+        print  method.__name__,  str(te-ts) + 's'
+        return result
+    return timed
 
 
 #@timeit
@@ -262,7 +261,7 @@ def FindAR(dataset, fname, land_mask, lons_mesh, lats_mesh, wnd, ivt, lons, lats
 #----------------------------------------------------------------------------------#
 
 if __name__ == '__main__':
-        path = '../foo.nc'
+        path = '../data/IVT_19960516-19960520.nc'
         ivt_min = 250                     # Minimum IVT value in kg/ms to be retained
         size_mask  = 1000                  # Min Grid cell size of object
         cell_to_km = 50                   # km
