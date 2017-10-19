@@ -1,7 +1,7 @@
 from skimage.graph import route_through_array
 from scipy.spatial import distance
 import numpy as np
-from atmDetect import Logger
+#from atmDetect import Logger
 
 ############ CHANGE ME ##########
 ############ CHANGE ME ##########
@@ -26,15 +26,14 @@ class Centerline():
       4. Finds landfalling location along path
     '''        
 
-    # this seems dumb
-    
-    def indices_to_lat_lon(index): 
+    # this seems dumb   
+    def Indices_to_Lat_Lon(self, index): 
         #input a TUPLE () of grid values 
-        x = lats_mesh[index]   #
-        y = lons_mesh[index]   # 
+        x = self.lats_mesh[index]   #
+        y = self.lons_mesh[index]   # 
         return x,y
 
-    def distance_matrix(self, label_indices_alt):
+    def Distance_Matrix(self, label_indices_alt):
         # Find # TODO: he two points with the greatest distance from a shape
         # The entry array is a binary array where 1 == object
         # returns the start and end points of shape 
@@ -60,9 +59,8 @@ class Centerline():
             self.start = None
             self.end   = None
             self.passing = False
-            Logger().failure(e)
 
-    def least_cost(self, label_indices, ivt):
+    def Least_Cost(self, label_indices, ivt):
    
         # Cost array creation. Set all values to 9999.999
         cost_arr   = np.ones_like(ivt)*9999.999 
@@ -87,7 +85,7 @@ class Centerline():
         self.ind       = ind 
 
 
-    def landfall_locator(self, land_mask):
+    def Landfall_Locator(self):
         # a/c are the list of array grid coords A = [np.ndarray[x,y], .... ] for 
         ###### Could also do something like this...
         # the center path and the land mask ...
@@ -96,11 +94,9 @@ class Centerline():
         # list(set(a).intersection(c))
         # map(np.array, list(set(a).intersection(c)))
 
-
-        p       = land_mask[self.ind]
+        p       = self.coastline[self.ind]
         p_diff  = np.diff(p)
         p_where = np.argwhere(abs(p_diff) == 1)
-        self.p_where = p_where
         self.landfall_location = [] 
         try:
             for i in p_where:
@@ -108,23 +104,63 @@ class Centerline():
             # returns a tuple of grid indices of landfall location
         except:
             self.landfall_location = None
+
         
+
+    def Measr_pLength(self):
+
+        # Calculate the dimensions of each grid cell. Assumes spherical earth 
+        earth_rad = 6371.0
+        h       = np.cos(np.abs(self.lats_mesh)*np.pi/180.)*earth_rad  # the radius of the great circle by latitude
+        gc      = np.pi*2.*h                                      # the circumference of the greate circle
+        grid_dx = gc/720.0                                        # horizontal grid cell distance 
+        # calculate vertical grid cell distance; this is the same for all lats 
+        grid_dy = earth_rad*2.0*np.pi/720.0
+
+
+        # Calculate distance along the AR track 
+        x,y = self.ind
+        distance = []
+        for i in xrange(0, len(x)-1, 1):              # loop through each grid cell in centerline
+            x_ij    = grid_dx[x[i],y[i]] * 0.5        # x_ij
+            x_ijP   = grid_dx[x[i+1],y[i+1]] * 0.5    # x_ij + 1 
+
+            scale_x = np.abs(x[i] - x[i+1])           # difference between x indice
+            scale_y = np.abs(y[i] - y[i+1])           # difference between y indice
+            DX = (x_ij + x_ijP)**2 * scale_x          
+            DY = grid_dy**2  * scale_y 
+            distance.append(np.sqrt(DX + DY))         # distance formula
+        
+        self.path_length = sum(distance)
+
+        # find landfall point
 
 
 
         # NOTE: Double Underscores
-    def __init__(self, label_indices_alt, label_indices, ivt, land_mask):
-        self.distance_matrix(label_indices_alt)
+    def __init__(self, label_indices_alt, label_indices, ivt, lats_mesh):
+
+        #-------------------------------------------------------------------------#
+        # Global Values 
+        #-------------------------------------------------------------------------#
+        land       = np.load('../data/land.npy')
+        self.coastline  = np.load('../data/west_coast.npy')
+        #-------------------------------------------------------------------------#
+
+        self.Distance_Matrix(label_indices_alt)
+        self.lats_mesh = lats_mesh
+
         if self.passing == True:
-            self.least_cost(label_indices, ivt)
-            self.landfall_locator(land_mask)
+            self.Least_Cost(label_indices, ivt)
+            self.Landfall_Locator()
             self.label_indices = label_indices
+            self.Landfall_Locator()
+            self.Measr_pLength()
         else:
-            self.landfall_location = None
-            self.p_where           = None
-            self.path              = None
-            self.path_len          = None
-            self.ind               = None
+            self.landfall_location = 'Failure'
+            self.path              = 'Failure'
+            self.path_len          = 'Failure'
+            self.ind               = 'Failure'
 
 
 
