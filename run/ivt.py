@@ -59,13 +59,13 @@ def IVT(infile):
         
 
         # Create Wind Direction Var 
-        wnd = dataset.createVariable('w_dir', np.float32,('time','level','lat_0','lon_0'))
+    wnd = dataset.createVariable('w_dir', np.float32,('time','level','lat_0','lon_0'))
 	wnd.grid_type = "Latitude/longitude"
 	wnd.units = 'Degrees'
 	wnd.long_name = 'Mean Wind Direction'
         
         # Create World Landcover Var
-        land = dataset.createVariable('landcover', np.float32, ('time', 'level', 'lat_0', 'lon_0'))
+    land = dataset.createVariable('landcover', np.float32, ('time', 'level', 'lat_0', 'lon_0'))
 	land.grid_type = "Latitude/longitude"
 	land.units = 'Degrees'
 	land.long_name = 'Landcover Type; from Modis'

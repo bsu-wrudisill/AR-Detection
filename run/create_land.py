@@ -35,7 +35,6 @@ coastline = np.zeros_like(land)
 #get edges of land forms
 sx = ndimage.sobel(land, axis=0, mode='constant')
 sy = ndimage.sobel(land, axis=1, mode='constant')
-
 sob = np.where(np.hypot(sx, sy) > 0, 1, 0)
 
 land[np.where(sob == 1)] = 2 # assign border cells 2

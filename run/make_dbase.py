@@ -19,6 +19,8 @@ def make_db(hr_time_str,
             eccentricity,
             landfalling ,
             landfall_point,
+            wind_dir_mean,
+            wind_dir_var,  
             start_point,
             end_point):
 
@@ -36,6 +38,8 @@ def make_db(hr_time_str,
                             eccentricity REAL,
                             landfalling TEXT,   
                             landfall_point TEXT,
+                            wind_dir_mean TEXT,
+                            wind_dir_var TEXT, 
                             start_point TEXT,
                             end_point TEXT)''')
 
@@ -54,9 +58,11 @@ def make_db(hr_time_str,
                             eccentricity,
                             landfalling ,
                             landfall_point,
+                            wind_dir_mean,
+                            wind_dir_var,                        
                             start_point,
                             end_point)
-                   VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)''', 
+                   VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''', 
 
                    (      hr_time_str,
                           OBJECT_ID,
@@ -69,6 +75,8 @@ def make_db(hr_time_str,
                           eccentricity,
                           landfalling,
                           landfall_point,
+                          wind_dir_mean,
+                          wind_dir_var,                      
                           start_point,
                           end_point))
   dBase.commit()

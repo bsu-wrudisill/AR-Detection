@@ -33,32 +33,20 @@ foo = []
 logger.info('Start the log')
 
 def wrapper(time):
-
 	try:
 		ivt_timeslice = calc_ivt('../data/pgbhnl.gdas.19960516-19960520.nc', time)
 		bar = blob_tester(ivt_timeslice)
 		logger.debug('completed time %s', time)
 		return bar
+
 	except Exception as e:
 #		logger.findCaller()
 		logger.error(e, exc_info=True)
 		# logger.debug('something didnt work \n %s', e)
 
 
-def another_func(x):
-	try:
-		print x/0.0
-	except Exception as e:
-		logger.error(e, exc_info=True)
-
-
-
 p = Pool(4)
-
-a = range(4)
-# a.append('a')
-
-
+a = range(20)
 out = p.map(wrapper, a)
 p.close()
 p.join

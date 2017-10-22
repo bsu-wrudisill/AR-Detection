@@ -85,11 +85,13 @@ def calc_ivt(filename, time):
 	# U and V winds respectively
 	vgrd =  ds.variables['VGRD_P0_L100_GLL0'][time,:,:,:]
 	ugrd =  ds.variables['UGRD_P0_L100_GLL0'][time,:,:,:]
+	spfh = ds.variables['SPFH_P0_L100_GLL0'][time,:,:,:]			
 	ds.close()
 
 	output_dictionary = {'ivt':ivt_integral,
 						 'vgrd':vgrd,
 						 'ugrd':ugrd,
+						 'spfh':spfh,
 						 'lons_mesh':lons_mesh,
 						 'lats_mesh':lats_mesh,
 						 'lons':lons,
@@ -106,15 +108,7 @@ def blob_tester(ivt_timeslice, **kwargs):
 	Test potential AR features and log results.
 	'''
 
-	# kwarg options defaults are set 
-	ivt_min   = kwargs.get('ivt_min' , 150.0)                 # Minimum IVT value in kg/ms to be retained
-	size_mask = kwargs.get('size_mask', 150.0)     		      # Minimum size to retain, in px 
-	min_aspect= kwargs.get('min_aspect', 1.6)                 # Minimum length/width ratio for retained feature
-	min_orientation= kwargs.get('min_orientation',  0.95)     # Minimum orientation (taken as np.abs())
-	min_length= kwargs.get('min_length', 25.) 			      # Shortest feature length (in pixels)
-	min_meanintensity= kwargs.get('min_meanintensity', 250.)  # Lowest mean IVT anomaly intensity within a feature
-	min_eccentricity= kwargs.get('min_eccentricity', .87)     # Minimum eccentricity of a retained feature
-
+	
 	def pacific_region():
 		# needs lons_mesh and lats_mesh
 		# idx = np.where((lons_mesh > -125.) & (lons_mesh < -112.) & (lats_mesh > 30.) & (lats_mesh < 50.))
@@ -132,14 +126,49 @@ def blob_tester(ivt_timeslice, **kwargs):
 	    y = lons_mesh[index]   # 
 	    return x,y
 
+
+	def uv2deg(v,u): # v (vertical), u (horizontal)
+	    # by convention, positve v flows from the south to the north
+	    # positive u flows from the west to the east 
+	    deg = np.arctan2(u,v) * 180./np.pi 
+	    deg = np.where(deg < 0, 360.0 + deg, deg)
+	    return deg 
+
+	def CircVar(v,u):
+		# Circular variance
+		c  = np.hypot(v,u)
+		vv = np.sum(v/c)/v.size   # equivalent to (SUM cos(*theta*) ) / n 
+		uu = np.sum(u/c)/u.size   # equivalent to (SUM sin(*theta*) ) / n 
+		r  = np.hypot(uu,vv)	
+		dispersion = 1. - r  # should be between zero and one 
+		return dispersion
+
+	def ScaleBYq(v,u,q):
+		# weighted mean of u,v. flattens along pressure dimension (axis 0)
+		v_wgt_mn = np.sum(v*q, axis=0)/np.sum(q, axis=0)
+		u_wgt_mn = np.sum(u*q, axis=0)/np.sum(q, axis=0)
+		#	    return uv2deg(v_mean,u_mean)
+		return v_wgt_mn, u_wgt_mn
+
+	# kwarg options defaults are set 
+	ivt_min   = kwargs.get('ivt_min' , 150.0)                 # Minimum IVT value in kg/ms to be retained
+	size_mask = kwargs.get('size_mask', 150.0)     		      # Minimum size to retain, in px 
+	min_aspect= kwargs.get('min_aspect', 1.6)                 # Minimum length/width ratio for retained feature
+	min_orientation= kwargs.get('min_orientation',  0.95)     # Minimum orientation (taken as np.abs())
+	min_length= kwargs.get('min_length', 25.) 			      # Shortest feature length (in pixels)
+	min_meanintensity= kwargs.get('min_meanintensity', 250.)  # Lowest mean IVT anomaly intensity within a feature
+	min_eccentricity= kwargs.get('min_eccentricity', .87)     # Minimum eccentricity of a retained feature
+
+
 	# unpack from input
 	ivt = ivt_timeslice['ivt']
 	vgrd = ivt_timeslice['vgrd']
-	ugrd = ivt_timeslice['ugrd']	
+	ugrd = ivt_timeslice['ugrd']
+	spfh = ivt_timeslice['spfh']
 	lons_mesh   = ivt_timeslice['lons_mesh']
 	lats_mesh   = ivt_timeslice['lats_mesh']
 
-	# ----- grid size calcs -----
+	# -----grid size calcs -----
 	earth_rad = 6371.0
 	h       = np.cos(np.abs(lats_mesh)*np.pi/180.)*earth_rad  # the radius of the great circle by latitude
 	gc      = np.pi*2.*h                                      # the circumference of the greate circle
@@ -147,6 +176,7 @@ def blob_tester(ivt_timeslice, **kwargs):
 	# calculate vertical grid cell distance; this is the same for all lats 
 	grid_dy = earth_rad*2.0*np.pi/720.0
 	# ----- grid size calcs -----
+
 
 	# Convert to binary. 1 is above min value
 	threshold_array = np.where(ivt > ivt_min, 1, 0)
@@ -206,10 +236,19 @@ def blob_tester(ivt_timeslice, **kwargs):
 		length            = center.path_length
 		blob_earth_area   = np.sum(grid_dx[label_indices]*grid_dy)
 		width             = blob_earth_area/length           # possible divide by zero
-
+		
 		# start and end 
 		start = indices_to_lat_lon(tuple(center.start))
 		end   = indices_to_lat_lon(tuple(center.end))
+
+		
+		#-------- WIND DIR AND OBJECT RELATIONSHIP HOOKS GO HERE --------#
+		v_wgt_mn, u_wgt_mn = ScaleBYq(vgrd[:, label_indices[0], label_indices[1]], ugrd[:, label_indices[0],label_indices[1]], spfh[:, label_indices[0],label_indices[1]])
+		wind_dir_mean      = uv2deg(np.mean(v_wgt_mn),np.mean(u_wgt_mn))
+		wind_dir_var       = CircVar(v_wgt_mn, u_wgt_mn)
+
+		#-------- WIND DIR AND OBJECT RELATIONSHIP HOOKS GO HERE --------#
+
 
 		# ----- Test if AR makes landfall ----------- # 
 		Lloc = center.landfall_location
@@ -226,6 +265,9 @@ def blob_tester(ivt_timeslice, **kwargs):
 		# ----- Region Props Algorithm ------------ # 
 		sub_array     = np.where(label_array == label, 1, 0)
 		blob          = regionprops(sub_array, ivt)[0]  # set to 0; only 1 region        
+		blob_dir_corrected = np.abs(np.abs(blob.orientation/np.pi * 180.)- 90.)
+
+
 
 
 		# ------ Put things in dictionary to write out --------- #
@@ -240,14 +282,18 @@ def blob_tester(ivt_timeslice, **kwargs):
 		AR_blob.length_to_width 		     = length/width    # possible divide by zero
 		AR_blob.eccentricity    			 = blob.eccentricity 
 		AR_blob.mean_IVT 			         = blob.mean_intensity
-		AR_blob.object_orientation_direction = blob.orientation
+		AR_blob.object_orientation_direction = str(blob_dir_corrected)
+		AR_blob.wind_dir_mean                = str(wind_dir_mean)
+		AR_blob.wind_dir_var                 = str(wind_dir_var)
 		AR_blob.start_point                  = str(start)
 		AR_blob.end_point					 = str(end)
 		
 
+		AR_blob.Make_Db()
+
 		# -------  Create Output Files for Saving ------------ # 
 		AR_blob.path = center.path
-		AR_blob.Save_File(label_indices, ivt, center.path)
+#		AR_blob.Save_File(label_indices, ivt, center.path)
 
 
 		#-------- WIND DIR AND OBJECT RELATIONSHIP HOOKS GO HERE --------#
