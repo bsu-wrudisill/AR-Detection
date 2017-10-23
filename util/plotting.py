@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.basemap import Basemap
 from matplotlib import rcParams
 
-ncfile = 'ivt_files/pgbhnl.gdas.20100601-20100605'
+# ncfile = 'ivt_files/pgbhnl.gdas.20100601-20100605'
 
 def saveplots(fname):
 	fil = fname

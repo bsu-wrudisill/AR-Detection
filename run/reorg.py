@@ -244,6 +244,13 @@ def blob_tester(ivt_timeslice, **kwargs):
 		
 		#-------- WIND DIR AND OBJECT RELATIONSHIP HOOKS GO HERE --------#
 		v_wgt_mn, u_wgt_mn = ScaleBYq(vgrd[:, label_indices[0], label_indices[1]], ugrd[:, label_indices[0],label_indices[1]], spfh[:, label_indices[0],label_indices[1]])
+		# create a grid to store these values on; to be saved as output
+		v_wgt_mn_grd = np.zeros_like(ivt)	
+		v_wgt_mn_grd[label_indices] = v_wgt_mn
+
+		u_wgt_mn_grd = np.zeros_like(ivt)
+		u_wgt_mn_grd[label_indices] = u_wgt_mn
+
 		wind_dir_mean      = uv2deg(np.mean(v_wgt_mn),np.mean(u_wgt_mn))
 		wind_dir_var       = CircVar(v_wgt_mn, u_wgt_mn)
 
@@ -289,11 +296,11 @@ def blob_tester(ivt_timeslice, **kwargs):
 		AR_blob.end_point					 = str(end)
 		
 
-		AR_blob.Make_Db()
+#		AR_blob.Make_Db()
 
 		# -------  Create Output Files for Saving ------------ # 
 		AR_blob.path = center.path
-#		AR_blob.Save_File(label_indices, ivt, center.path)
+		AR_blob.Save_File(label_indices, ivt, center.path, v_wgt_mn_grd, u_wgt_mn_grd)
 
 
 		#-------- WIND DIR AND OBJECT RELATIONSHIP HOOKS GO HERE --------#
