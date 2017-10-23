@@ -61,16 +61,24 @@ class Centerline():
             self.passing = False
 
     def Least_Cost(self, label_indices, ivt):
-   
         # Cost array creation. Set all values to 9999.999
-        cost_arr   = np.ones_like(ivt)*9999.999 
 
-        # Replace 9999 values of AR structure w/ cost
-        cost_arr[label_indices] = 5000.0 - ivt[label_indices]
+        # The squre of the max ivt value, times 1e3. This guarenteed 
+        # the background is at least 1e3 times greater than the lowest value that
+        # can possibly be met w/in the AR region
+        cost_arr   = np.ones_like(ivt)*ivt.max()**2*1e3
 
-        #start, end are tuples of indices (row,col)
+        # Create cost map w/in AR structure. The difference between the cell and the max cell
+        # within the object, squared. 
+        cost_arr[label_indices] = (ivt[label_indices].max() - ivt[label_indices])**2
+
+
+        # Apply route thru array method
+        # Takes a starting, end point and a cost grid 
         nrow,ncol      = ivt.shape
         indices, cost  = route_through_array(cost_arr, self.start, self.end)
+
+        # The grid indices of the least-cost path
         indices        = np.array(indices).T
 
         # When we index np arrays, we want a tuple of 1-d arrays
