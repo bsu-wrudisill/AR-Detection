@@ -45,8 +45,8 @@ def wrapper(time):
 		# logger.debug('something didnt work \n %s', e)
 
 
-p = Pool(1)
-a = range(4)
+p = Pool(4)
+a = range(20)
 out = p.map(wrapper, a)
 p.close()
 p.join

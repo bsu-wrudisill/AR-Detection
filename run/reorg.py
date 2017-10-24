@@ -85,7 +85,7 @@ def calc_ivt(filename, time):
 	# U and V winds respectively
 	vgrd =  ds.variables['VGRD_P0_L100_GLL0'][time,:,:,:]
 	ugrd =  ds.variables['UGRD_P0_L100_GLL0'][time,:,:,:]
-	spfh = ds.variables['SPFH_P0_L100_GLL0'][time,:,:,:]			
+	spfh =  ds.variables['SPFH_P0_L100_GLL0'][time,:,:,:]			
 	ds.close()
 
 	output_dictionary = {'ivt':ivt_integral,
@@ -296,7 +296,7 @@ def blob_tester(ivt_timeslice, **kwargs):
 		AR_blob.end_point					 = str(end)
 		
 
-#		AR_blob.Make_Db()
+		AR_blob.Make_Db()
 
 		# -------  Create Output Files for Saving ------------ # 
 		AR_blob.path = center.path

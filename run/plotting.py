@@ -37,7 +37,7 @@ for i in clist:
 # I know already that my date column is called 'hr_time_str';
 df = pd.DataFrame(data=dic)
 df.set_index(pd.to_datetime(df['hr_time_str'], format='%Y-%m-%d_%H'), inplace=True)
-del df['hr_time_str']
+#del df['hr_time_str']
 
 # Count up things 
 df['Year'] = df.index.year
@@ -76,8 +76,9 @@ def PlotAR(record):
 	mean_IVT       = str(np.round(float(record.mean_IVT.values[0]), 2))
 	object_length  = str(np.round(float(record.object_length.values[0]), 2))
 	wind_dir_mean  = str(np.round(float(record.wind_dir_mean.values[0]), 2))
-	textstr = 'mean_IVT: ' + mean_IVT + '\n' + 'object_length: ' + object_length + '\n' + 'wind_dir_mean: ' + wind_dir_mean 
-
+	textstr = 'mean_IVT: ' + mean_IVT + '$kg \cdot m^{-1} s^{-1}$'+ '\n' + 'object_length: ' + object_length + ' km'+ '\n' + 'wind_dir_mean: ' + wind_dir_mean + '$^\circ$' 
+	textstr = textstr + '\n' + 'Time: ' + str(record.hr_time_str.values[0]) + ':00'
+	textstr = textstr + '\n' + 'Wind Var: ' + str(record.wind_dir_var[0])
 
 
 	############################# 	############################# 
@@ -98,15 +99,15 @@ def PlotAR(record):
 	#-------------------------------------------------------------------------#
 	# 1.c Plot Wind Barbs
 	#-------------------------------------------------------------------------#
-	yy      = np.arange(0, v.shape[0], 3)
-	xx      = np.arange(0, v.shape[1], 3)
+	yy      = np.arange(0, v.shape[0], 5)
+	xx      = np.arange(0, v.shape[1], 5)
 	points  = np.meshgrid(yy, xx)                                 
 	xi      = np.arange(0, v.shape[0])
 	yi      = np.arange(0, v.shape[1])
 	xii, yii = np.meshgrid(yi,xi)
 	# place a text box in upper left in axes coords
 
-	levels = np.linspace(100., 2000., 20)#39
+	levels = np.linspace(100., 3000., 59)#39
 	# fig.suptitle()
 	ax.imshow(land, alpha = 1.0, cmap='Greys',zorder=1)	
 
@@ -115,7 +116,6 @@ def PlotAR(record):
 	ivtclr = ax.contourf(ivt, cmap='magma_r',alpha = .8, levels=levels, zorder=2)
 	ax.quiver(xii[points], yii[points], u[points], v[points], scale = 800, pivot='mid', width =0.001, color='black', alpha=.5, zorder=3) 
 	ax.imshow(path, alpha = 1.0, interpolation='None', cmap='gray', zorder=4)
-
 
 
 	props = dict(boxstyle='round', facecolor='wheat', alpha=0.5, zorder=5)
@@ -128,7 +128,20 @@ def PlotAR(record):
 # 	fig,ax = PlotAR(i)
 # 	plt.show()
 
+#lfl_t    = df[df['landfalling'] == 'True']
+lfl_t    = df[df['wind_dir_var'] > .5]
 
-record = LocateRecord('1996-05-16 12:00:00', '1.0')
-fig,ax = PlotAR(record)
+iterator = lfl_t.iterrows() 
+
+for i in range(len(lfl_t.index)):
+	nxt_row = next(iterator)
+	t0      = str(nxt_row[0])
+	data    = nxt_row[1]
+	record  = LocateRecord(t0, data['OBJECT_ID'])
+	try:
+		fig,ax = PlotAR(record)
+	except Exception as e:
+		print e 
+		print t0, data['OBJECT_ID']
+	plt.show()
 
