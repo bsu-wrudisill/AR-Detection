@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.basemap import Basemap
 from matplotlib import rcParams
 
-ncfile = 'ivt_files/pgbhnl.gdas.20100601-20100605'
+# ncfile = 'ivt_files/pgbhnl.gdas.20100601-20100605'
 
 def saveplots(fname):
 	fil = fname
@@ -52,7 +52,7 @@ def saveplots(fname):
                 cb.set_label("IVT kgm-1s-1")
                 #plt.savefig(header+'IVT.png', format='png', dpi=300, transparent=True)
 		plt.show()
-                plt.close()
+        plt.close()
 	print 'done'
 	ds.close()
 

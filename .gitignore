@@ -1,5 +1,5 @@
 #gitignore
-
+*.npy
 CFS_Reanalysis_Partial_RDA/
 input_files/
 misc/

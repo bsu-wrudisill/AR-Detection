@@ -10,7 +10,7 @@ def IVT(infile):
  	# Infile is the CFS Reanalysis data to convert, out is the name for 
 	# the new file. CRSR downloaded from NCAR RDA
         
-        #Output filename 
+    #Output filename 
 	name  = 'new_ivt_files/IVT_'+infile[48:]
 
         #
@@ -59,13 +59,13 @@ def IVT(infile):
         
 
         # Create Wind Direction Var 
-        wnd = dataset.createVariable('w_dir', np.float32,('time','level','lat_0','lon_0'))
+    wnd = dataset.createVariable('w_dir', np.float32,('time','level','lat_0','lon_0'))
 	wnd.grid_type = "Latitude/longitude"
 	wnd.units = 'Degrees'
 	wnd.long_name = 'Mean Wind Direction'
         
         # Create World Landcover Var
-        land = dataset.createVariable('landcover', np.float32, ('time', 'level', 'lat_0', 'lon_0'))
+    land = dataset.createVariable('landcover', np.float32, ('time', 'level', 'lat_0', 'lon_0'))
 	land.grid_type = "Latitude/longitude"
 	land.units = 'Degrees'
 	land.long_name = 'Landcover Type; from Modis'
@@ -95,25 +95,26 @@ def IVT(infile):
 		Q = subset['SPFH_P0_L100_GLL0'][i,:]
 		u = subset['UGRD_P0_L100_GLL0'][i,:]
                 v = subset['VGRD_P0_L100_GLL0'][i,:]
-                v_mean = np.ndarray.mean(v, axis=0)
-                u_mean = np.ndarray.mean(u, axis=0)
-                
-                # IVT Calc
-                tV = (u**2)*(v**2)**.5
+
+        v_mean = np.ndarray.mean(v, axis=0)
+        u_mean = np.ndarray.mean(u, axis=0)
+        
+        # IVT Calc
+        tV = (u**2)*(v**2)**.5
 		g = 9.81 
 		dp = 25.00 #pa
 		ivtval = np.ndarray.sum(Q*tV, axis=0)*1/g*dp
 
                 # Wind Calc 
-                phi =np.arctan2(v_mean,u_mean) # Keep in pi units. first arg is the y dir, second x dir (meridonal, zonal)  
-                wndval = phi
-                
-                # Assign to variables (time, pressure (1), lat, lon)
-                ivt[i,:,:,:]   = ivtval
-                wnd[i,:,:,:]   = wndval
-                land[i,:,:,:]  = landval
+        phi =np.arctan2(v_mean,u_mean) # Keep in pi units. first arg is the y dir, second x dir (meridonal, zonal)  
+        wndval = phi
+        
+        # Assign to variables (time, pressure (1), lat, lon)
+        ivt[i,:,:,:]   = ivtval
+        wnd[i,:,:,:]   = wndval
+        land[i,:,:,:]  = landval
 
-        subset.close()
+	subset.close()
 	dataset.close()
         # End Funcion 
 
