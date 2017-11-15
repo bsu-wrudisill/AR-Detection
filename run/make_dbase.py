@@ -24,7 +24,7 @@ def make_db(hr_time_str,
             start_point,
             end_point):
 
-  dBase = sqlite3.connect('Atmospheric_River.db')
+  dBase = sqlite3.connect('Atmospheric_River.db',timeout=10)
   cursor = dBase.cursor()
   cursor.execute('''CREATE TABLE IF NOT EXISTS Rivers(
                             hr_time_str TEXT, 

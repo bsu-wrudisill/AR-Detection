@@ -2,63 +2,65 @@ from reorg import *
 from multiprocessing import Pool
 from glob import glob
 import numpy as np
-
+import sys
 #enable automatic garbage collection
 np.seterr(all='print')
 
-#Multiprocessing Pool
-# p = Pool(28)
-
-# File List
-# file_list = glob('/home/wrudisill/scratch/Find_ARs/data/new_ivt_files/IVT*')
 
 
-# # Map Function 
-# p.map(atmDetect.FindAR_Wrapper, file_list)
-# p.close()
-# p.join()
+yr = sys.argv[1]
 
-fh = logging.FileHandler("testing.log")
-logger = logging.getLogger(__name__)
+
+#yr = '1979'
+string = '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.YEAR*.nc'
+
+flist = glob(string.replace('YEAR',yr))
+
+
+# Setup logger 
+fh_string = 'AR_detect_YEAR.log'
+fh = logging.FileHandler(fh_string.replace('YEAR',yr))
+logger = logging.getLogger('log')
 FORMAT = "[%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s"
 logging.basicConfig(format=FORMAT)
 logger.setLevel(level=logging.DEBUG)
 logger.addHandler(fh)
 
 
-
-foo = []
-
-
 logger.info('Start the log')
 
-def wrapper(time):
-	try:
-		ivt_timeslice = calc_ivt('../data/pgbhnl.gdas.19960516-19960520.nc', time)
-		bar = blob_tester(ivt_timeslice)
-		logger.debug('completed time %s', time)
-		return bar
+for f in flist:
+	logger.info('will process '+f)
 
+# Wrapper function for processing 
+def wrapper(filename):
+        # Try, except block
+	try:
+                time_length = GrepTimeDim(filename)
+                print time_length
+                for time in range(time_length):
+                        ivt_timeslice = calc_ivt(filename, time)
+                        blob_tester(ivt_timeslice)
+                        logger.debug('completed' + filename + '__' + str(time))
+
+        # Princt traceback information to logger if there is an error
 	except Exception as e:
 #		logger.findCaller()
 		logger.error(e, exc_info=True)
 		# logger.debug('something didnt work \n %s', e)
 
-
-p = Pool(4)
-a = range(20)
-out = p.map(wrapper, a)
+print flist 
+p = Pool(8)
+p.map(wrapper, flist)
 p.close()
 p.join
 
-
+# Finish logger
 logger.info('Done')
 
 
 # bar = np.zeros((361,720))
 # for i in out:
 # 	bar+=i[0].path
-
-
 # land       = np.load('../data/land.npy')
 

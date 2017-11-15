@@ -1,0 +1,1558 @@
+[run_main.py:30 -             <module>() ] Start the log
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950101-19950105.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950106-19950110.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950111-19950115.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950116-19950120.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950121-19950125.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950126-19950131.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950201-19950205.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950206-19950210.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950211-19950215.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950216-19950220.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950221-19950225.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950226-19950228.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950301-19950305.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950306-19950310.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950311-19950315.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950316-19950320.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950321-19950325.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950326-19950331.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950401-19950405.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950406-19950410.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950411-19950415.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950416-19950420.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950421-19950425.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950426-19950430.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950501-19950505.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950506-19950510.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950511-19950515.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950516-19950520.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950521-19950525.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950526-19950531.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950601-19950605.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950606-19950610.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950611-19950615.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950616-19950620.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950621-19950625.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950626-19950630.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950701-19950705.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950706-19950710.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950711-19950715.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950716-19950720.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950721-19950725.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950801-19950805.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950806-19950810.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950811-19950815.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950816-19950820.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950821-19950825.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950901-19950905.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950906-19950910.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950911-19950915.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950916-19950920.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950921-19950925.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950926-19950930.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951001-19951005.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951006-19951010.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951011-19951015.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951016-19951020.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951021-19951025.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951101-19951105.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951106-19951110.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951111-19951115.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951116-19951120.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951121-19951125.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951126-19951130.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951201-19951205.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951206-19951210.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951211-19951215.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951216-19951220.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951221-19951225.nc
+[run_main.py:33 -             <module>() ] will process /home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc
+['/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950101-19950105.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950106-19950110.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950111-19950115.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950116-19950120.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950121-19950125.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950126-19950131.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950201-19950205.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950206-19950210.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950211-19950215.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950216-19950220.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950221-19950225.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950226-19950228.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950301-19950305.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950306-19950310.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950311-19950315.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950316-19950320.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950321-19950325.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950326-19950331.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950401-19950405.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950406-19950410.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950411-19950415.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950416-19950420.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950421-19950425.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950426-19950430.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950501-19950505.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950506-19950510.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950511-19950515.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950516-19950520.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950521-19950525.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950526-19950531.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950601-19950605.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950606-19950610.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950611-19950615.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950616-19950620.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950621-19950625.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950626-19950630.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950701-19950705.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950706-19950710.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950711-19950715.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950716-19950720.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950721-19950725.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950801-19950805.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950806-19950810.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950811-19950815.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950816-19950820.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950821-19950825.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950901-19950905.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950906-19950910.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950911-19950915.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950916-19950920.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950921-19950925.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950926-19950930.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951001-19951005.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951006-19951010.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951011-19951015.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951016-19951020.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951021-19951025.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951101-19951105.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951106-19951110.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951111-19951115.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951116-19951120.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951121-19951125.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951126-19951130.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951201-19951205.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951206-19951210.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951211-19951215.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951216-19951220.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951221-19951225.nc', '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc']
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950316-19950320.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950116-19950120.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950201-19950205.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950401-19950405.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950216-19950220.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950116-19950120.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950416-19950420.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950301-19950305.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950101-19950105.nc__0
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950316-19950320.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950216-19950220.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950116-19950120.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950216-19950220.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950101-19950105.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950416-19950420.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950201-19950205.nc__1
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950301-19950305.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950316-19950320.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950116-19950120.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950216-19950220.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950411-19950415.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950416-19950420.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950101-19950105.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950216-19950220.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950301-19950305.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950116-19950120.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950316-19950320.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950416-19950420.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950201-19950205.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950101-19950105.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950216-19950220.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950316-19950320.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950301-19950305.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950116-19950120.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950411-19950415.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950201-19950205.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950416-19950420.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950316-19950320.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950101-19950105.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950116-19950120.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950216-19950220.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950301-19950305.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950411-19950415.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950201-19950205.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950316-19950320.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950116-19950120.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950216-19950220.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950416-19950420.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950101-19950105.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950201-19950205.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950411-19950415.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950301-19950305.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950316-19950320.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950101-19950105.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950416-19950420.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950116-19950120.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950216-19950220.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950201-19950205.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950316-19950320.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950101-19950105.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950411-19950415.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950416-19950420.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950201-19950205.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950116-19950120.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950316-19950320.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950301-19950305.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950101-19950105.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950201-19950205.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950411-19950415.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950216-19950220.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950116-19950120.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950416-19950420.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950411-19950415.nc__6
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950301-19950305.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950216-19950220.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950316-19950320.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950101-19950105.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950116-19950120.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950216-19950220.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950101-19950105.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950416-19950420.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950411-19950415.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950216-19950220.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950301-19950305.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950206-19950210.nc__0
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950411-19950415.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950316-19950320.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950216-19950220.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950416-19950420.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950316-19950320.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950101-19950105.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950411-19950415.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950301-19950305.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950206-19950210.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950121-19950125.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950216-19950220.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950416-19950420.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950301-19950305.nc__10
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950101-19950105.nc__12
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950121-19950125.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950206-19950210.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950216-19950220.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950416-19950420.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950101-19950105.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950501-19950505.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950301-19950305.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950121-19950125.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950206-19950210.nc__3
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950216-19950220.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950101-19950105.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950501-19950505.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950216-19950220.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950121-19950125.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950301-19950305.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950326-19950331.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950421-19950425.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950101-19950105.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950206-19950210.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950326-19950331.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950501-19950505.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950216-19950220.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950101-19950105.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950301-19950305.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950121-19950125.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950326-19950331.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950206-19950210.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950501-19950505.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950216-19950220.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950301-19950305.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950421-19950425.nc__1
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950326-19950331.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950501-19950505.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950121-19950125.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950101-19950105.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950326-19950331.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950301-19950305.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950421-19950425.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950221-19950225.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950301-19950305.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950101-19950105.nc__18
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950501-19950505.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950211-19950215.nc__0
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950121-19950125.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950301-19950305.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950221-19950225.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950516-19950520.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950101-19950105.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950121-19950125.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950426-19950430.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950501-19950505.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950301-19950305.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950211-19950215.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950426-19950430.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950221-19950225.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950516-19950520.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950106-19950110.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950516-19950520.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950211-19950215.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950501-19950505.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950121-19950125.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950301-19950305.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950426-19950430.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950221-19950225.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950211-19950215.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950501-19950505.nc__8
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950106-19950110.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950501-19950505.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950426-19950430.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950306-19950310.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950501-19950505.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950121-19950125.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950521-19950525.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950211-19950215.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950106-19950110.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950221-19950225.nc__4
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950501-19950505.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950521-19950525.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950501-19950505.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950211-19950215.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950121-19950125.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950106-19950110.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950221-19950225.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950311-19950315.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950426-19950430.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950106-19950110.nc__4
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950211-19950215.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950311-19950315.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950221-19950225.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950521-19950525.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950106-19950110.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950126-19950131.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950311-19950315.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950426-19950430.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950506-19950510.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950106-19950110.nc__6
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950221-19950225.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950126-19950131.nc__1
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950106-19950110.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950211-19950215.nc__7
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950126-19950131.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950106-19950110.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950526-19950531.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950426-19950430.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950601-19950605.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950221-19950225.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950211-19950215.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950511-19950515.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950601-19950605.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950526-19950531.nc__1
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950221-19950225.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950126-19950131.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950526-19950531.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950511-19950515.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950426-19950430.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950601-19950605.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950111-19950115.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950211-19950215.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950221-19950225.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950126-19950131.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950426-19950430.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950526-19950531.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950511-19950515.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950111-19950115.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950126-19950131.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950211-19950215.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950601-19950605.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950221-19950225.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950526-19950531.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950426-19950430.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950511-19950515.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950126-19950131.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950211-19950215.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950111-19950115.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950601-19950605.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950526-19950531.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950111-19950115.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950211-19950215.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950511-19950515.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950426-19950430.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950601-19950605.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950221-19950225.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950126-19950131.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950526-19950531.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950601-19950605.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950111-19950115.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950511-19950515.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950126-19950131.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950211-19950215.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950426-19950430.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950526-19950531.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950111-19950115.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950601-19950605.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950126-19950131.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950221-19950225.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950601-19950605.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950126-19950131.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950111-19950115.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950511-19950515.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950526-19950531.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950211-19950215.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950126-19950131.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950601-19950605.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950526-19950531.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950221-19950225.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950426-19950430.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950511-19950515.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950111-19950115.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950601-19950605.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950211-19950215.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950111-19950115.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950126-19950131.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950221-19950225.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950526-19950531.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950426-19950430.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950511-19950515.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950111-19950115.nc__9
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950601-19950605.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950526-19950531.nc__11
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950511-19950515.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950221-19950225.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950426-19950430.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950616-19950620.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950111-19950115.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950701-19950705.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950526-19950531.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950616-19950620.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950511-19950515.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950601-19950605.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950221-19950225.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950426-19950430.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950526-19950531.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950111-19950115.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950701-19950705.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950511-19950515.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950616-19950620.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950601-19950605.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950526-19950531.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950701-19950705.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950426-19950430.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950221-19950225.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950111-19950115.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950426-19950430.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950526-19950531.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950701-19950705.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950111-19950115.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950511-19950515.nc__12
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950601-19950605.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950526-19950531.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950221-19950225.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950701-19950705.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950426-19950430.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950111-19950115.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950621-19950625.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950601-19950605.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950226-19950228.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950111-19950115.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950426-19950430.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950701-19950705.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950511-19950515.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950621-19950625.nc__1
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950226-19950228.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950601-19950605.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950111-19950115.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950511-19950515.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950701-19950705.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950621-19950625.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950716-19950720.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950801-19950805.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950226-19950228.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950511-19950515.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950601-19950605.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950701-19950705.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950511-19950515.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950226-19950228.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950111-19950115.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950621-19950625.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950716-19950720.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950801-19950805.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950601-19950605.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950701-19950705.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950621-19950625.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950511-19950515.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950226-19950228.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950716-19950720.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950111-19950115.nc__18
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950601-19950605.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950226-19950228.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950801-19950805.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950621-19950625.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950511-19950515.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950716-19950720.nc__3
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950621-19950625.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950606-19950610.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950706-19950710.nc__0
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950621-19950625.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950716-19950720.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950801-19950805.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950816-19950820.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950901-19950905.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950511-19950515.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950606-19950610.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950716-19950720.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950706-19950710.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950916-19950920.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950606-19950610.nc__2
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950621-19950625.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950916-19950920.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950816-19950820.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950901-19950905.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950716-19950720.nc__6
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950606-19950610.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950621-19950625.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950706-19950710.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950916-19950920.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950716-19950720.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950901-19950905.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950816-19950820.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950811-19950815.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950606-19950610.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950621-19950625.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950916-19950920.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950706-19950710.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950901-19950905.nc__3
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950621-19950625.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950811-19950815.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950606-19950610.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950916-19950920.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950901-19950905.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950706-19950710.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950811-19950815.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950621-19950625.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950606-19950610.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950816-19950820.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950721-19950725.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950621-19950625.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950901-19950905.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950916-19950920.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950811-19950815.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950706-19950710.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950606-19950610.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950721-19950725.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950621-19950625.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950816-19950820.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950901-19950905.nc__6
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950811-19950815.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950921-19950925.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950621-19950625.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950606-19950610.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950816-19950820.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950706-19950710.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950811-19950815.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950921-19950925.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950901-19950905.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950606-19950610.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950621-19950625.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950816-19950820.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950706-19950710.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950811-19950815.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950921-19950925.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950901-19950905.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950816-19950820.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950921-19950925.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950606-19950610.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950621-19950625.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950901-19950905.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950811-19950815.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950706-19950710.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950816-19950820.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950606-19950610.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950901-19950905.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950921-19950925.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950811-19950815.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950816-19950820.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950606-19950610.nc__12
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950706-19950710.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950921-19950925.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950816-19950820.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950901-19950905.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950606-19950610.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950811-19950815.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950921-19950925.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950626-19950630.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950706-19950710.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950606-19950610.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950816-19950820.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950811-19950815.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950901-19950905.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950626-19950630.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950606-19950610.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950706-19950710.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950816-19950820.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950921-19950925.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950811-19950815.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950706-19950710.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950921-19950925.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950626-19950630.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950901-19950905.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950816-19950820.nc__13
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950921-19950925.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950811-19950815.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950706-19950710.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc__5
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950611-19950615.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950706-19950710.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950811-19950815.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950921-19950925.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950626-19950630.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950816-19950820.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950921-19950925.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950906-19950910.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950811-19950815.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950611-19950615.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950906-19950910.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950626-19950630.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950816-19950820.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950706-19950710.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950921-19950925.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950811-19950815.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950906-19950910.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950816-19950820.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950626-19950630.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950611-19950615.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950921-19950925.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950706-19950710.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950811-19950815.nc__16
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950816-19950820.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950626-19950630.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950626-19950630.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950911-19950915.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950921-19950925.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950706-19950710.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950816-19950820.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950611-19950615.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950626-19950630.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950811-19950815.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950816-19950820.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950911-19950915.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950611-19950615.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950921-19950925.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950626-19950630.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950706-19950710.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950811-19950815.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950921-19950925.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950821-19950825.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950811-19950815.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950706-19950710.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950911-19950915.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950626-19950630.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950611-19950615.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950921-19950925.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950911-19950915.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950711-19950715.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950626-19950630.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951001-19951005.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950921-19950925.nc__18
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950821-19950825.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950611-19950615.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950921-19950925.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950626-19950630.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950711-19950715.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950611-19950615.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951001-19951005.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951016-19951020.nc__0
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950821-19950825.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950626-19950630.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950711-19950715.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950611-19950615.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951101-19951105.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951001-19951005.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951016-19951020.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950711-19950715.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950821-19950825.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951001-19951005.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951101-19951105.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950626-19950630.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950611-19950615.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951016-19951020.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951001-19951005.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950711-19950715.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950821-19950825.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951016-19951020.nc__3
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950626-19950630.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950611-19950615.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951001-19951005.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951016-19951020.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc__15
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950611-19950615.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950821-19950825.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950711-19950715.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951016-19951020.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951106-19951110.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950611-19950615.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951116-19951120.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951001-19951005.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950821-19950825.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950611-19950615.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951016-19951020.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951001-19951005.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951106-19951110.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950711-19950715.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951116-19951120.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950821-19950825.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951016-19951020.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950711-19950715.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951001-19951005.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950611-19950615.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951116-19951120.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951106-19951110.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951016-19951020.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950821-19950825.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950611-19950615.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951116-19951120.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950711-19950715.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951001-19951005.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951106-19951110.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951016-19951020.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950711-19950715.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951001-19951005.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951016-19951020.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951106-19951110.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950821-19950825.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950611-19950615.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951116-19951120.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc__20
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950711-19950715.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951016-19951020.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951116-19951120.nc__5
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951106-19951110.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951001-19951005.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950821-19950825.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951116-19951120.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc__21
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950711-19950715.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951016-19951020.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951201-19951205.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951106-19951110.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951116-19951120.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951201-19951205.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951001-19951005.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950821-19950825.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951106-19951110.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950711-19950715.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951116-19951120.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951201-19951205.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc__22
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951001-19951005.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951016-19951020.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951106-19951110.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950821-19950825.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951001-19951005.nc__14
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951016-19951020.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951116-19951120.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951106-19951110.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950726-19950731.nc__23
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950821-19950825.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951201-19951205.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951001-19951005.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951116-19951120.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951216-19951220.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951106-19951110.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950821-19950825.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951001-19951005.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951016-19951020.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951116-19951120.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951201-19951205.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951106-19951110.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951001-19951005.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951216-19951220.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951201-19951205.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950821-19950825.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951201-19951205.nc__6
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951116-19951120.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951106-19951110.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951016-19951020.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951001-19951005.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950821-19950825.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951116-19951120.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951201-19951205.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951106-19951110.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951016-19951020.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951001-19951005.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951106-19951110.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950821-19950825.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951221-19951225.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951116-19951120.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951201-19951205.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951016-19951020.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951006-19951010.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951106-19951110.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950821-19950825.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951221-19951225.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951116-19951120.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951006-19951010.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951016-19951020.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951201-19951205.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951106-19951110.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951116-19951120.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951006-19951010.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950821-19950825.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951021-19951025.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951221-19951225.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951006-19951010.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951201-19951205.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951006-19951010.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951021-19951025.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951106-19951110.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951221-19951225.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951116-19951120.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951006-19951010.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951201-19951205.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951021-19951025.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951106-19951110.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951116-19951120.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951006-19951010.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951221-19951225.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951021-19951025.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951006-19951010.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951106-19951110.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951201-19951205.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951221-19951225.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951116-19951120.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951021-19951025.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951006-19951010.nc__8
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951111-19951115.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951021-19951025.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951221-19951225.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951121-19951125.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951021-19951025.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951006-19951010.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951206-19951210.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951111-19951115.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951021-19951025.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951221-19951225.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951006-19951010.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951111-19951115.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951121-19951125.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951221-19951225.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951021-19951025.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951006-19951010.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951206-19951210.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951111-19951115.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951121-19951125.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951206-19951210.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951021-19951025.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951006-19951010.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951111-19951115.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951221-19951225.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951021-19951025.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951206-19951210.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951006-19951010.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951121-19951125.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951221-19951225.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951021-19951025.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951111-19951115.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951006-19951010.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951206-19951210.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951121-19951125.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951021-19951025.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951221-19951225.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951006-19951010.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951206-19951210.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951021-19951025.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951111-19951115.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951121-19951125.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951221-19951225.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951021-19951025.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951121-19951125.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951006-19951010.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951206-19951210.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951111-19951115.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951121-19951125.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951221-19951225.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951206-19951210.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951006-19951010.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951021-19951025.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951111-19951115.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951206-19951210.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951006-19951010.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951021-19951025.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951221-19951225.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951206-19951210.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951121-19951125.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951006-19951010.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951111-19951115.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951121-19951125.nc__9
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951021-19951025.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951206-19951210.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951121-19951125.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951011-19951015.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951111-19951115.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951121-19951125.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951206-19951210.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951021-19951025.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951011-19951015.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951121-19951125.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951111-19951115.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951021-19951025.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951206-19951210.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951121-19951125.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951011-19951015.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951111-19951115.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951206-19951210.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951011-19951015.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951121-19951125.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951111-19951115.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951121-19951125.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951206-19951210.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951011-19951015.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951206-19951210.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951121-19951125.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951011-19951015.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951111-19951115.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951206-19951210.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951111-19951115.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951206-19951210.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951121-19951125.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951011-19951015.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951111-19951115.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951121-19951125.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951011-19951015.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951206-19951210.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951111-19951115.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951206-19951210.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc__15
+[run_main.py:49 -              wrapper() ] database is locked
+Traceback (most recent call last):
+  File "run/run_main.py", line 43, in wrapper
+    blob_tester(ivt_timeslice)
+  File "/scratch/wrudisill/AR-Detection/run/reorg.py", line 289, in blob_tester
+    AR_blob.Make_Db()
+  File "/scratch/wrudisill/AR-Detection/run/AR_Object.py", line 41, in Make_Db
+    make_db(**dic)
+  File "/scratch/wrudisill/AR-Detection/run/make_dbase.py", line 81, in make_db
+    end_point))
+OperationalError: database is locked
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951111-19951115.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951211-19951215.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951121-19951125.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951111-19951115.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951211-19951215.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951126-19951130.nc__0
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951211-19951215.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951126-19951130.nc__1
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951211-19951215.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951126-19951130.nc__2
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951211-19951215.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951126-19951130.nc__3
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951211-19951215.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc__20
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951126-19951130.nc__4
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951126-19951130.nc__5
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951211-19951215.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951126-19951130.nc__6
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951211-19951215.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc__21
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951126-19951130.nc__7
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951211-19951215.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc__22
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc__20
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951211-19951215.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951126-19951130.nc__8
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc__21
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951211-19951215.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19950826-19950831.nc__23
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951126-19951130.nc__9
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951126-19951130.nc__10
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc__22
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951211-19951215.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951226-19951231.nc__23
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951126-19951130.nc__11
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951211-19951215.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951126-19951130.nc__12
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951211-19951215.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951126-19951130.nc__13
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951211-19951215.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951126-19951130.nc__14
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951211-19951215.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951126-19951130.nc__15
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951211-19951215.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951126-19951130.nc__16
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc__20
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951126-19951130.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951211-19951215.nc__17
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc__21
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951126-19951130.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951211-19951215.nc__18
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951126-19951130.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc__22
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951211-19951215.nc__19
+[run_main.py:44 -              wrapper() ] completed/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19951026-19951031.nc__23
+[run_main.py:59 -             <module>() ] Done
+20
+20
+20
+20
+20
+24
+20
+20
+24
+20
+20
+24
+20
+20
+20
+20
+20
+20
+20
+20
+12
+20
+20
+24
+20
+20
+20
+20
+20
+20
+20
+20
+20
+20
+20
+20
+20
+20
+24
+20
+20
+20
+20
+20
+24
+20
+20
+20
+20
+20
+20
+20
+20
+20
+20
+20
+20
+20
+20
+20
+20
+20
+20
+20
+20
+20
+20
+20
+20
+20
+20
+24

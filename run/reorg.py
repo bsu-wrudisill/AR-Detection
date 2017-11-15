@@ -1,12 +1,7 @@
-import matplotlib
-matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
-from mpl_toolkits.basemap import Basemap, cm
 import numpy as np                
 from netCDF4 import Dataset
 import numpy as np
 import glob
-import json
 from scipy.ndimage import filters, morphology, measurements
 from scipy import ndimage
 from datetime import datetime, timedelta
@@ -30,6 +25,10 @@ def format_date(hours):
     return dt
 
 
+def GrepTimeDim(filename):
+    ds = Dataset(filename)
+    return len(ds.variables['initial_time0_hours'])
+
 def lat_lon_to_indices(lat,lon):
 	# lat and lon are geographic coordinates 
     lat = round(lat * 2)/2   # rounds to nearest .5
@@ -40,7 +39,6 @@ def lat_lon_to_indices(lat,lon):
 
 def write_array(array, name, filepath):
 	np.save(filepath+name, array)
-
 
 def blob_dir_correct(blob_orientation):
 	blob_dir_raw         = blob_orientation / np.pi * 180
@@ -54,9 +52,7 @@ def blob_dir_correct(blob_orientation):
 		blob_dir = (360 - abs(blob_dir_corrected), 360 - abs(blob_dir_corrected) - 180)
 	return blob_dir # note: we get two values here 
 
-
 # x,y = lat_lon_to_indices(-49.029864, -69.162492)
-
 def calc_ivt(filename, time):
 	# calculate IVT and other things...
 	ds                      = Dataset(filename, format='NETCDF4_CLASSIC')        
@@ -100,7 +96,6 @@ def calc_ivt(filename, time):
 						 'filename': filename}
 	# return things 
 	return output_dictionary
-
 
 
 def blob_tester(ivt_timeslice, **kwargs):
@@ -267,15 +262,11 @@ def blob_tester(ivt_timeslice, **kwargs):
 			Lloc_flag  = 'False'
 			Lloc_pt    = 'None'
 
-
 		# ----- Remove all elements except blob of interest ------- # 
 		# ----- Region Props Algorithm ------------ # 
 		sub_array     = np.where(label_array == label, 1, 0)
 		blob          = regionprops(sub_array, ivt)[0]  # set to 0; only 1 region        
 		blob_dir_corrected = np.abs(np.abs(blob.orientation/np.pi * 180.)- 90.)
-
-
-
 
 		# ------ Put things in dictionary to write out --------- #
 		# ------------------- Metadata ------------------------- # 	
@@ -293,22 +284,13 @@ def blob_tester(ivt_timeslice, **kwargs):
 		AR_blob.wind_dir_mean                = str(wind_dir_mean)
 		AR_blob.wind_dir_var                 = str(wind_dir_var)
 		AR_blob.start_point                  = str(start)
-		AR_blob.end_point					 = str(end)
-		
-
-		AR_blob.Make_Db()
-
+		AR_blob.end_point                    = str(end)
+                
+                AR_blob.Make_Db()
 		# -------  Create Output Files for Saving ------------ # 
 		AR_blob.path = center.path
 		AR_blob.Save_File(label_indices, ivt, center.path, v_wgt_mn_grd, u_wgt_mn_grd)
 
-
-		#-------- WIND DIR AND OBJECT RELATIONSHIP HOOKS GO HERE --------#
-		# mean_u_i        = np.mean(u_i[label_indices])
-		# mean_v_i        = np.mean(v_i[label_indices])
-		# mean_wind_dir_  = np.arctan2(mean_v_i,mean_u_i)/np.pi * 180
-		# mean_wind_dir   = np.where(mean_wind_dir_< 0, 360 + mean_wind_dir_ , mean_wind_dir_)
-		#-------- WIND DIR AND OBJECT RELATIONSHIP HOOKS GO HERE --------#		
 
 		OBJECT_ID += 1.0
 
