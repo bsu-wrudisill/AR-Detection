@@ -27,6 +27,7 @@ def make_db(hr_time_str,
             end_lon,
             start_lat,
             start_lon,
+            gc_distance,
             AR_FLAG):
 
   dBase = sqlite3.connect('Atmospheric_River.db',timeout=10)
@@ -51,6 +52,7 @@ def make_db(hr_time_str,
                             end_lon REAL,
                             start_lat REAL,
                             start_lon REAL,
+                            gc_distance REAL,
                             AR_FLAG TEXT
                             )''')
 
@@ -77,11 +79,12 @@ def make_db(hr_time_str,
                             end_lon,                        
                             start_lat,
                             start_lon,
+                            gc_distance,
                             AR_FLAG
                             )
 
 
-                   VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''', 
+                   VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''', 
 
                    (      hr_time_str,
                           OBJECT_ID,
@@ -102,6 +105,7 @@ def make_db(hr_time_str,
                           end_lon,
                           start_lat,
                           start_lon,
+                          gc_distance,
                           AR_FLAG
                           ))
   dBase.commit()

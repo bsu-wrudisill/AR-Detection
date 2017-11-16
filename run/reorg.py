@@ -89,6 +89,28 @@ def blob_dir_correct(blob_orientation):
 		blob_dir = (360 - abs(blob_dir_corrected), 360 - abs(blob_dir_corrected) - 180)
 	return blob_dir # note: we get two values here 
 
+
+
+
+def haversine(lat1, lon1, lat2, lon2):
+    """
+    Calculate the great circle distance between two points
+    on the earth (specified in decimal degrees)
+    All args must be of equal length.    
+    """
+
+    lon1, lat1, lon2, lat2 = map(np.radians, [lon1, lat1, lon2, lat2])
+
+    dlon = lon2 - lon1
+    dlat = lat2 - lat1
+
+    a = np.sin(dlat/2.0)**2 + np.cos(lat1) * np.cos(lat2) * np.sin(dlon/2.0)**2.
+
+    c = 2. * np.arcsin(np.sqrt(a))
+    km = 6367. * c
+    return km
+
+
 # x,y = lat_lon_to_indices(-49.029864, -69.162492)
 def calc_ivt(filename, time):
 	# calculate IVT and other things...
@@ -181,12 +203,10 @@ def blob_tester(ivt_timeslice, **kwargs):
 		return v_wgt_mn, u_wgt_mn
 
 	# kwarg options defaults are set 
-	ivt_min   = kwargs.get('ivt_min' , 150.0)                 # Minimum IVT value in kg/ms to be retained
+	ivt_min   = kwargs.get('ivt_min' , 250.0)                 
 	size_mask = kwargs.get('size_mask', 150.0)     		      # Minimum size to retain, in px 
-	min_aspect= kwargs.get('min_aspect', 1.6)                 # Minimum length/width ratio for retained feature
 	min_orientation= kwargs.get('min_orientation',  0.95)     # Minimum orientation (taken as np.abs())
 	min_length= kwargs.get('min_length', 25.) 			      # Shortest feature length (in pixels)
-	min_meanintensity= kwargs.get('min_meanintensity', 250.)  # Lowest mean IVT anomaly intensity within a feature
 	min_eccentricity= kwargs.get('min_eccentricity', .87)     # Minimum eccentricity of a retained feature
 
 
@@ -298,6 +318,11 @@ def blob_tester(ivt_timeslice, **kwargs):
 			# do nothing
 		# ----------------------------------------#
 
+		
+
+		# --- Great Cirlce Length beteween start and end---------------#
+		gc_distance = haversine(start_lat,start_lon,end_lat,end_lon)
+
 
 
 		#-------- WIND DIR AND OBJECT RELATIONSHIP HOOKS GO HERE --------#
@@ -356,7 +381,7 @@ def blob_tester(ivt_timeslice, **kwargs):
 		if blob.eccentricity > min_eccentricity:
 			tc_ecc     = True      # eccentricity > min 
 
-		if sum([tc_ivt, tc_lgh, tc_lwr, tc_ecc]) == 5:
+		if tc_ivt + tc_lgh + tc_wdt + tc_lwr + tc_ecc == 5:
 			AR_FLAG = True
 		# -------------------------------------------------- #
 
@@ -385,12 +410,16 @@ def blob_tester(ivt_timeslice, **kwargs):
 		AR_blob.end_lon                      = str(end_lon)
 		AR_blob.start_lat                    = str(start_lat)
 		AR_blob.start_lon                    = str(start_lon)
+		AR_blob.gc_distance 				 = str(gc_distance)
 		AR_blob.AR_FLAG                      = str(AR_FLAG)
-
    		AR_blob.Make_Db()
+
 		# -------  Create Output Files for Saving ------------ # 
 		AR_blob.path = center.path
-		AR_blob.Save_File(label_indices, ivt, center.path, v_wgt_mn_grd, u_wgt_mn_grd)
+
+		if AR_FLAG == True:
+			AR_blob.Save_File(label_indices, ivt, center.path, v_wgt_mn_grd, u_wgt_mn_grd)
+
 		OBJECT_ID += 1.0
 
 if __name__=='__main__':
