@@ -40,6 +40,43 @@ def lat_lon_to_indices(lat,lon):
 def write_array(array, name, filepath):
 	np.save(filepath+name, array)
 
+
+def calc_85thp(timestring):
+	# accepts a string of time format 'YYYY-mm-dd_hh'
+	# weighted averages two monthly files;
+	# assumes 15th of the month represents the monthly statistic used
+	dt       = datetime.strptime(timestring, '%Y-%m-%d_%H')
+	month_a  = dt.month
+	day      = dt.day
+
+	# we make the simplifying assumption that months are 30 days long....
+
+	diff = 15. - day  
+	#weights 
+	wgt1    = (30. - abs(diff))/15.    #wgt for current month
+	wgt2    =  2. - wgt1			   #wgt for next(previous) month
+
+	if diff <= 0:
+		month_b = month_a - 1.
+	else:
+		month_b = month_a + 1.
+
+	# convert month to string to read file
+	def zero_pad(mo):
+		if mo < 10:
+			mostr = '0'+str(int(mo))
+		else:
+			mostr = str(int(mo))
+		return mostr
+
+	path = '/Users/will/Desktop/AR-Detection/data/seasonal_means/' # path to files
+	filea = np.load(path+'Month_'+zero_pad(month_a)+'.npy')
+	fileb = np.load(path+'Month_'+zero_pad(month_b)+'.npy')
+
+	p85 = (wgt1*filea + wgt2*fileb)/2.  # weighted average
+	return p85   # returns grid
+
+
 def blob_dir_correct(blob_orientation):
 	blob_dir_raw         = blob_orientation / np.pi * 180
 	blob_dir_corrected   = blob_dir_raw * -1 
@@ -105,7 +142,7 @@ def blob_tester(ivt_timeslice, **kwargs):
 
 	
 	def pacific_region():
-		# needs lons_mesh and lats_mesh
+		# needs lons_mesh and lats_mesh to exist w/in scope
 		# idx = np.where((lons_mesh > -125.) & (lons_mesh < -112.) & (lats_mesh > 30.) & (lats_mesh < 50.))
 		idxa = np.where((lons_mesh >= -180.) & (lons_mesh < -120.) & (lats_mesh > 0.) & (lats_mesh < 90.))	
 		idxb = np.where((lons_mesh > 120.) & (lons_mesh <= 180.) & (lats_mesh > 0.) & (lats_mesh < 90.))
@@ -162,6 +199,7 @@ def blob_tester(ivt_timeslice, **kwargs):
 	spfh = ivt_timeslice['spfh']
 	lons_mesh   = ivt_timeslice['lons_mesh']
 	lats_mesh   = ivt_timeslice['lats_mesh']
+  	hr_time_str = ivt_timeslice['hr_time_str'] 
 
 	# -----grid size calcs -----
 	earth_rad = 6371.0
@@ -171,7 +209,11 @@ def blob_tester(ivt_timeslice, **kwargs):
 	# calculate vertical grid cell distance; this is the same for all lats 
 	grid_dy = earth_rad*2.0*np.pi/720.0
 	# ----- grid size calcs -----
-
+   
+ 	# --- subtract 85th percentile from IVT ----# 
+ 	# create grid; 85th perc. or 100 kg/m/s, whichever is gt.
+ 	p85 = calc_85thp(hr_time_str)
+  
 
 	# Convert to binary. 1 is above min value
 	threshold_array = np.where(ivt > ivt_min, 1, 0)
@@ -286,7 +328,7 @@ def blob_tester(ivt_timeslice, **kwargs):
 		AR_blob.start_point                  = str(start)
 		AR_blob.end_point                    = str(end)
                 
-                AR_blob.Make_Db()
+        AR_blob.Make_Db()
 		# -------  Create Output Files for Saving ------------ # 
 		AR_blob.path = center.path
 		AR_blob.Save_File(label_indices, ivt, center.path, v_wgt_mn_grd, u_wgt_mn_grd)
