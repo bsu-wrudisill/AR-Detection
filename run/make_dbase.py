@@ -40,12 +40,12 @@ def make_db(hr_time_str,
                             eccentricity REAL,
                             landfalling TEXT,   
                             landfall_point TEXT,
-                            wind_dir_mean TEXT,
-                            wind_dir_var TEXT, 
-                            end_lat TEXT,
-                            end_lon TEXT,
-                            start_lat TEXT,
-                            start_lon TEXT
+                            wind_dir_mean REAl,
+                            wind_dir_var REAL, 
+                            end_lat REAL,
+                            end_lon REAL,
+                            start_lat REAL,
+                            start_lon REAL
                             )''')
 
 

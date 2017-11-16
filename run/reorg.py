@@ -212,7 +212,8 @@ def blob_tester(ivt_timeslice, **kwargs):
    
  	# --- subtract 85th percentile from IVT ----# 
 
- 	# create grid; 85th perc. or 100 kg/m/s, whichever is gt. 	
+
+ 	# create grid; 85th perc. or 100 kg/m/s, whichever is gt. 	# From Guan et. al 2015 
  	p85 = calc_85thp(hr_time_str)
   	p85 = np.where(p85 > 100., p85, 100.)
 
@@ -276,13 +277,25 @@ def blob_tester(ivt_timeslice, **kwargs):
 		blob_earth_area   = np.sum(grid_dx[label_indices]*grid_dy)
 		width             = blob_earth_area/length           # possible divide by zero
 		
-		# start and end 
-		# start = indices_to_lat_lon(tuple(center.start))
-		# end   = indices_to_lat_lon(tuple(center.end))
-
-		start_lat,start_lon = indices_to_lat_lon(tuple(center.start))
-		end_lat,end_lon     = indices_to_lat_lon(tuple(center.end))
 		
+		# -------- Start and End points -----------# 
+		start_lat,start_lon   = indices_to_lat_lon(tuple(center.start))
+		end_lat,end_lon       = indices_to_lat_lon(tuple(center.end))
+		# decide which is which 
+		_lons = np.linspace(-180.,179.5,720.)
+		lons = np.where (_lons < 0.0, _lons + 180. , _lons - 180.)
+
+		sl = np.where(lons == float(start_lon)) # get index of point along number line 
+		el = np.where(lons == float(end_lon))   # get index of point along number line 
+		
+		if el < sl:  # end lon is further west than start lon; reverse condition
+			start_lat,start_lon   = indices_to_lat_lon(tuple(center.end))
+			end_lat,end_lon       = indices_to_lat_lon(tuple(center.start))
+
+		# else:
+			# do nothing
+		# ----------------------------------------#
+
 
 		#-------- WIND DIR AND OBJECT RELATIONSHIP HOOKS GO HERE --------#
 		v_wgt_mn, u_wgt_mn = ScaleBYq(vgrd[:, label_indices[0], label_indices[1]], ugrd[:, label_indices[0],label_indices[1]], spfh[:, label_indices[0],label_indices[1]])
