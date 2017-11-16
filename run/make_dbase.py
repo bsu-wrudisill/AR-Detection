@@ -21,8 +21,10 @@ def make_db(hr_time_str,
             landfall_point,
             wind_dir_mean,
             wind_dir_var,  
-            start_point,
-            end_point):
+            end_lat,
+            end_lon,
+            start_lat,
+            start_lon):
 
   dBase = sqlite3.connect('Atmospheric_River.db',timeout=10)
   cursor = dBase.cursor()
@@ -40,8 +42,11 @@ def make_db(hr_time_str,
                             landfall_point TEXT,
                             wind_dir_mean TEXT,
                             wind_dir_var TEXT, 
-                            start_point TEXT,
-                            end_point TEXT)''')
+                            end_lat TEXT,
+                            end_lon TEXT,
+                            start_lat TEXT,
+                            start_lon TEXT
+                            )''')
 
 
 #
@@ -59,10 +64,15 @@ def make_db(hr_time_str,
                             landfalling ,
                             landfall_point,
                             wind_dir_mean,
-                            wind_dir_var,                        
-                            start_point,
-                            end_point)
-                   VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''', 
+                            wind_dir_var,
+                            end_lat,
+                            end_lon,                        
+                            start_lat,
+                            start_lon
+                            )
+
+
+                   VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''', 
 
                    (      hr_time_str,
                           OBJECT_ID,
@@ -77,8 +87,11 @@ def make_db(hr_time_str,
                           landfall_point,
                           wind_dir_mean,
                           wind_dir_var,                      
-                          start_point,
-                          end_point))
+                          end_lat,
+                          end_lon,
+                          start_lat,
+                          start_lon
+                          ))
   dBase.commit()
   dBase.close()
 

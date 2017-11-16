@@ -211,12 +211,14 @@ def blob_tester(ivt_timeslice, **kwargs):
 	# ----- grid size calcs -----
    
  	# --- subtract 85th percentile from IVT ----# 
- 	# create grid; 85th perc. or 100 kg/m/s, whichever is gt.
+
+ 	# create grid; 85th perc. or 100 kg/m/s, whichever is gt. 	
  	p85 = calc_85thp(hr_time_str)
-  
+  	p85 = np.where(p85 > 100., p85, 100.)
+
 
 	# Convert to binary. 1 is above min value
-	threshold_array = np.where(ivt > ivt_min, 1, 0)
+	threshold_array = np.where(ivt > p85, 1, 0)
 
 	# Labeled components. given values of 1:n
 	# Each 'blob' identified is assigned a label 
@@ -275,10 +277,13 @@ def blob_tester(ivt_timeslice, **kwargs):
 		width             = blob_earth_area/length           # possible divide by zero
 		
 		# start and end 
-		start = indices_to_lat_lon(tuple(center.start))
-		end   = indices_to_lat_lon(tuple(center.end))
+		# start = indices_to_lat_lon(tuple(center.start))
+		# end   = indices_to_lat_lon(tuple(center.end))
 
+		start_lat,start_lon = indices_to_lat_lon(tuple(center.start))
+		end_lat,end_lon     = indices_to_lat_lon(tuple(center.end))
 		
+
 		#-------- WIND DIR AND OBJECT RELATIONSHIP HOOKS GO HERE --------#
 		v_wgt_mn, u_wgt_mn = ScaleBYq(vgrd[:, label_indices[0], label_indices[1]], ugrd[:, label_indices[0],label_indices[1]], spfh[:, label_indices[0],label_indices[1]])
 		# create a grid to store these values on; to be saved as output
@@ -291,7 +296,7 @@ def blob_tester(ivt_timeslice, **kwargs):
 		wind_dir_mean      = uv2deg(np.mean(v_wgt_mn),np.mean(u_wgt_mn))
 		wind_dir_var       = CircVar(v_wgt_mn, u_wgt_mn)
 
-		#-------- WIND DIR AND OBJECT RELATIONSHIP HOOKS GO HERE --------#
+		#---------------------------------------------------------------#
 
 
 		# ----- Test if AR makes landfall ----------- # 
@@ -325,10 +330,14 @@ def blob_tester(ivt_timeslice, **kwargs):
 		AR_blob.object_orientation_direction = str(blob_dir_corrected)
 		AR_blob.wind_dir_mean                = str(wind_dir_mean)
 		AR_blob.wind_dir_var                 = str(wind_dir_var)
-		AR_blob.start_point                  = str(start)
-		AR_blob.end_point                    = str(end)
+		AR_blob.end_lat                      = str(end_lat)
+		AR_blob.end_lon                      = str(end_lon)
+		AR_blob.start_lat                    = str(start_lat)
+		AR_blob.start_lon                    = str(start_lon)
+
+
                 
-        AR_blob.Make_Db()
+		AR_blob.Make_Db()
 		# -------  Create Output Files for Saving ------------ # 
 		AR_blob.path = center.path
 		AR_blob.Save_File(label_indices, ivt, center.path, v_wgt_mn_grd, u_wgt_mn_grd)
@@ -336,5 +345,12 @@ def blob_tester(ivt_timeslice, **kwargs):
 
 		OBJECT_ID += 1.0
 
+
+
+if __name__=='__main__':
+	filename = '/Users/will/Desktop/AR-Detection/data/pgbhnl.gdas.19960516-19960520.nc'
+	print filename
+	ivt_timeslice = calc_ivt(filename, 0)
+	blob_tester(ivt_timeslice)
 
 
