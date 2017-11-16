@@ -321,13 +321,15 @@ def blob_tester(ivt_timeslice, **kwargs):
 		Lloc = center.landfall_location
 		if len(Lloc) > 0:
 			Lloc_flag  = 'True'
-			Lloc_pt    = str(map(indices_to_lat_lon, Lloc))
+#			Lloc_pt    = str(map(indices_to_lat_lon, Lloc))
+			Lloc_lat,Lloc_lon   = indices_to_lat_lon(Lloc[0])    # maybe there are 2 lflocs... lets just pick one.
 			
 			#print str(map(indices_to_lat_lon, Lloc))
 		else:
 			Lloc_flag  = 'False'
-			Lloc_pt    = 'None'
-
+			#Lloc_pt    = 'None'
+			Lloc_lat = 'None'	
+			Lloc_lon = 'None'
 
 		# ----- Remove all elements except blob of interest ------- # 
 		# ----- Region Props Algorithm ------------ # 
@@ -352,7 +354,7 @@ def blob_tester(ivt_timeslice, **kwargs):
 			tc_lwr     = True      # lw ratio
 
 		if blob.eccentricity > min_eccentricity:
-			tc_ecc     = False      # eccentricity > min 
+			tc_ecc     = True      # eccentricity > min 
 
 		if sum([tc_ivt, tc_lgh, tc_lwr, tc_ecc]) == 5:
 			AR_FLAG = True
@@ -368,7 +370,8 @@ def blob_tester(ivt_timeslice, **kwargs):
 		AR_blob.OBJECT_ID       		     = OBJECT_ID
 		AR_blob.filename        			 = ivt_timeslice['filename']
 		AR_blob.landfalling   				 = Lloc_flag
-		AR_blob.landfall_point  		     = Lloc_pt
+		AR_blob.landfall_lat     		     = Lloc_lat
+		AR_blob.landfall_lon     		     = Lloc_lon
 		AR_blob.object_length  				 = length
 		AR_blob.object_width    			 = width
 		AR_blob.length_to_width 		     = length/width    # possible divide by zero
