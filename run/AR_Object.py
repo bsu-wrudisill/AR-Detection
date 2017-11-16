@@ -20,6 +20,7 @@ class AR_Object():
 		self.end_lon = None
 		self.start_lat = None
 		self.start_lon = None
+		self.AR_FLAG = None
 
 	def Make_Db(self):
 
@@ -37,10 +38,12 @@ class AR_Object():
 				'landfall_point': self.landfall_point,
 				'wind_dir_mean': self.wind_dir_mean,
 				'wind_dir_var': self.wind_dir_var,
+				'wind_speed': self.wind_speed,			
 				'end_lat': self.end_lat,
 				'end_lon': self.end_lon,
 				'start_lat':self.start_lat,
-				'start_lon':self.start_lon}
+				'start_lon':self.start_lon,
+				'AR_FLAG':self.AR_FLAG}
 
 		make_db(**dic)
 

@@ -139,13 +139,11 @@ def blob_tester(ivt_timeslice, **kwargs):
 	'''
 	Test potential AR features and log results.
 	'''
-
-	
 	def pacific_region():
 		# needs lons_mesh and lats_mesh to exist w/in scope
 		# idx = np.where((lons_mesh > -125.) & (lons_mesh < -112.) & (lats_mesh > 30.) & (lats_mesh < 50.))
-		idxa = np.where((lons_mesh >= -180.) & (lons_mesh < -120.) & (lats_mesh > 0.) & (lats_mesh < 90.))	
-		idxb = np.where((lons_mesh > 120.) & (lons_mesh <= 180.) & (lats_mesh > 0.) & (lats_mesh < 90.))
+		idxa = np.where((lons_mesh >= -180.) & (lons_mesh < -120.) & (lats_mesh > 0.) & (lats_mesh < 60.))	
+		idxb = np.where((lons_mesh > 120.) & (lons_mesh <= 180.) & (lats_mesh > 0.) & (lats_mesh < 60.))
 		foo  = np.zeros_like(lons_mesh) 
 		foo[idxa] = 1
 		foo[idxb] = 1 
@@ -210,8 +208,8 @@ def blob_tester(ivt_timeslice, **kwargs):
 	grid_dy = earth_rad*2.0*np.pi/720.0
 	# ----- grid size calcs -----
    
- 	# --- subtract 85th percentile from IVT ----# 
 
+ 	# --- subtract 85th percentile from IVT ----# 
 
  	# create grid; 85th perc. or 100 kg/m/s, whichever is gt. 	# From Guan et. al 2015 
  	p85 = calc_85thp(hr_time_str)
@@ -239,16 +237,19 @@ def blob_tester(ivt_timeslice, **kwargs):
 
 	# loop through labels 
 	for label in keep_label:	
-		# -------------------------------------------------- #
+		#--------------------------------------------------#
 		#  Test Flags; set to true if passing 
-		# -------------------------------------------------- #
+		#--------------------------------------------------#
 		tc_ivt     = False      # Mean IVT 
 		tc_lgh     = False      # Length
+		tc_wdt     = False      # Length/width ratio
 		tc_lwr     = False      # Length/width ratio
 		tc_lnd     = False      # Coastal landfalling 
 		tc_idh     = False      # Idaho Landfalling 
 		tc_ecc     = False      # eccentricity > min 
+		AR_FLAG    = False
 		# -------------------------------------------------- #
+
 
 		# Initialize AR object 
 		AR_blob = AR_Object()
@@ -258,7 +259,7 @@ def blob_tester(ivt_timeslice, **kwargs):
 		label_indices_alt = np.argwhere(label_array == label)        # indices in [(a,b), ....] fmt
 
 
-		# ----- test if blob is w/in the Pacific ------- # 
+		#----- test if blob is w/in the Pacific -------# 
 		pacific        = map(tuple, list(pacific_region()))	   
 		blob_reg       = map(tuple, list(label_indices_alt))
 		intersect      = list(set(pacific).intersection(blob_reg))
@@ -267,7 +268,8 @@ def blob_tester(ivt_timeslice, **kwargs):
 			pass          # if it is in N pacific, proceed throug rest of loop
 		else:
 			continue      # otherwise, go to the next blob 
-		# ----- test if blob is w/in the Pacific ------- # 
+		#----------------------------------------------# 
+
 
 
 		# -------- Centerline Calculations -------- #		
@@ -276,7 +278,8 @@ def blob_tester(ivt_timeslice, **kwargs):
 		length            = center.path_length
 		blob_earth_area   = np.sum(grid_dx[label_indices]*grid_dy)
 		width             = blob_earth_area/length           # possible divide by zero
-		
+		# ----------------------------------------- #		
+
 		
 		# -------- Start and End points -----------# 
 		start_lat,start_lon   = indices_to_lat_lon(tuple(center.start))
@@ -291,10 +294,10 @@ def blob_tester(ivt_timeslice, **kwargs):
 		if el < sl:  # end lon is further west than start lon; reverse condition
 			start_lat,start_lon   = indices_to_lat_lon(tuple(center.end))
 			end_lat,end_lon       = indices_to_lat_lon(tuple(center.start))
-
 		# else:
 			# do nothing
 		# ----------------------------------------#
+
 
 
 		#-------- WIND DIR AND OBJECT RELATIONSHIP HOOKS GO HERE --------#
@@ -303,12 +306,14 @@ def blob_tester(ivt_timeslice, **kwargs):
 		v_wgt_mn_grd = np.zeros_like(ivt)	
 		v_wgt_mn_grd[label_indices] = v_wgt_mn
 
-		u_wgt_mn_grd = np.zeros_like(ivt)
-		u_wgt_mn_grd[label_indices] = u_wgt_mn
+		u_wgt_mn_grd = np.zeros_like(ivt)             # We create these to save as output 
+		u_wgt_mn_grd[label_indices] = u_wgt_mn        # We create these to save as output 
 
-		wind_dir_mean      = uv2deg(np.mean(v_wgt_mn),np.mean(u_wgt_mn))
+
+
+		wind_dir_mean      = uv2deg(np.mean(v_wgt_mn),np.mean(u_wgt_mn))   #coverts u and v wind to a direction in degrees
 		wind_dir_var       = CircVar(v_wgt_mn, u_wgt_mn)
-
+		wind_speed         = np.hypot(np.mean(v_wgt_mn),np.mean(u_wgt_mn))
 		#---------------------------------------------------------------#
 
 
@@ -317,19 +322,48 @@ def blob_tester(ivt_timeslice, **kwargs):
 		if len(Lloc) > 0:
 			Lloc_flag  = 'True'
 			Lloc_pt    = str(map(indices_to_lat_lon, Lloc))
+			
 			#print str(map(indices_to_lat_lon, Lloc))
 		else:
 			Lloc_flag  = 'False'
 			Lloc_pt    = 'None'
 
+
 		# ----- Remove all elements except blob of interest ------- # 
 		# ----- Region Props Algorithm ------------ # 
-		sub_array     = np.where(label_array == label, 1, 0)
-		blob          = regionprops(sub_array, ivt)[0]  # set to 0; only 1 region        
+		sub_array          = np.where(label_array == label, 1, 0)
+		blob               = regionprops(sub_array, ivt)[0]  # set to 0; only 1 region        
 		blob_dir_corrected = np.abs(np.abs(blob.orientation/np.pi * 180.)- 90.)
 
+
+		#--------------------------------------------------#
+		#  Test Flags; set to true if passing 
+		#--------------------------------------------------#
+		if blob.mean_intensity > ivt_min:
+			tc_ivt     = True      #mean IVT of object
+
+		if length > 2000.:
+			tc_lgh     = True      # lenght
+
+		if width < 1000.:         
+			tc_wdt     = True      # width
+
+		if length/width > 2.:
+			tc_lwr     = True      # lw ratio
+
+		if blob.eccentricity > min_eccentricity:
+			tc_ecc     = False      # eccentricity > min 
+
+		if sum([tc_ivt, tc_lgh, tc_lwr, tc_ecc]) == 5:
+			AR_FLAG = True
+		# -------------------------------------------------- #
+
+
+
+		# ------------------------------------------------------ #
 		# ------ Put things in dictionary to write out --------- #
 		# ------------------- Metadata ------------------------- # 	
+
 		AR_blob.hr_time_str  			     = ivt_timeslice['hr_time_str']
 		AR_blob.OBJECT_ID       		     = OBJECT_ID
 		AR_blob.filename        			 = ivt_timeslice['filename']
@@ -343,27 +377,23 @@ def blob_tester(ivt_timeslice, **kwargs):
 		AR_blob.object_orientation_direction = str(blob_dir_corrected)
 		AR_blob.wind_dir_mean                = str(wind_dir_mean)
 		AR_blob.wind_dir_var                 = str(wind_dir_var)
+		AR_blob.wind_speed                   = str(wind_speed)
 		AR_blob.end_lat                      = str(end_lat)
 		AR_blob.end_lon                      = str(end_lon)
 		AR_blob.start_lat                    = str(start_lat)
 		AR_blob.start_lon                    = str(start_lon)
+		AR_blob.AR_FLAG                      = str(AR_FLAG)
 
-
-                
-		AR_blob.Make_Db()
+   		AR_blob.Make_Db()
 		# -------  Create Output Files for Saving ------------ # 
 		AR_blob.path = center.path
 		AR_blob.Save_File(label_indices, ivt, center.path, v_wgt_mn_grd, u_wgt_mn_grd)
-
-
 		OBJECT_ID += 1.0
-
-
 
 if __name__=='__main__':
 	filename = '/Users/will/Desktop/AR-Detection/data/pgbhnl.gdas.19960516-19960520.nc'
 	print filename
 	ivt_timeslice = calc_ivt(filename, 0)
-	blob_tester(ivt_timeslice)
+	p85 = blob_tester(ivt_timeslice)
 
 

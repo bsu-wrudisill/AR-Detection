@@ -20,11 +20,13 @@ def make_db(hr_time_str,
             landfalling ,
             landfall_point,
             wind_dir_mean,
-            wind_dir_var,  
+            wind_dir_var,
+            wind_speed,  
             end_lat,
             end_lon,
             start_lat,
-            start_lon):
+            start_lon,
+            AR_FLAG):
 
   dBase = sqlite3.connect('Atmospheric_River.db',timeout=10)
   cursor = dBase.cursor()
@@ -42,10 +44,12 @@ def make_db(hr_time_str,
                             landfall_point TEXT,
                             wind_dir_mean REAl,
                             wind_dir_var REAL, 
+                            wind_speed REAL,
                             end_lat REAL,
                             end_lon REAL,
                             start_lat REAL,
-                            start_lon REAL
+                            start_lon REAL,
+                            AR_FLAG TEXT
                             )''')
 
 
@@ -65,14 +69,16 @@ def make_db(hr_time_str,
                             landfall_point,
                             wind_dir_mean,
                             wind_dir_var,
+                            wind_speed,
                             end_lat,
                             end_lon,                        
                             start_lat,
-                            start_lon
+                            start_lon,
+                            AR_FLAG
                             )
 
 
-                   VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''', 
+                   VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''', 
 
                    (      hr_time_str,
                           OBJECT_ID,
@@ -86,11 +92,13 @@ def make_db(hr_time_str,
                           landfalling,
                           landfall_point,
                           wind_dir_mean,
-                          wind_dir_var,                      
+                          wind_dir_var,
+                          wind_speed,                      
                           end_lat,
                           end_lon,
                           start_lat,
-                          start_lon
+                          start_lon,
+                          AR_FLAG
                           ))
   dBase.commit()
   dBase.close()
