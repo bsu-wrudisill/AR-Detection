@@ -337,12 +337,6 @@ def blob_tester(ivt_timeslice, **kwargs):
 
 		mean_IVT = np.mean(ivt[label_indices])
 		meridional_IVT = mean_IVT*np.cos(wind_dir_mean*np.pi/180.)
-
-		#### -- mean object/IVT direction orientation -----### 
-
-
-
-
 		#---------------------------------------------------------------#
 
 
@@ -366,8 +360,15 @@ def blob_tester(ivt_timeslice, **kwargs):
 		sub_array          = np.where(label_array == label, 1, 0)
 		blob               = regionprops(sub_array, ivt)[0]  # set to 0; only 1 region        
 		#blob_dir_corrected = np.abs(np.abs(blob.orientation/np.pi * 180.)- 90.)
-		blob_dir_corrected = np.abs(blob.orientation/np.pi * 180.)
-
+		phi = np.abs(blob.orientation/np.pi * 180.)
+                
+                if (phi >= 0) amd (phi <= 90.):
+                    blob_phi = 90. - phi
+                
+                if (phi <= 0) and (phi >= -90.):
+                    blob_phi = 90 + abs(phi)
+                
+                
 
 		#--------------------------------------------------#
 		#  Test Flags; set to true if passing 
@@ -397,19 +398,19 @@ def blob_tester(ivt_timeslice, **kwargs):
 		# ------ Put things in dictionary to write out --------- #
 		# ------------------- Metadata ------------------------- # 	
 
-		AR_blob.hr_time_str  			     = ivt_timeslice['hr_time_str']
-		AR_blob.OBJECT_ID       		     = OBJECT_ID
-		AR_blob.filename        			 = ivt_timeslice['filename']
-		AR_blob.landfalling   				 = Lloc_flag
-		AR_blob.landfall_lat     		     = Lloc_lat
-		AR_blob.landfall_lon     		     = Lloc_lon
-		AR_blob.object_length  				 = length
-		AR_blob.object_width    			 = width
-		AR_blob.length_to_width 		     = length/width    # possible divide by zero
-		AR_blob.eccentricity    			 = blob.eccentricity 
-		AR_blob.mean_IVT 			         = mean_IVT		#blob.mean_intensity... should be the same but not sure.
+		AR_blob.hr_time_str  			 = ivt_timeslice['hr_time_str']
+		AR_blob.OBJECT_ID       		 = OBJECT_ID
+		AR_blob.filename        		 = ivt_timeslice['filename']
+		AR_blob.landfalling   			 = Lloc_flag
+		AR_blob.landfall_lat     		 = Lloc_lat
+		AR_blob.landfall_lon     		 = Lloc_lon
+		AR_blob.object_length  			 = length
+		AR_blob.object_width    	         = width
+		AR_blob.length_to_width 	         = length/width    # possible divide by zero
+		AR_blob.eccentricity    		 = blob.eccentricity 
+		AR_blob.mean_IVT 			 = mean_IVT		#blob.mean_intensity... should be the same but not sure.
 		AR_blob.meridional_IVT 		         = meridional_IVT		#blob.mean_intensity... should be the same but not sure.
-		AR_blob.object_orientation_direction = str(blob_dir_corrected)
+                AR_blob.object_orientation_direction     = str(blob_phi)
 		AR_blob.wind_dir_mean                = str(wind_dir_mean)
 		AR_blob.wind_dir_var                 = str(wind_dir_var)
 		AR_blob.wind_speed                   = str(wind_speed)

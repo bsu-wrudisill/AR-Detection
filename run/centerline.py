@@ -153,8 +153,8 @@ class Centerline():
         #-------------------------------------------------------------------------#
         # Global Values 
         #-------------------------------------------------------------------------#
-        land            = np.load('/Users/will/Desktop/AR-Detection/data/land.npy')
-        self.coastline  = np.load('/Users/will/Desktop/AR-Detection/data/west_coast.npy')
+        land            = np.load('/home/wrudisill/scratch/AR-Detection/data/land.npy')
+        self.coastline  = np.load('/home/wrudisill/scratch/AR-Detection/data/west_coast.npy')
         #-------------------------------------------------------------------------#
 
         self.Distance_Matrix(label_indices_alt)
