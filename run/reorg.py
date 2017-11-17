@@ -48,9 +48,7 @@ def calc_85thp(timestring):
 	dt       = datetime.strptime(timestring, '%Y-%m-%d_%H')
 	month_a  = dt.month
 	day      = dt.day
-
 	# we make the simplifying assumption that months are 30 days long....
-
 	diff = 15. - day  
 	#weights 
 	wgt1    = (30. - abs(diff))/15.    #wgt for current month
@@ -77,17 +75,17 @@ def calc_85thp(timestring):
 	return p85   # returns grid
 
 
-def blob_dir_correct(blob_orientation):
-	blob_dir_raw         = blob_orientation / np.pi * 180
-	blob_dir_corrected   = blob_dir_raw * -1 
-	# Blob Orientation; we must deal with ambiguity of blob orientation w.r.t to wind dir
-	# So we give it two possible directions
-	# Recalls orientation is between -90 and 90. So we convert that to [0,359.9]
-	if  blob_dir_corrected >= 0:                                        # Positive blob dir
-		blob_dir = (blob_dir_corrected, 180+blob_dir_corrected)
-	else:                                                               # Negative blob dir
-		blob_dir = (360 - abs(blob_dir_corrected), 360 - abs(blob_dir_corrected) - 180)
-	return blob_dir # note: we get two values here 
+# def blob_dir_correct(blob_orientation):
+# 	blob_dir_raw         = blob_orientation / np.pi * 180
+# 	blob_dir_corrected   = blob_dir_raw * -1 
+# 	# Blob Orientation; we must deal with ambiguity of blob orientation w.r.t to wind dir
+# 	# So we give it two possible directions
+# 	# Recalls orientation is between -90 and 90. So we convert that to [0,359.9]
+# 	if  blob_dir_corrected >= 0:                                        # Positive blob dir
+# 		blob_dir = (blob_dir_corrected, 180+blob_dir_corrected)
+# 	else:                                                               # Negative blob dir
+# 		blob_dir = (360 - abs(blob_dir_corrected), 360 - abs(blob_dir_corrected) - 180)
+	# return blob_dir # note: we get two values here 
 
 
 
@@ -98,14 +96,10 @@ def haversine(lat1, lon1, lat2, lon2):
     on the earth (specified in decimal degrees)
     All args must be of equal length.    
     """
-
     lon1, lat1, lon2, lat2 = map(np.radians, [lon1, lat1, lon2, lat2])
-
     dlon = lon2 - lon1
     dlat = lat2 - lat1
-
     a = np.sin(dlat/2.0)**2 + np.cos(lat1) * np.cos(lat2) * np.sin(dlon/2.0)**2.
-
     c = 2. * np.arcsin(np.sqrt(a))
     km = 6367. * c
     return km
@@ -203,10 +197,10 @@ def blob_tester(ivt_timeslice, **kwargs):
 		return v_wgt_mn, u_wgt_mn
 
 	# kwarg options defaults are set 
-	ivt_min   = kwargs.get('ivt_min' , 250.0)                 
-	size_mask = kwargs.get('size_mask', 150.0)     		      # Minimum size to retain, in px 
-	min_orientation= kwargs.get('min_orientation',  0.95)     # Minimum orientation (taken as np.abs())
-	min_length= kwargs.get('min_length', 25.) 			      # Shortest feature length (in pixels)
+	ivt_min         = kwargs.get('ivt_min' , 250.0)                 
+	size_mask       = kwargs.get('size_mask', 150.0)     		      # Minimum size to retain, in px 
+	min_orientation = kwargs.get('min_orientation',  0.95)     # Minimum orientation (taken as np.abs())
+	min_length      = kwargs.get('min_length', 25.) 			      # Shortest feature length (in pixels)
 	min_eccentricity= kwargs.get('min_eccentricity', .87)     # Minimum eccentricity of a retained feature
 
 
@@ -262,12 +256,11 @@ def blob_tester(ivt_timeslice, **kwargs):
 		#--------------------------------------------------#
 		tc_ivt     = False      # Mean IVT 
 		tc_lgh     = False      # Length
-		tc_wdt     = False      # Length/width ratio
+		tc_wdt     = False      # Width ratio
 		tc_lwr     = False      # Length/width ratio
-		tc_lnd     = False      # Coastal landfalling 
-		tc_idh     = False      # Idaho Landfalling 
+		tc_merivt  = False      # meridonal ivt
 		tc_ecc     = False      # eccentricity > min 
-		AR_FLAG    = False
+		AR_BASE_FLAG    = False
 		# -------------------------------------------------- #
 
 
@@ -288,8 +281,6 @@ def blob_tester(ivt_timeslice, **kwargs):
 			pass          # if it is in N pacific, proceed throug rest of loop
 		else:
 			continue      # otherwise, go to the next blob 
-		#----------------------------------------------# 
-
 
 
 		# -------- Centerline Calculations -------- #		
@@ -330,16 +321,30 @@ def blob_tester(ivt_timeslice, **kwargs):
 		# create a grid to store these values on; to be saved as output
 		v_wgt_mn_grd = np.zeros_like(ivt)	
 		v_wgt_mn_grd[label_indices] = v_wgt_mn
-
 		u_wgt_mn_grd = np.zeros_like(ivt)             # We create these to save as output 
 		u_wgt_mn_grd[label_indices] = u_wgt_mn        # We create these to save as output 
-
-
-
 		wind_dir_mean      = uv2deg(np.mean(v_wgt_mn),np.mean(u_wgt_mn))   #coverts u and v wind to a direction in degrees
 		wind_dir_var       = CircVar(v_wgt_mn, u_wgt_mn)
 		wind_speed         = np.hypot(np.mean(v_wgt_mn),np.mean(u_wgt_mn))
+
+		#### -- calculate meridional component of IVT -----### 
+		#   meridional
+		# 	   |   /  
+ 		#      |  /IVT
+		#      | / 
+		#  phi |/    
+		#       --------- zonal
+
+		mean_IVT = np.mean(ivt[label_indices])
+		meridional_IVT = mean_IVT*np.cos(wind_dir_mean*np.pi/180.)
+
+		#### -- mean object/IVT direction orientation -----### 
+
+
+
+
 		#---------------------------------------------------------------#
+
 
 
 		# ----- Test if AR makes landfall ----------- # 
@@ -360,13 +365,14 @@ def blob_tester(ivt_timeslice, **kwargs):
 		# ----- Region Props Algorithm ------------ # 
 		sub_array          = np.where(label_array == label, 1, 0)
 		blob               = regionprops(sub_array, ivt)[0]  # set to 0; only 1 region        
-		blob_dir_corrected = np.abs(np.abs(blob.orientation/np.pi * 180.)- 90.)
+		#blob_dir_corrected = np.abs(np.abs(blob.orientation/np.pi * 180.)- 90.)
+		blob_dir_corrected = np.abs(blob.orientation/np.pi * 180.)
 
 
 		#--------------------------------------------------#
 		#  Test Flags; set to true if passing 
 		#--------------------------------------------------#
-		if blob.mean_intensity > ivt_min:
+		if mean_IVT > ivt_min:
 			tc_ivt     = True      #mean IVT of object
 
 		if length > 2000.:
@@ -378,11 +384,11 @@ def blob_tester(ivt_timeslice, **kwargs):
 		if length/width > 2.:
 			tc_lwr     = True      # lw ratio
 
-		if blob.eccentricity > min_eccentricity:
-			tc_ecc     = True      # eccentricity > min 
+		if meridional_IVT > 50.:
+			tc_merivt  = True      # lw ratio
 
-		if tc_ivt + tc_lgh + tc_wdt + tc_lwr + tc_ecc == 5:
-			AR_FLAG = True
+		if tc_ivt + tc_lgh + tc_wdt + tc_lwr + tc_merivt == 5:
+			AR_BASE_FLAG = True
 		# -------------------------------------------------- #
 
 
@@ -401,7 +407,8 @@ def blob_tester(ivt_timeslice, **kwargs):
 		AR_blob.object_width    			 = width
 		AR_blob.length_to_width 		     = length/width    # possible divide by zero
 		AR_blob.eccentricity    			 = blob.eccentricity 
-		AR_blob.mean_IVT 			         = blob.mean_intensity
+		AR_blob.mean_IVT 			         = mean_IVT		#blob.mean_intensity... should be the same but not sure.
+		AR_blob.meridional_IVT 		         = meridional_IVT		#blob.mean_intensity... should be the same but not sure.
 		AR_blob.object_orientation_direction = str(blob_dir_corrected)
 		AR_blob.wind_dir_mean                = str(wind_dir_mean)
 		AR_blob.wind_dir_var                 = str(wind_dir_var)
@@ -411,13 +418,13 @@ def blob_tester(ivt_timeslice, **kwargs):
 		AR_blob.start_lat                    = str(start_lat)
 		AR_blob.start_lon                    = str(start_lon)
 		AR_blob.gc_distance 				 = str(gc_distance)
-		AR_blob.AR_FLAG                      = str(AR_FLAG)
+		AR_blob.AR_BASE_FLAG                 = str(AR_BASE_FLAG)
    		AR_blob.Make_Db()
 
 		# -------  Create Output Files for Saving ------------ # 
 		AR_blob.path = center.path
 
-		if AR_FLAG == True:
+		if AR_BASE_FLAG == True:
 			AR_blob.Save_File(label_indices, ivt, center.path, v_wgt_mn_grd, u_wgt_mn_grd)
 
 		OBJECT_ID += 1.0

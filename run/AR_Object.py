@@ -10,6 +10,7 @@ class AR_Object():
 		self.object_width = None
 		self.length_to_width = None
 		self.mean_IVT = None
+		self.meridional_IVT = None
 		self.object_orientation_direction = None
 		self.eccentricity = None
 		self.landfalling = None 
@@ -21,7 +22,7 @@ class AR_Object():
 		self.start_lat = None
 		self.start_lon = None
 		self.gc_distance = None
-		self.AR_FLAG = None
+		self.AR_BASE_FLAG = None
 
 	def Make_Db(self):
 
@@ -33,6 +34,7 @@ class AR_Object():
 				'object_width': self.object_width,
 				'length_to_width': self.length_to_width,
 				'mean_IVT': self.mean_IVT,
+				'meridional_IVT': self.meridional_IVT,
 				'object_orientation_direction': self.object_orientation_direction,
 				'eccentricity': self.eccentricity,
 				'landfalling': self.landfalling, 
@@ -46,7 +48,7 @@ class AR_Object():
 				'start_lat':self.start_lat,
 				'start_lon':self.start_lon,
 				'gc_distance':self.gc_distance,
-				'AR_FLAG':self.AR_FLAG}
+				'AR_BASE_FLAG':self.AR_BASE_FLAG}
 
 		make_db(**dic)
 
