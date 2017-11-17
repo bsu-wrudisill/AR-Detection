@@ -33,8 +33,10 @@ class Centerline():
         y = self.lons_mesh[index]   # 
         return x,y
 
+
+
     def Distance_Matrix(self, label_indices_alt):
-        # Find # TODO: he two points with the greatest distance from a shape
+        # Find the two points with the greatest distance from a shape
         # The entry array is a binary array where 1 == object
         # returns the start and end points of shape 
         try: 
@@ -45,8 +47,8 @@ class Centerline():
                 points = points[0]
                 start  = label_indices_alt[points[0]]
                 end    = label_indices_alt[points[1]]
-                self.start = start 
-                self.end   = end 
+                self.start   = start 
+                self.end     = end 
                 self.passing = True
         
             else:
@@ -151,8 +153,8 @@ class Centerline():
         #-------------------------------------------------------------------------#
         # Global Values 
         #-------------------------------------------------------------------------#
-        land       = np.load('/home/wrudisill/scratch/AR-Detection/data/land.npy')
-        self.coastline  = np.load('/home/wrudisill/scratch/AR-Detection/data/west_coast.npy')
+        land            = np.load('/Users/will/Desktop/AR-Detection/data/land.npy')
+        self.coastline  = np.load('/Users/will/Desktop/AR-Detection/data/west_coast.npy')
         #-------------------------------------------------------------------------#
 
         self.Distance_Matrix(label_indices_alt)

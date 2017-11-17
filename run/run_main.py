@@ -8,14 +8,14 @@ np.seterr(all='print')
 
 
 
-yr = sys.argv[1]
+#yr = sys.argv[1]
 
 
-#yr = '1979'
-string = '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.YEAR*.nc'
+yr = '1979'
+#string = '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.YEAR*.nc'
 
-flist = glob(string.replace('YEAR',yr))
-
+#flist = glob(string.replace('YEAR',yr))
+flist = ['/Users/will/Desktop/AR-Detection/data/pgbhnl.gdas.19960516-19960520.nc']
 
 # Setup logger 
 fh_string = 'AR_detect_YEAR.log'
@@ -50,7 +50,7 @@ def wrapper(filename):
 		# logger.debug('something didnt work \n %s', e)
 
 print flist 
-p = Pool(8)
+p = Pool(2)
 p.map(wrapper, flist)
 p.close()
 p.join

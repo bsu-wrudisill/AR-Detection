@@ -15,73 +15,113 @@ def make_db(hr_time_str,
             object_width,
             length_to_width,
             mean_IVT,
+            meridional_IVT,
             object_orientation_direction,
             eccentricity,
             landfalling ,
-            landfall_point,
+            landfall_lat,
+            landfall_lon,
             wind_dir_mean,
-            wind_dir_var,  
-            start_point,
-            end_point):
+            wind_dir_var,
+            wind_speed,  
+            end_lat,
+            end_lon,
+            start_lat,
+            start_lon,
+            gc_distance,
+            AR_BASE_FLAG):
 
-  dBase = sqlite3.connect('Atmospheric_River.db',timeout=10)
-  cursor = dBase.cursor()
-  cursor.execute('''CREATE TABLE IF NOT EXISTS Rivers(
-                            hr_time_str TEXT, 
-                            OBJECT_ID TEXT,
-                            filename TEXT,
-                            object_length REAL,
-                            object_width REAL,
-                            length_to_width REAL,
-                            mean_IVT REAL,
-                            object_orientation_direction REAL,
-                            eccentricity REAL,
-                            landfalling TEXT,   
-                            landfall_point TEXT,
-                            wind_dir_mean TEXT,
-                            wind_dir_var TEXT, 
-                            start_point TEXT,
-                            end_point TEXT)''')
+  while True:
+
+    dBase = sqlite3.connect('Atmospheric_River.db',timeout=10)
+    cursor = dBase.cursor()
+
+    try:
+      cursor.execute('''CREATE TABLE IF NOT EXISTS Rivers(
+                              hr_time_str TEXT, 
+                              OBJECT_ID TEXT,
+                              filename TEXT,
+                              object_length REAL,
+                              object_width REAL,
+                              length_to_width REAL,
+                              mean_IVT REAL,
+                              meridional_IVT REAL,
+                              object_orientation_direction REAL,
+                              eccentricity REAL,
+                              landfalling TEXT,   
+                              landfall_lat REAL,
+                              landfall_lon REAL,
+                              wind_dir_mean REAl,
+                              wind_dir_var REAL, 
+                              wind_speed REAL,
+                              end_lat REAL,
+                              end_lon REAL,
+                              start_lat REAL,
+                              start_lon REAL,
+                              gc_distance REAL,
+                              AR_BASE_FLAG TEXT
+                              )''')
 
 
 #
  
-  cursor.execute('''INSERT INTO Rivers(
-                            hr_time_str,
-                            OBJECT_ID,
-                            filename,
-                            object_length,
-                            object_width,
-                            length_to_width,
-                            mean_IVT,
-                            object_orientation_direction,
-                            eccentricity,
-                            landfalling ,
-                            landfall_point,
-                            wind_dir_mean,
-                            wind_dir_var,                        
-                            start_point,
-                            end_point)
-                   VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''', 
+      cursor.execute('''INSERT INTO Rivers(
+                                hr_time_str,
+                                OBJECT_ID,
+                                filename,
+                                object_length,
+                                object_width,
+                                length_to_width,
+                                mean_IVT,
+                                meridional_IVT, 
+                                object_orientation_direction,
+                                eccentricity,
+                                landfalling ,
+                                landfall_lat,
+                                landfall_lon,                          
+                                wind_dir_mean,
+                                wind_dir_var,
+                                wind_speed,
+                                end_lat,
+                                end_lon,                        
+                                start_lat,
+                                start_lon,
+                                gc_distance,
+                                AR_BASE_FLAG
+                                )
 
-                   (      hr_time_str,
-                          OBJECT_ID,
-                          filename,
-                          object_length,
-                          object_width,
-                          length_to_width,
-                          mean_IVT,
-                          object_orientation_direction,
-                          eccentricity,
-                          landfalling,
-                          landfall_point,
-                          wind_dir_mean,
-                          wind_dir_var,                      
-                          start_point,
-                          end_point))
-  dBase.commit()
-  dBase.close()
 
+                       VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''', 
+
+                       (      hr_time_str,
+                              OBJECT_ID,
+                              filename,
+                              object_length,
+                              object_width,
+                              length_to_width,
+                              mean_IVT,
+                              meridional_IVT, 
+                              object_orientation_direction,
+                              eccentricity,
+                              landfalling,
+                              landfall_lat,
+                              landfall_lon,                          
+                              wind_dir_mean,
+                              wind_dir_var,
+                              wind_speed,                      
+                              end_lat,
+                              end_lon,
+                              start_lat,
+                              start_lon,
+                              gc_distance,
+                              AR_BASE_FLAG
+                                ))
+      dBase.commit()
+      dBase.close()
+      break
+
+    except sqlite3.OperationalError:
+      print 'database is locked. waiting'
 
 
 # bax = {'Filename': 'a',
