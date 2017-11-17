@@ -4,9 +4,12 @@ import glob
 import sys
 from multiprocessing import Pool
 import gc
-
+import time 
 
 gc.enable()
+
+#this is super ghetto...
+flag = int(time.time())
 
 
 def percentile(n):
@@ -45,6 +48,11 @@ def calc_ivt(filename, time):
 # sum through pressure levels 
     ivt_integral = np.ndarray.sum(ivt, axis=0)
     ds.close()
+    del spfh
+    del vgrd
+    del phi
+    del tV
+    del ivt
     gc.collect()
 
 #U and V winds respectivl
@@ -63,10 +71,18 @@ def calc_ivt_wrapper(filename):
     print 'working on .....' + filename
     ds    = Dataset(filename, format='NETCDF4_CLASSIC')        
     tlen  = len(ds.variables['initial_time0_hours'])
-    store_1file  = np.zeros((tlen-1, 361, 720))
+    k = 10 
+    #store_1file  = np.zeros((tlen-1, 361, 720))
+    store_1file  = np.zeros((k, 361, 720))
+
     ds.close()
-    for i in range(tlen-1):
-        store_1file[i,:,:] = calc_ivt(filename, i)
+    #for i in range(tlen-1):
+    #    store_1file[i,:,:] = calc_ivt(filename, i)
+    
+    rlist = list(np.random.randint(0,tlen-1, k))
+    for i in range(k-1):
+        store_1file[i,:,:] = calc_ivt(filename, rlist[i])
+    
 
     return store_1file
 
@@ -75,32 +91,44 @@ def calc_ivt_wrapper(filename):
 prcntl85 = percentile(85)
 
 flen = len(files)
-chunk = map(int, np.linspace(0,flen,500)
 
-p = Pool(12)
-arlist = map(calc_ivt_wrapper, files)
 
+# create a random list of files to compute 
+iterations     = 50
+number_of_files = 100
+#index        = list(np.random.randint(0,flen-1, number_of_files))
+#random_files = [files[x] for x in index]
+#p = Pool(4)
+#arlist = p.map(calc_ivt_wrapper,random_files)
 # np array to contain evert timestep for every file in the month;;; might be very big...
-master = np.concatenate(arlist, axis=0)
-np.save('./monthly_stats/master_'+month+'.npy', master)
-
-gc.collect()
-
-
-#out = np.zeros((361,720))
-
-#out = prcntl85(master)
-
-#for i in range(master.shape[0]):
-#    for j in range(master.shape[1]):
-#        out[i,j] = prcntl85(master[i,j])
+#master = np.concatenate(arlist, axis=0)
+#out = np.percentile(master, 85, axis=0)
+#np.save('./monthly_stats/IVT_'+month+'_'+str(flag)+'_85thp.npy', out)
 
 
-# calculate percentile 
-# out = prcntl85(master)
-#np.save('./monthly_stats/IVT_'+month+'_85thp.npy', out)
+for k in range(iterations):
+   
+    index        = list(np.random.randint(0,flen-1, number_of_files))
+    random_files = [files[x] for x in index]
+   
+    p = Pool(4)
 
+    arlist = p.map(calc_ivt_wrapper,random_files)
+    p.close()
+    p.join
+    # np array to contain evert timestep for every file in the month;;; might be very big...
+    master = np.concatenate(arlist, axis=0)
+    
+    #np.save('./monthly_stats/master_'+month+'_01.npy', master)
+    out = np.percentile(master, 85, axis=0)
+    
+    # save percentile
+    np.save('./monthly_stats/IVT_'+month+'_'+str(k)+'_85thp.npy', out)
 
+    del master
+    del out
+    del arlist 
+    gc.collect()    
 
 
 

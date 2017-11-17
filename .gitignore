@@ -1,4 +1,5 @@
 #gitignore
+data/monthly_stats/
 *.npy
 CFS_Reanalysis_Partial_RDA/
 input_files/
