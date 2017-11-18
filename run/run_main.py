@@ -15,7 +15,7 @@ yr = sys.argv[1]
 string = '/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.YEAR*.nc'
 
 flist = glob(string.replace('YEAR',yr))
-#flist = ['/Users/will/Desktop/AR-Detection/data/pgbhnl.gdas.19960516-19960520.nc']
+#flist = ['/home/wrudisill/scratch/AR-Detection/data/ncfiles/pgbhnl.gdas.19790101-19790105.nc']
 
 # Setup logger 
 fh_string = 'AR_detect_YEAR.log'

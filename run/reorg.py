@@ -53,21 +53,29 @@ def calc_85thp(timestring):
 	#weights 
 	wgt1    = (30. - abs(diff))/15.    #wgt for current month
 	wgt2    =  2. - wgt1			   #wgt for next(previous) month
-
+        
+        #decide which month to use to calc wghted avg
 	if diff <= 0:
-		month_b = month_a - 1.
+            if month_a == 1:
+                month_b = 12
+            else:
+                month_b = month_a - 1.
+                
 	else:
-		month_b = month_a + 1.
+            if month_a == 12:
+                month_b = 1
+            else:
+                month_b = month_a + 1
 
 	# convert month to string to read file
 	def zero_pad(mo):
-		if mo < 10:
-			mostr = '0'+str(int(mo))
-		else:
-			mostr = str(int(mo))
-		return mostr
+            if mo < 10:
+                mostr = '0'+str(int(mo))
+            else:
+                mostr = str(int(mo))
+            return mostr
 
-	path = '/Users/will/Desktop/AR-Detection/data/seasonal_means/' # path to files
+	path = '/home/wrudisill/scratch/AR-Detection/data/' # path to files
 	filea = np.load(path+'Month_'+zero_pad(month_a)+'.npy')
 	fileb = np.load(path+'Month_'+zero_pad(month_b)+'.npy')
 
@@ -199,7 +207,7 @@ def blob_tester(ivt_timeslice, **kwargs):
 	# kwarg options defaults are set 
 	ivt_min         = kwargs.get('ivt_min' , 250.0)                 
 	size_mask       = kwargs.get('size_mask', 150.0)     		      # Minimum size to retain, in px 
-	min_orientation = kwargs.get('min_orientation',  0.95)     # Minimum orientation (taken as np.abs())
+#	min_orientation = kwargs.get('min_orientation',  0.95)     # Minimum orientation (taken as np.abs())
 	min_length      = kwargs.get('min_length', 25.) 			      # Shortest feature length (in pixels)
 	min_eccentricity= kwargs.get('min_eccentricity', .87)     # Minimum eccentricity of a retained feature
 
@@ -254,12 +262,12 @@ def blob_tester(ivt_timeslice, **kwargs):
 		#--------------------------------------------------#
 		#  Test Flags; set to true if passing 
 		#--------------------------------------------------#
-		tc_ivt     = False      # Mean IVT 
-		tc_lgh     = False      # Length
-		tc_wdt     = False      # Width ratio
-		tc_lwr     = False      # Length/width ratio
-		tc_merivt  = False      # meridonal ivt
-		tc_ecc     = False      # eccentricity > min 
+		tc_ivt          = False      # Mean IVT 
+		tc_lgh          = False      # Length
+		tc_wdt          = False      # Width ratio
+		tc_lwr          = False      # Length/width ratio
+		tc_merivt       = False      # meridonal ivt
+		tc_ecc          = False      # eccentricity > min 
 		AR_BASE_FLAG    = False
 		# -------------------------------------------------- #
 
@@ -362,14 +370,13 @@ def blob_tester(ivt_timeslice, **kwargs):
 		#blob_dir_corrected = np.abs(np.abs(blob.orientation/np.pi * 180.)- 90.)
 		phi = np.abs(blob.orientation/np.pi * 180.)
                 
-                if (phi >= 0) amd (phi <= 90.):
+                if (phi >= 0) and (phi <= 90.):
                     blob_phi = 90. - phi
                 
                 if (phi <= 0) and (phi >= -90.):
                     blob_phi = 90 + abs(phi)
                 
                 
-
 		#--------------------------------------------------#
 		#  Test Flags; set to true if passing 
 		#--------------------------------------------------#
@@ -418,7 +425,7 @@ def blob_tester(ivt_timeslice, **kwargs):
 		AR_blob.end_lon                      = str(end_lon)
 		AR_blob.start_lat                    = str(start_lat)
 		AR_blob.start_lon                    = str(start_lon)
-		AR_blob.gc_distance 				 = str(gc_distance)
+		AR_blob.gc_distance     	     = str(gc_distance)
 		AR_blob.AR_BASE_FLAG                 = str(AR_BASE_FLAG)
    		AR_blob.Make_Db()
 

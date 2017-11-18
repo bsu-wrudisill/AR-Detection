@@ -66,7 +66,7 @@ class AR_Object():
 		save_me[1][label_indices] = v_wgt_mn[label_indices] 
 		save_me[2][label_indices] = u_wgt_mn[label_indices] 
 		save_me[3] = path  # path is the entire grid so we don't need indices
-		directory  = '../data/outfiles/'
+		directory  = '/home/wrudisill/scratch/AR-Detection/data/outfiles/'
 		save_me_name = directory + self.hr_time_str+'_OBJECT_'+str(self.OBJECT_ID)
 		np.save(save_me_name, save_me)
 
