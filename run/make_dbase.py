@@ -120,7 +120,8 @@ def make_db(hr_time_str,
       dBase.close()
       break
 
-    except sqlite3.OperationalError:
+    except sqlite3.OperationalError as E:
+      print E
       print 'database is locked. waiting'
 
 

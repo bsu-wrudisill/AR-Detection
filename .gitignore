@@ -1,4 +1,5 @@
 #gitignore
+log_slurm*
 data/monthly_stats/
 *.npy
 CFS_Reanalysis_Partial_RDA/
